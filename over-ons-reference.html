@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Over ons — Rijschool Goed op Weg | Persoonlijke rijlessen in Tiel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ========================================
+   FLUID ROOT
+   ======================================== */
+html { font-size: clamp(1rem, 0.68rem + 0.357vw, 1.25rem); }
+
+/* ========================================
+   RESET
+   ======================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Figtree', sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #211A18;
+  background: #FFFAF7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button, input, select, textarea { border: none; cursor: pointer; font-family: inherit; font-size: inherit; }
+
+/* ========================================
+   DESIGN TOKENS
+   ======================================== */
+:root {
+  --primary: #F05A1E;
+  --primary-dark: #B62500;
+  --primary-light: #FF9757;
+  --primary-surface: #FFF0E8;
+  --dark: #1A1A2E;
+  --darkest: #111118;
+  --bg: #FFFAF7;
+  --surface: #F9EFEB;
+  --white: #FFFFFF;
+  --text: #211A18;
+  --text-muted: #655D5A;
+  --border: #CEC5C1;
+  --success: #5D6319;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Figtree', sans-serif;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --text-sm: 0.7502rem;
+  --text-base: 1rem;
+  --text-lg: 1.333rem;
+  --text-xl: 1.7769rem;
+  --text-2xl: 2.3686rem;
+  --text-3xl: 3.1573rem;
+  --text-4xl: 4.2087rem;
+  --max-content: 68.75rem;
+  --max-nav: 80rem;
+}
+
+/* ========================================
+   UTILITIES
+   ======================================== */
+.container { max-width: var(--max-content); margin: 0 auto; padding: 0 1.5rem; }
+.heading { font-family: var(--font-heading); letter-spacing: -0.02em; color: var(--text); }
+.section-label {
+  font-family: var(--font-heading); font-weight: 600;
+  font-size: var(--text-sm); text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--primary);
+  margin-bottom: 0.75rem;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: var(--text-base); padding: 0.75rem 1.5rem;
+  border-radius: 8px; transition: all 300ms var(--ease);
+  border: none; cursor: pointer;
+}
+.btn-primary { background: var(--primary); color: var(--text); }
+.btn-primary:hover {
+  background: var(--primary-dark); color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -4px rgba(240,90,30,0.35);
+}
+.btn-whatsapp { background: #25D366; color: var(--white); }
+.btn-whatsapp:hover {
+  background: #1da851;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -4px rgba(37,211,102,0.35);
+}
+.btn-outline {
+  background: transparent; color: var(--text);
+  border: 2px solid var(--border);
+}
+.btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+.btn-dark-outline {
+  background: transparent; color: var(--white);
+  border: 2px solid rgba(255,255,255,0.2);
+}
+.btn-dark-outline:hover { border-color: var(--primary-light); color: var(--primary-light); }
+
+/* Scroll reveal */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: fade-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 80%;
+    }
+    .reveal-delay-1 { animation-delay: 80ms; }
+    .reveal-delay-2 { animation-delay: 160ms; }
+    .reveal-delay-3 { animation-delay: 240ms; }
+  }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(1.25rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========================================
+   01. NAVIGATION
+   ======================================== */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: var(--max-nav); margin: 0 auto; padding: 0 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 4rem;
+}
+.nav-logo {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: var(--text-lg); color: var(--primary);
+}
+.nav-links {
+  display: none; gap: 2rem; align-items: center;
+}
+@media (min-width: 768px) { .nav-links { display: flex; } }
+.nav-links a {
+  font-weight: 500; font-size: 0.9375rem; color: var(--text);
+  transition: color 200ms var(--ease);
+}
+.nav-links a:hover { color: var(--primary); }
+.nav-links a[aria-current="page"] { color: var(--primary); font-weight: 600; }
+.nav-cta { font-size: 0.875rem; padding: 0.5rem 1.25rem; display: none; }
+@media (min-width: 768px) { .nav-cta { display: inline-flex; } }
+
+/* ========================================
+   02. PAGE HERO — compact dark
+   ======================================== */
+.page-hero {
+  background: var(--dark); color: var(--white);
+  padding: 5rem 0 4rem; position: relative;
+}
+.breadcrumb {
+  font-size: var(--text-sm); color: rgba(255,255,255,0.5);
+  margin-bottom: 1.5rem; display: flex; gap: 0.5rem; align-items: center;
+}
+.breadcrumb a { color: rgba(255,255,255,0.6); transition: color 200ms var(--ease); }
+.breadcrumb a:hover { color: var(--primary-light); }
+.page-hero h1 {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: var(--text-3xl); line-height: 1.1;
+  letter-spacing: -0.02em; max-width: 38rem;
+}
+@media (min-width: 768px) { .page-hero h1 { font-size: var(--text-4xl); } }
+
+/* Diagonal cut — hero bottom */
+.diagonal-hero { line-height: 0; margin-top: -1px; }
+.diagonal-hero svg { width: 100%; height: 4.5rem; display: block; }
+@media (max-width: 767px) { .diagonal-hero svg { height: 2.5rem; } }
+
+/* ========================================
+   03. INSTRUCTOR SECTION
+   ======================================== */
+.instructor { background: var(--bg); padding: 5rem 0 6rem; }
+@media (max-width: 767px) { .instructor { padding: 3rem 0 4rem; } }
+.instructor-grid {
+  display: grid; grid-template-columns: 1fr;
+  gap: 3rem; align-items: start;
+}
+@media (min-width: 768px) {
+  .instructor-grid { grid-template-columns: 5fr 7fr; gap: 3.5rem; }
+}
+.instructor-photo {
+  position: relative;
+}
+.instructor-photo-frame {
+  aspect-ratio: 3/4;
+  background: #83523E;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.25);
+  font-family: var(--font-heading); font-size: var(--text-sm);
+  text-align: center; padding: 1rem;
+  position: relative; z-index: 1;
+}
+.instructor-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0.75rem -0.75rem -0.75rem 0.75rem;
+  background: var(--primary-surface);
+  border-radius: 8px;
+  z-index: 0;
+}
+.instructor-text h2 {
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: var(--text-2xl); letter-spacing: -0.015em;
+  margin-bottom: 1.25rem; line-height: 1.15;
+}
+@media (min-width: 768px) {
+  .instructor-text h2 { font-size: var(--text-2xl); }
+}
+.instructor-text p {
+  color: var(--text-muted); line-height: 1.7;
+  margin-bottom: 1rem; font-size: 0.9375rem;
+}
+.instructor-text p:last-of-type { margin-bottom: 1.75rem; }
+
+/* Trait pills */
+.traits {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  margin-bottom: 1.75rem;
+}
+.trait {
+  font-family: var(--font-heading); font-weight: 600;
+  font-size: var(--text-sm); padding: 0.35rem 0.85rem;
+  background: var(--primary-surface); color: var(--primary-dark);
+  border-radius: 6px;
+  transition: background 200ms var(--ease), color 200ms var(--ease);
+}
+.trait:hover {
+  background: var(--primary); color: var(--white);
+}
+
+.rijschoolnr {
+  font-size: var(--text-sm); color: var(--text-muted);
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.rijschoolnr strong {
+  color: var(--text); font-weight: 600;
+}
+
+/* ========================================
+   04. CIJFERS SECTION
+   ======================================== */
+.cijfers { background: var(--white); padding: 4.5rem 0; }
+@media (max-width: 767px) { .cijfers { padding: 3rem 0; } }
+.cijfers-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 1.5rem;
+}
+@media (min-width: 768px) {
+  .cijfers-grid { grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+}
+.cijfer-item { text-align: center; }
+.cijfer-num {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: var(--text-3xl); color: var(--primary);
+  line-height: 1; margin-bottom: 0.5rem;
+}
+@media (min-width: 768px) {
+  .cijfer-num { font-size: var(--text-4xl); }
+}
+.cijfer-label {
+  font-size: var(--text-sm); color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* ========================================
+   05. WAAROM GOED OP WEG
+   ======================================== */
+.waarom { background: var(--surface); padding: 5.5rem 0; }
+@media (max-width: 767px) { .waarom { padding: 3.5rem 0; } }
+.waarom-header {
+  text-align: center; margin-bottom: 3.5rem;
+}
+.waarom-header h2 {
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: var(--text-2xl); letter-spacing: -0.015em;
+}
+.waarom-grid {
+  display: grid; grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+@media (min-width: 768px) {
+  .waarom-grid { grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+}
+.usp-block {}
+.usp-icon {
+  width: 2.75rem; height: 2.75rem; margin-bottom: 1.25rem;
+  color: var(--primary);
+}
+.usp-block h3 {
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: var(--text-lg); margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+}
+.usp-block p {
+  color: var(--text-muted); font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+/* ========================================
+   06. CONTACT SECTION
+   ======================================== */
+/* Diagonal cut — contact top */
+.diagonal-contact { line-height: 0; margin-bottom: -1px; }
+.diagonal-contact svg { width: 100%; height: 4.5rem; display: block; }
+@media (max-width: 767px) { .diagonal-contact svg { height: 2.5rem; } }
+
+.contact {
+  background: var(--dark); padding: 5rem 0 5.5rem;
+  color: var(--white);
+}
+@media (max-width: 767px) { .contact { padding: 3rem 0 4rem; } }
+.contact-grid {
+  display: grid; grid-template-columns: 1fr;
+  gap: 3rem;
+}
+@media (min-width: 768px) {
+  .contact-grid { grid-template-columns: 7fr 5fr; gap: 4rem; }
+}
+
+/* Form */
+.contact-form h2 {
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: var(--text-2xl); color: var(--white);
+  margin-bottom: 0.5rem; letter-spacing: -0.015em;
+}
+.contact-form > p {
+  color: rgba(255,255,255,0.55); margin-bottom: 2rem;
+  font-size: 0.9375rem;
+}
+.form-group { margin-bottom: 1.25rem; }
+.form-label {
+  display: block; font-weight: 500; font-size: var(--text-sm);
+  color: rgba(255,255,255,0.7); margin-bottom: 0.4rem;
+}
+.form-label .optional {
+  font-weight: 300; color: rgba(255,255,255,0.35);
+}
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%; padding: 0.7rem 0.9rem;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 6px; color: var(--white);
+  font-family: var(--font-body); font-size: var(--text-base);
+  transition: border-color 200ms var(--ease), background 200ms var(--ease);
+  outline: none;
+}
+.form-input::placeholder,
+.form-textarea::placeholder { color: rgba(255,255,255,0.3); }
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--primary);
+  background: rgba(255,255,255,0.12);
+}
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='rgba(255,255,255,0.5)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  padding-right: 2.5rem;
+}
+.form-select option { background: var(--dark); color: var(--white); }
+.form-textarea { resize: vertical; min-height: 5rem; }
+
+/* Contact info */
+.contact-info { display: flex; flex-direction: column; gap: 2rem; }
+@media (min-width: 768px) { .contact-info { padding-top: 3.5rem; } }
+.contact-info h3 {
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: var(--text-lg); color: var(--white);
+  margin-bottom: 1.25rem;
+}
+.contact-detail {
+  display: flex; align-items: flex-start; gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.contact-detail-icon {
+  flex-shrink: 0; width: 1.25rem; height: 1.25rem;
+  color: var(--primary-light); margin-top: 0.15rem;
+}
+.contact-detail-text {
+  font-size: 0.9375rem; color: rgba(255,255,255,0.7);
+  line-height: 1.5;
+}
+.contact-detail-text a {
+  color: rgba(255,255,255,0.9);
+  transition: color 200ms var(--ease);
+}
+.contact-detail-text a:hover { color: var(--primary-light); }
+.contact-detail-text strong {
+  display: block; font-weight: 600; color: rgba(255,255,255,0.9);
+  margin-bottom: 0.15rem;
+}
+
+.contact-kvk {
+  font-size: var(--text-sm); color: rgba(255,255,255,0.35);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 1.25rem; margin-top: 0.5rem;
+}
+
+/* ========================================
+   07. FOOTER
+   ======================================== */
+.footer {
+  background: var(--darkest); padding: 2rem 0;
+  color: rgba(255,255,255,0.4); font-size: 0.8125rem;
+}
+.footer-inner {
+  display: flex; justify-content: space-between;
+  align-items: center; flex-wrap: wrap; gap: 1rem;
+}
+.footer a { color: rgba(255,255,255,0.4); transition: color 200ms var(--ease); }
+.footer a:hover { color: var(--primary-light); }
+@media (max-width: 767px) { .footer { padding-bottom: 5rem; } }
+
+/* ========================================
+   08. STICKY MOBILE BAR
+   ======================================== */
+.sticky-mobile {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: var(--white); border-top: 1px solid var(--border);
+  padding: 0.75rem 1rem; display: flex; gap: 0.5rem; z-index: 99;
+}
+@media (min-width: 768px) { .sticky-mobile { display: none; } }
+.sticky-wa {
+  flex: 0 0 auto; width: 2.75rem; height: 2.75rem;
+  background: #25D366; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--white); font-size: 1.25rem;
+  transition: background 200ms var(--ease);
+}
+.sticky-wa:hover { background: #1da851; }
+.sticky-cta {
+  flex: 1; height: 2.75rem;
+  background: var(--primary); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-heading); font-weight: 700;
+  color: var(--text); font-size: 0.9375rem;
+  transition: background 200ms var(--ease);
+}
+.sticky-cta:hover { background: var(--primary-dark); color: var(--white); }
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     01. NAV
+     ============================================ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">GOED OP WEG</a>
+    <ul class="nav-links">
+      <li><a href="#">Opleidingen</a></li>
+      <li><a href="#">Tarieven</a></li>
+      <li><a href="#">Geslaagd</a></li>
+      <li><a href="#" aria-current="page">Over ons</a></li>
+      <li><a href="#">Vraag &amp; antwoord</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <a href="#" class="btn btn-primary nav-cta">Plan je proefles</a>
+  </div>
+</nav>
+
+<!-- ============================================
+     02. PAGE HERO — compact dark with breadcrumb
+     ============================================ -->
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="#">Home</a> <span>/</span> <span>Over ons</span>
+    </div>
+    <h1>De rijschool waar je persoonlijk wordt begeleid</h1>
+  </div>
+</section>
+<div class="diagonal-hero" style="background:var(--bg);">
+  <svg viewBox="0 0 1440 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="0,72 1440,0 1440,72" fill="var(--bg)"/>
+    <polygon points="0,0 1440,0 1440,72" fill="var(--dark)"/>
+  </svg>
+</div>
+
+<!-- ============================================
+     03. INSTRUCTOR SECTION — the star
+     ============================================ -->
+<section class="instructor">
+  <div class="container">
+    <div class="instructor-grid">
+
+      <!-- Photo column (5fr) -->
+      <div class="instructor-photo reveal">
+        <div class="instructor-photo-frame">
+          [Foto instructeur]
+        </div>
+      </div>
+
+      <!-- Text column (7fr) -->
+      <div class="instructor-text">
+        <div class="section-label reveal">Over de instructeur</div>
+        <h2 class="reveal">Jouw vaste instructeur in Tiel die je van begin tot eind begeleidt</h2>
+        <p class="reveal">Rijles geven is voor mij geen bijbaan, het is mijn vak. Al meer dan 10 jaar help ik leerlingen in Tiel en omgeving om veilig en zelfverzekerd de weg op te gaan. Ik ken de examenwegen van CBR Tiel als mijn broekzak en weet precies waar examinatoren op letten.</p>
+        <p class="reveal">Wat mij drijft? Het moment dat een leerling het kwartje voelt vallen. Dat het schakelen ineens soepel gaat, dat een rotonde geen stress meer oplevert. En natuurlijk het allermooiste moment: samen vieren dat je geslaagd bent. Dat blijft elke keer bijzonder.</p>
+        <p class="reveal">Ik geloof niet in een aanpak die voor iedereen hetzelfde is. De een heeft baat bij rustig opbouwen, de ander wil juist snel uitgedaagd worden. Tijdens je proefles leren we elkaar kennen en bepalen we samen wat het beste bij jou past. Geen verplichte pakketten, geen druk -- gewoon goed rijles op jouw tempo.</p>
+
+        <div class="traits reveal">
+          <span class="trait">Geduldig</span>
+          <span class="trait">Ervaren</span>
+          <span class="trait">Persoonlijk</span>
+          <span class="trait">Resultaatgericht</span>
+          <span class="trait">CBR Tiel specialist</span>
+        </div>
+
+        <div class="rijschoolnr reveal">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M3 9h6"/></svg>
+          Rijschoolnummer: <strong>7633G1</strong>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     04. CIJFERS SECTION
+     ============================================ -->
+<section class="cijfers">
+  <div class="container">
+    <div class="cijfers-grid">
+      <div class="cijfer-item reveal">
+        <div class="cijfer-num">10+</div>
+        <div class="cijfer-label">Jaar ervaring als<br>rij-instructeur</div>
+      </div>
+      <div class="cijfer-item reveal reveal-delay-1">
+        <div class="cijfer-num">500+</div>
+        <div class="cijfer-label">Leerlingen succesvol<br>begeleid</div>
+      </div>
+      <div class="cijfer-item reveal reveal-delay-2">
+        <div class="cijfer-num">62%</div>
+        <div class="cijfer-label">Slagingspercentage<br>boven CBR gemiddelde</div>
+      </div>
+      <div class="cijfer-item reveal reveal-delay-3">
+        <div class="cijfer-num">4</div>
+        <div class="cijfer-label">Rijbewijscategorieen<br>in ons aanbod</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     05. WAAROM GOED OP WEG
+     ============================================ -->
+<section class="waarom">
+  <div class="container">
+    <div class="waarom-header">
+      <div class="section-label reveal">Waarom Goed op Weg</div>
+      <h2 class="reveal">Wat ons anders maakt</h2>
+    </div>
+    <div class="waarom-grid">
+
+      <!-- USP 1: Persoonlijke aanpak -->
+      <div class="usp-block reveal">
+        <svg class="usp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        <h3>Persoonlijke aanpak</h3>
+        <p>Je hebt altijd dezelfde instructeur die jouw sterke punten en aandachtspunten kent. Geen wisselende gezichten, maar een vast vertrouwd persoon die weet waar jij staat in je opleiding.</p>
+      </div>
+
+      <!-- USP 2: Hoog slagingspercentage -->
+      <div class="usp-block reveal reveal-delay-1">
+        <svg class="usp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+        <h3>Hoog slagingspercentage</h3>
+        <p>Met 62% scoren we ruim boven het landelijke CBR gemiddelde van 49%. Dat komt omdat we pas naar het examen gaan als je er echt klaar voor bent -- niet eerder, niet later.</p>
+      </div>
+
+      <!-- USP 3: Flexibele lestijden -->
+      <div class="usp-block reveal reveal-delay-2">
+        <svg class="usp-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <h3>Flexibele lestijden</h3>
+        <p>Rijlessen die in jouw agenda passen. Overdag, 's avonds of op zaterdag -- we plannen samen een schema dat werkt. Ook handig als je naast school of werk je rijbewijs wilt halen.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     06. CONTACT SECTION — diagonal cut top, dark bg
+     ============================================ -->
+<div class="diagonal-contact" style="background:var(--surface);">
+  <svg viewBox="0 0 1440 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="0,0 1440,0 0,72" fill="var(--surface)"/>
+    <polygon points="0,72 1440,0 1440,72" fill="var(--dark)"/>
+  </svg>
+</div>
+<section class="contact">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- Contact form (7fr) -->
+      <div class="contact-form reveal">
+        <h2>Neem contact op</h2>
+        <p>Stel je vraag of plan direct een proefles. We reageren binnen 24 uur.</p>
+        <form action="#" method="post">
+          <div class="form-group">
+            <label class="form-label" for="naam">Naam</label>
+            <input class="form-input" type="text" id="naam" name="naam" placeholder="Je volledige naam" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="telefoon">Telefoon <span class="optional">(optioneel)</span></label>
+            <input class="form-input" type="tel" id="telefoon" name="telefoon" placeholder="06 - xxxxxxxx">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="opleiding">Opleiding</label>
+            <select class="form-select" id="opleiding" name="opleiding" required>
+              <option value="" disabled selected>Kies een opleiding</option>
+              <option value="auto-b">Autorijbewijs (B)</option>
+              <option value="motor-a">Motorrijbewijs (A)</option>
+              <option value="bromfiets-am">Bromfiets (AM)</option>
+              <option value="aanhanger-be">Aanhangwagen (BE)</option>
+              <option value="proefles">Proefles</option>
+              <option value="anders">Anders / Weet ik nog niet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="bericht">Bericht <span class="optional">(optioneel)</span></label>
+            <textarea class="form-textarea" id="bericht" name="bericht" rows="4" placeholder="Vertel kort wat je situatie is of stel je vraag..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:0.5rem;">Plan je proefles &#8594;</button>
+        </form>
+      </div>
+
+      <!-- Contact info (5fr) -->
+      <div class="contact-info reveal reveal-delay-1">
+        <div>
+          <h3>Direct contact</h3>
+
+          <!-- WhatsApp -->
+          <div class="contact-detail">
+            <svg class="contact-detail-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+              <path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.122 1.521 5.86L0 24l6.335-1.661A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.78 9.78 0 01-5.283-1.545l-.379-.225-3.932 1.031 1.05-3.834-.247-.394A9.78 9.78 0 012.182 12c0-5.415 4.403-9.818 9.818-9.818S21.818 6.585 21.818 12 17.415 21.818 12 21.818z"/>
+            </svg>
+            <div class="contact-detail-text">
+              <strong>WhatsApp</strong>
+              <a href="#" class="btn btn-whatsapp" style="font-size:var(--text-sm);padding:0.4rem 1rem;margin-top:0.35rem;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.122 1.521 5.86L0 24l6.335-1.661A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.78 9.78 0 01-5.283-1.545l-.379-.225-3.932 1.031 1.05-3.834-.247-.394A9.78 9.78 0 012.182 12c0-5.415 4.403-9.818 9.818-9.818S21.818 6.585 21.818 12 17.415 21.818 12 21.818z"/></svg>
+                Stuur een bericht
+              </a>
+            </div>
+          </div>
+
+          <!-- Phone -->
+          <div class="contact-detail">
+            <svg class="contact-detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+            <div class="contact-detail-text">
+              <strong>Telefoon</strong>
+              <a href="tel:+31612345678">06 - 1234 5678</a>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="contact-detail">
+            <svg class="contact-detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="M22 7l-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7"/>
+            </svg>
+            <div class="contact-detail-text">
+              <strong>E-mail</strong>
+              <a href="mailto:info@rijschoolgoedopweg.nl">info@rijschoolgoedopweg.nl</a>
+            </div>
+          </div>
+
+          <!-- Address -->
+          <div class="contact-detail">
+            <svg class="contact-detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            <div class="contact-detail-text">
+              <strong>Adres</strong>
+              Gildehof 18<br>
+              4002 HG Tiel
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-kvk">
+          KvK: 51173336 &middot; Rijschoolnummer: 7633G1
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     07. FOOTER
+     ============================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <span>&copy; 2026 Rijschool Goed op Weg &mdash; KvK: 51173336</span>
+      <div style="display:flex;gap:1.5rem;">
+        <a href="#">Privacybeleid</a>
+        <a href="#">Algemene voorwaarden</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================
+     08. STICKY MOBILE BAR
+     ============================================ -->
+<div class="sticky-mobile">
+  <a href="#" class="sticky-wa">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.122 1.521 5.86L0 24l6.335-1.661A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.78 9.78 0 01-5.283-1.545l-.379-.225-3.932 1.031 1.05-3.834-.247-.394A9.78 9.78 0 012.182 12c0-5.415 4.403-9.818 9.818-9.818S21.818 6.585 21.818 12 17.415 21.818 12 21.818z"/></svg>
+  </a>
+  <a href="#" class="sticky-cta">Plan je proefles</a>
+</div>
+
+</body>
+</html>

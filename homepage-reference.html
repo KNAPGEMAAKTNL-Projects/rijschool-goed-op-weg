@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rijschool Goed op Weg — Homepage Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ========================================
+   FLUID ROOT — scales entire design proportionally
+   16px @1440px → ~18px @1920px → 20px @2560px+
+   ======================================== */
+html { font-size: clamp(1rem, 0.68rem + 0.357vw, 1.25rem); }
+
+/* ========================================
+   RESET
+   ======================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Figtree', sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #211A18;
+  background: #FFFAF7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { border: none; cursor: pointer; font-family: inherit; }
+
+/* ========================================
+   DESIGN TOKENS
+   ======================================== */
+:root {
+  --primary: #F05A1E;
+  --primary-dark: #B62500;
+  --primary-light: #FF9757;
+  --primary-surface: #FFF0E8;
+  --secondary: #83523E;
+  --dark: #1A1A2E;
+  --darkest: #111118;
+  --bg: #FFFAF7;
+  --surface: #F9EFEB;
+  --white: #FFFFFF;
+  --text: #211A18;
+  --text-muted: #655D5A;
+  --border: #CEC5C1;
+  --error: #CB002A;
+  --success: #5D6319;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Figtree', sans-serif;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  /* Perfect Fourth 1.333 */
+  --text-sm: 0.7502rem;
+  --text-base: 1rem;
+  --text-lg: 1.333rem;
+  --text-xl: 1.7769rem;
+  --text-2xl: 2.3686rem;
+  --text-3xl: 3.1573rem;
+  --text-4xl: 4.2087rem;
+  /* Containers in rem */
+  --max-content: 68.75rem;
+  --max-wide: 87.5rem;
+  --max-nav: 80rem;
+  --max-hero-text: 35rem;
+}
+
+/* ========================================
+   UTILITIES
+   ======================================== */
+.container { max-width: var(--max-content); margin: 0 auto; padding: 0 1.5rem; }
+.container-wide { max-width: var(--max-wide); margin: 0 auto; padding: 0 1.5rem; }
+.container-nav { max-width: var(--max-nav); margin: 0 auto; padding: 0 1.5rem; }
+.heading { font-family: var(--font-heading); letter-spacing: -0.02em; color: var(--text); }
+
+/* Scroll reveal */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: fade-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 80%;
+    }
+    .reveal-delay-1 { animation-delay: 100ms; }
+    .reveal-delay-2 { animation-delay: 200ms; }
+    .reveal-delay-3 { animation-delay: 300ms; }
+  }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(1.25rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========================================
+   01. NAVIGATION — sticky, white bg, CTA button
+   ======================================== */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 4rem;
+}
+.nav-logo {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: var(--text-lg); color: var(--primary);
+}
+.nav-links {
+  display: none; gap: 2rem; align-items: center;
+}
+@media (min-width: 768px) {
+  .nav-links { display: flex; }
+}
+.nav-links a {
+  font-weight: 500; font-size: 0.9375rem; color: var(--text);
+  transition: color 200ms var(--ease);
+}
+.nav-links a:hover { color: var(--primary); }
+.nav-phone {
+  font-weight: 600; font-size: var(--text-sm); color: var(--text-muted);
+  display: none;
+}
+@media (min-width: 1024px) { .nav-phone { display: block; } }
+.nav-phone a { color: var(--text); }
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: var(--text-base); padding: 0.75rem 1.5rem;
+  border-radius: 8px; transition: all 300ms var(--ease);
+}
+.btn-primary {
+  background: var(--primary); color: var(--text);
+}
+.btn-primary:hover {
+  background: var(--primary-dark); color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -4px rgba(240,90,30,0.35);
+}
+.btn-outline {
+  background: transparent; color: var(--text);
+  border: 2px solid var(--border);
+}
+.btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+.btn-whatsapp {
+  background: #25D366; color: var(--white);
+}
+.btn-whatsapp:hover { background: #1EBE5A; transform: translateY(-2px); }
+.btn-sm { padding: 0.5rem 1.25rem; font-size: 0.875rem; }
+.mobile-toggle {
+  display: flex; flex-direction: column; gap: 5px; background: none;
+}
+@media (min-width: 768px) { .mobile-toggle { display: none; } }
+.mobile-toggle span {
+  display: block; height: 2px; background: var(--text); border-radius: 2px;
+}
+.mobile-toggle span:nth-child(1) { width: 22px; }
+.mobile-toggle span:nth-child(2) { width: 22px; }
+.mobile-toggle span:nth-child(3) { width: 15px; }
+
+/* ========================================
+   02. HERO — full-bleed, dark overlay, left-aligned
+   3 visual layers: bg image, gradient overlay, content
+   ======================================== */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex; align-items: center;
+  background: var(--dark);
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: var(--secondary);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-heading); color: rgba(255,255,255,0.15);
+  font-size: 1.5rem; font-weight: 700;
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(26,26,46,0.92) 0%, rgba(26,26,46,0.6) 55%, rgba(26,26,46,0.35) 100%);
+  z-index: 1;
+}
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: var(--max-hero-text);
+  padding: 4rem 1.5rem;
+}
+@media (min-width: 768px) {
+  .hero-content { padding: 6rem 3rem; }
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(8px);
+  padding: 0.4rem 0.85rem; border-radius: 100px;
+  font-size: 0.8125rem; font-weight: 500; color: var(--white);
+  margin-bottom: 1.5rem;
+  animation: fade-in 0.6s ease-out both;
+}
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+.hero-badge .star { color: #FFD700; }
+.hero-h1 {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: var(--text-3xl); line-height: 1.1;
+  letter-spacing: -0.025em; color: var(--white);
+  margin-bottom: 1.25rem;
+  animation: slide-up 0.7s var(--ease) 0.1s both;
+}
+@media (min-width: 768px) {
+  .hero-h1 { font-size: var(--text-4xl); }
+}
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(1.25rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-sub {
+  font-size: var(--text-lg); color: rgba(255,255,255,0.8);
+  line-height: 1.55; margin-bottom: 2rem;
+  max-width: 30rem;
+  animation: slide-up 0.7s var(--ease) 0.2s both;
+}
+.hero-ctas {
+  display: flex; flex-wrap: wrap; gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  animation: slide-up 0.7s var(--ease) 0.3s both;
+}
+.hero-phone {
+  font-size: 0.875rem; color: rgba(255,255,255,0.6);
+  animation: slide-up 0.7s var(--ease) 0.4s both;
+}
+.hero-phone a { color: var(--white); font-weight: 600; }
+
+/* Diagonal divider: hero → stats (sharp angle = speed) */
+.diagonal-hero-bottom {
+  position: absolute; bottom: -1px; left: 0; width: 100%; z-index: 3;
+  line-height: 0;
+}
+.diagonal-hero-bottom svg { width: 100%; height: 4.5rem; display: block; }
+@media (max-width: 767px) { .diagonal-hero-bottom svg { height: 2.5rem; } }
+
+/* ========================================
+   03. STATS ROW — 3-col, animated counters
+   bg: #FFFAF7 | py: 4rem desktop, 3rem mobile
+   ======================================== */
+.stats {
+  background: var(--bg);
+  padding: 4rem 0;
+}
+@media (max-width: 767px) { .stats { padding: 3rem 0; } }
+.stats-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+}
+@media (max-width: 640px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+.stat-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 1.75rem; text-align: center;
+}
+.stat-number {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: var(--text-3xl); color: var(--primary);
+  letter-spacing: -0.02em; line-height: 1;
+}
+.stat-label {
+  font-size: var(--text-sm); color: var(--text-muted);
+  font-weight: 500; margin-top: 0.35rem;
+}
+.stat-compare {
+  font-size: 0.6875rem; color: var(--success);
+  font-weight: 600; margin-top: 0.25rem;
+}
+
+/* ========================================
+   04. OPLEIDINGEN — 3x2 grid, color-shift hover
+   bg: #FFFFFF | py: 5rem desktop, 3.5rem mobile
+   ======================================== */
+.opleidingen {
+  background: var(--white);
+  padding: 5rem 0;
+}
+@media (max-width: 767px) { .opleidingen { padding: 3.5rem 0; } }
+.section-label {
+  font-family: var(--font-heading); font-weight: 600;
+  font-size: var(--text-sm); text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--primary);
+  margin-bottom: 0.75rem;
+}
+.section-heading {
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: var(--text-2xl); letter-spacing: -0.015em;
+  margin-bottom: 0.75rem; color: var(--text);
+}
+.section-sub {
+  color: var(--text-muted); max-width: 40rem;
+  margin-bottom: 2.5rem; line-height: 1.6;
+}
+.opl-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+}
+@media (max-width: 1023px) { .opl-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .opl-grid { grid-template-columns: 1fr; } }
+.opl-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 1.5rem;
+  transition: all 300ms var(--ease);
+  cursor: pointer; position: relative; overflow: hidden;
+}
+.opl-card:hover {
+  background: var(--primary); border-color: var(--primary);
+  color: var(--white);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px -8px rgba(240,90,30,0.3);
+}
+.opl-card:hover .opl-desc { color: rgba(255,255,255,0.8); }
+.opl-card:hover .opl-arrow { opacity: 1; transform: translateX(0); }
+.opl-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+.opl-title {
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: var(--text-base);
+}
+.opl-desc {
+  font-size: var(--text-sm); color: var(--text-muted);
+  margin-top: 0.25rem; transition: color 300ms var(--ease);
+}
+.opl-arrow {
+  position: absolute; top: 1.25rem; right: 1.25rem;
+  opacity: 0; transform: translateX(-8px);
+  transition: all 300ms var(--ease);
+  font-size: 1.25rem;
+}
+/* Featured card */
+.opl-card.featured {
+  background: var(--primary-surface);
+  border-color: var(--primary);
+}
+.opl-card.featured .opl-badge {
+  display: inline-block;
+  background: var(--primary); color: var(--white);
+  font-size: 0.6875rem; font-weight: 700;
+  padding: 0.15rem 0.5rem; border-radius: 4px;
+  font-family: var(--font-heading);
+  margin-bottom: 0.5rem;
+}
+
+/* ========================================
+   05. USP STRIP — 4-col, accent bg
+   bg: #FFF0E8 | py: 2.5rem desktop, 2rem mobile
+   ======================================== */
+.usp-strip {
+  background: var(--primary-surface);
+  padding: 2.5rem 0;
+}
+@media (max-width: 767px) { .usp-strip { padding: 2rem 0; } }
+.usp-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+  text-align: center;
+}
+@media (max-width: 767px) {
+  .usp-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+}
+.usp-item { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+.usp-icon {
+  width: 2.5rem; height: 2.5rem;
+  background: var(--primary); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--white); font-size: 1.25rem;
+}
+.usp-text {
+  font-family: var(--font-heading); font-weight: 600;
+  font-size: 0.875rem;
+}
+
+/* ========================================
+   06. DAGCURSUS FEATURE — 7/5 asymmetric
+   bg: #F9EFEB | py: 6rem desktop, 4rem mobile
+   ======================================== */
+.dagcursus {
+  background: var(--surface);
+  padding: 6rem 0;
+}
+@media (max-width: 767px) { .dagcursus { padding: 4rem 0; } }
+.dagcursus-grid {
+  display: grid; grid-template-columns: 7fr 5fr; gap: 3rem; align-items: center;
+}
+@media (max-width: 767px) {
+  .dagcursus-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+.dagcursus-img {
+  background: var(--secondary); border-radius: 8px;
+  aspect-ratio: 4/3;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.3); font-family: var(--font-heading);
+  font-weight: 700; font-size: 1rem;
+  order: 2;
+}
+@media (max-width: 767px) { .dagcursus-img { order: -1; } }
+.dagcursus-content { order: 1; }
+.check-list { display: flex; flex-direction: column; gap: 0.75rem; margin: 1.5rem 0 2rem; }
+.check-item {
+  display: flex; align-items: flex-start; gap: 0.75rem;
+  font-size: 0.9375rem; color: var(--text-muted);
+}
+.check-icon {
+  width: 1.25rem; height: 1.25rem; flex-shrink: 0;
+  background: var(--primary); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--white); font-size: 0.75rem; margin-top: 0.15rem;
+}
+
+/* ========================================
+   07. GESLAAGDEN GALLERY — full-bleed dark, masonry
+   bg: #1A1A2E | py: 4rem
+   ======================================== */
+/* Diagonal cuts — sharp angles expressing speed/forward motion */
+.diagonal-to-dark {
+  background: var(--surface); line-height: 0;
+  margin-bottom: -1px;
+}
+.diagonal-to-dark svg { width: 100%; height: 4.5rem; display: block; }
+@media (max-width: 767px) { .diagonal-to-dark svg { height: 2.5rem; } }
+
+.geslaagden {
+  background: var(--dark);
+  padding: 4rem 0;
+  color: var(--white);
+}
+@media (max-width: 767px) { .geslaagden { padding: 3rem 0; } }
+.geslaagden .section-label { color: var(--primary-light); }
+.geslaagden .section-heading { color: var(--white); }
+.geslaagden .section-sub { color: rgba(255,255,255,0.6); }
+.gallery-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+@media (max-width: 1023px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 640px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+.gallery-card {
+  background: rgba(255,255,255,0.06);
+  border-radius: 8px; overflow: hidden;
+  border-bottom: 3px solid var(--primary);
+}
+.gallery-photo {
+  aspect-ratio: 3/4; background: var(--secondary);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.2); font-size: 0.75rem;
+  font-family: var(--font-heading); font-weight: 600;
+}
+.gallery-card:nth-child(2) .gallery-photo,
+.gallery-card:nth-child(5) .gallery-photo { aspect-ratio: 1/1; }
+.gallery-card:nth-child(4) .gallery-photo { aspect-ratio: 3/5; }
+.gallery-info { padding: 0.75rem 1rem; }
+.gallery-name {
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: 0.875rem;
+}
+.gallery-badge {
+  display: inline-block; margin-top: 0.25rem;
+  background: rgba(240,90,30,0.2); color: var(--primary-light);
+  font-size: 0.6875rem; font-weight: 600;
+  padding: 0.1rem 0.5rem; border-radius: 4px;
+}
+
+.diagonal-from-dark {
+  background: var(--white); line-height: 0;
+  margin-top: -1px;
+}
+.diagonal-from-dark svg { width: 100%; height: 4.5rem; display: block; }
+@media (max-width: 767px) { .diagonal-from-dark svg { height: 2.5rem; } }
+
+/* ========================================
+   08. INSTRUCTEUR — 5/7 asymmetric reversed
+   bg: #FFFFFF | py: 6rem desktop, 4rem mobile
+   ======================================== */
+.instructeur {
+  background: var(--white);
+  padding: 6rem 0;
+}
+@media (max-width: 767px) { .instructeur { padding: 4rem 0; } }
+.instructeur-grid {
+  display: grid; grid-template-columns: 5fr 7fr; gap: 3rem; align-items: center;
+}
+@media (max-width: 767px) {
+  .instructeur-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+.instructeur-img {
+  background: var(--secondary); border-radius: 8px;
+  aspect-ratio: 3/4;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.3); font-family: var(--font-heading);
+  font-weight: 700; font-size: 1rem;
+  box-shadow: 12px 12px 0 var(--primary-surface);
+}
+.trait-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.5rem 0; }
+.trait-pill {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  background: var(--surface); border: 1px solid var(--border);
+  padding: 0.4rem 0.85rem; border-radius: 100px;
+  font-size: 0.8125rem; font-weight: 500;
+}
+
+/* ========================================
+   09. REVIEWS — 3-col cards
+   bg: #FFFAF7 | py: 4rem
+   ======================================== */
+.reviews {
+  background: var(--bg);
+  padding: 4rem 0;
+}
+@media (max-width: 767px) { .reviews { padding: 3rem 0; } }
+.reviews-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+}
+@media (max-width: 767px) { .reviews-grid { grid-template-columns: 1fr; } }
+.review-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 1.5rem;
+}
+.review-stars { color: #FFD700; font-size: 0.875rem; margin-bottom: 0.75rem; letter-spacing: 2px; }
+.review-text {
+  font-size: 0.9375rem; color: var(--text-muted);
+  line-height: 1.6; margin-bottom: 1rem;
+  font-style: italic;
+}
+.review-author {
+  font-family: var(--font-heading); font-weight: 600;
+  font-size: 0.875rem;
+}
+.review-meta { font-size: 0.75rem; color: var(--text-muted); }
+
+/* ========================================
+   10. TARIEVEN — 3-col pricing, featured card
+   bg: #FFFFFF | py: 5rem
+   ======================================== */
+.tarieven {
+  background: var(--white);
+  padding: 5rem 0;
+}
+@media (max-width: 767px) { .tarieven { padding: 3.5rem 0; } }
+.tarieven-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+  align-items: start;
+}
+@media (max-width: 767px) { .tarieven-grid { grid-template-columns: 1fr; } }
+.prijs-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 2rem;
+  position: relative; overflow: hidden;
+}
+.prijs-card.popular {
+  border-color: var(--primary);
+  border-top: 4px solid var(--primary);
+  transform: scale(1.04);
+  box-shadow: 0 12px 32px -8px rgba(240,90,30,0.15);
+}
+.prijs-ribbon {
+  position: absolute; top: 1.25rem; right: -2rem;
+  background: var(--primary); color: var(--white);
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: 0.6875rem; padding: 0.25rem 2.5rem;
+  transform: rotate(45deg);
+}
+.prijs-name {
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: var(--text-lg); margin-bottom: 0.5rem;
+}
+.prijs-amount {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: var(--text-2xl); color: var(--primary);
+  margin-bottom: 1.5rem;
+}
+.prijs-amount span { font-size: var(--text-sm); font-weight: 400; color: var(--text-muted); }
+.prijs-list { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2rem; }
+.prijs-item {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.875rem; color: var(--text-muted);
+}
+.prijs-check { color: var(--primary); font-weight: 700; }
+
+/* ========================================
+   11. FAQ — accordion, surface bg
+   bg: #F9EFEB | py: 4rem
+   ======================================== */
+.faq {
+  background: var(--surface);
+  padding: 4rem 0;
+}
+@media (max-width: 767px) { .faq { padding: 3rem 0; } }
+.faq-list {
+  max-width: 45rem; margin: 0 auto;
+  display: flex; flex-direction: column; gap: 0.75rem;
+}
+.faq-item {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; overflow: hidden;
+}
+.faq-q {
+  padding: 1.25rem 1.5rem;
+  font-family: var(--font-heading); font-weight: 600;
+  font-size: var(--text-base);
+  display: flex; justify-content: space-between; align-items: center;
+  cursor: pointer;
+}
+.faq-q .toggle { color: var(--primary); font-size: 1.25rem; }
+.faq-a {
+  padding: 0 1.5rem 1.25rem;
+  font-size: 0.9375rem; color: var(--text-muted);
+  line-height: 1.65;
+  display: none;
+}
+.faq-item.open .faq-a { display: block; }
+
+/* ========================================
+   12. CONTACT — 7/5 asymmetric, dark bg
+   ======================================== */
+.diagonal-to-contact {
+  background: var(--surface); line-height: 0;
+  margin-bottom: -1px;
+}
+.diagonal-to-contact svg { width: 100%; height: 4.5rem; display: block; }
+@media (max-width: 767px) { .diagonal-to-contact svg { height: 2.5rem; } }
+
+.contact {
+  background: var(--dark);
+  padding: 5rem 0;
+  color: var(--white);
+}
+@media (max-width: 767px) { .contact { padding: 3.5rem 0; } }
+.contact-grid {
+  display: grid; grid-template-columns: 7fr 5fr; gap: 3rem;
+}
+@media (max-width: 767px) {
+  .contact-grid { grid-template-columns: 1fr; }
+}
+.contact .section-label { color: var(--primary-light); }
+.contact .section-heading { color: var(--white); }
+.form-group { margin-bottom: 1.25rem; }
+.form-label {
+  display: block; font-size: var(--text-sm); font-weight: 500;
+  color: rgba(255,255,255,0.6); margin-bottom: 0.35rem;
+}
+.form-input {
+  width: 100%; padding: 0.75rem 1rem;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px; color: var(--white);
+  font-family: var(--font-body); font-size: var(--text-base);
+  transition: border-color 200ms var(--ease);
+}
+.form-input:focus {
+  outline: none; border-color: var(--primary);
+  background: rgba(255,255,255,0.12);
+}
+.form-input::placeholder { color: rgba(255,255,255,0.3); }
+textarea.form-input { resize: vertical; min-height: 5rem; }
+.form-note {
+  font-size: 0.75rem; color: rgba(255,255,255,0.4);
+  margin-top: 1rem;
+}
+.contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+.contact-block h3 {
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: var(--text-base); margin-bottom: 0.5rem;
+}
+.contact-block p {
+  font-size: 0.9375rem; color: rgba(255,255,255,0.6);
+  line-height: 1.6;
+}
+.contact-block a { color: var(--primary-light); }
+
+/* ========================================
+   13. FOOTER — darkest
+   ======================================== */
+.footer {
+  background: var(--darkest);
+  padding: 3rem 0 1.5rem;
+  color: rgba(255,255,255,0.5);
+  font-size: 0.8125rem;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem;
+  margin-bottom: 2rem;
+}
+@media (max-width: 767px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+.footer-brand {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: var(--text-lg); color: var(--white);
+  margin-bottom: 0.75rem;
+}
+.footer h4 {
+  font-family: var(--font-heading); font-weight: 600;
+  color: rgba(255,255,255,0.8); margin-bottom: 0.75rem;
+  font-size: 0.875rem;
+}
+.footer a { color: rgba(255,255,255,0.5); transition: color 200ms; }
+.footer a:hover { color: var(--primary-light); }
+.footer-links { display: flex; flex-direction: column; gap: 0.5rem; }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 1.5rem;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+}
+
+/* ========================================
+   STICKY MOBILE BAR
+   ======================================== */
+.sticky-mobile {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  padding: 0.75rem 1rem;
+  display: flex; gap: 0.5rem;
+  z-index: 99;
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.06);
+}
+@media (min-width: 768px) { .sticky-mobile { display: none; } }
+.sticky-wa {
+  flex: 0 0 auto; width: 2.75rem; height: 2.75rem;
+  background: #25D366; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--white); font-size: 1.25rem;
+}
+.sticky-cta {
+  flex: 1; height: 2.75rem;
+  background: var(--primary); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-heading); font-weight: 700;
+  color: var(--text); font-size: 0.9375rem;
+}
+/* Add padding at bottom for mobile sticky bar */
+@media (max-width: 767px) {
+  .footer { padding-bottom: 5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<nav class="nav">
+  <div class="container-nav nav-inner">
+    <a href="#" class="nav-logo">GOED OP WEG</a>
+    <ul class="nav-links">
+      <li><a href="#">Opleidingen</a></li>
+      <li><a href="#">Tarieven</a></li>
+      <li><a href="#">Geslaagd</a></li>
+      <li><a href="#">Over ons</a></li>
+      <li><a href="#">Vraag &amp; antwoord</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <div style="display:flex;align-items:center;gap:1.25rem;">
+      <span class="nav-phone">Bel: <a href="tel:0628990655">06 28 99 06 55</a></span>
+      <a href="#" class="btn btn-primary btn-sm" style="display:none;">Plan je proefles</a>
+      <button class="mobile-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <!-- Desktop CTA visible from 768px -->
+    <style>@media(min-width:768px){.nav .btn-primary{display:inline-flex!important;}}</style>
+  </div>
+</nav>
+
+<!-- ============================================================
+     01. HERO — Full-bleed, dark overlay, left-aligned
+     Layers: 1) bg image placeholder 2) gradient overlay 3) content
+     ============================================================ -->
+<section class="hero">
+  <div class="hero-bg">[Foto: leerling met instructeur bij CBR Tiel]</div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="star">&#9733;</span> 5.0/5 — 15 beoordelingen op Google
+    </div>
+    <h1 class="hero-h1">Behaal zorgeloos<br>je rijbewijs</h1>
+    <p class="hero-sub">De opleiding van je leven volg je maar 1 keer. Wij zorgen dat je het in 1x goed doet — met persoonlijke begeleiding en resultaten die erboven uitsteken.</p>
+    <div class="hero-ctas">
+      <a href="#" class="btn btn-primary">Plan je proefles &#8594;</a>
+      <a href="#" class="btn btn-whatsapp">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.122 1.521 5.86L0 24l6.335-1.661A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.78 9.78 0 01-5.283-1.545l-.379-.225-3.932 1.031 1.05-3.834-.247-.394A9.78 9.78 0 012.182 12c0-5.415 4.403-9.818 9.818-9.818S21.818 6.585 21.818 12 17.415 21.818 12 21.818z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+    <p class="hero-phone">Of bel direct: <a href="tel:0628990655">06 28 99 06 55</a></p>
+  </div>
+  <div class="diagonal-hero-bottom">
+    <svg viewBox="0 0 1440 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="0,72 1440,0 1440,72" fill="#FFFAF7"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ============================================================
+     02. STATS ROW — CBR slagingspercentages (signature interaction)
+     bg: #FFFAF7 | py: 4rem
+     ============================================================ -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card reveal">
+        <div class="stat-number">91%</div>
+        <div class="stat-label">Motor geslaagd</div>
+        <div class="stat-compare">+9% boven CBR gemiddelde</div>
+      </div>
+      <div class="stat-card reveal reveal-delay-1">
+        <div class="stat-number">90%</div>
+        <div class="stat-label">Bromfiets geslaagd</div>
+        <div class="stat-compare">+3% boven CBR gemiddelde</div>
+      </div>
+      <div class="stat-card reveal reveal-delay-2">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Taxi geslaagd</div>
+        <div class="stat-compare">+40% boven CBR gemiddelde</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     03. OPLEIDINGEN — 3x2 grid, color-shift hover, featured card
+     bg: #FFFFFF | py: 5rem
+     ============================================================ -->
+<section class="opleidingen">
+  <div class="container">
+    <div class="section-label">Onze opleidingen</div>
+    <h2 class="section-heading">Welk rijbewijs past bij jou?</h2>
+    <p class="section-sub">Van auto tot motor, van bromfiets tot taxi — wij leiden je op voor elk type rijbewijs. Kies je opleiding en we plannen samen je eerste les.</p>
+    <div class="opl-grid">
+      <div class="opl-card reveal">
+        <div class="opl-icon">&#x1F697;</div>
+        <div class="opl-title">Auto (B)</div>
+        <div class="opl-desc">Handgeschakeld &amp; automaat</div>
+        <div class="opl-arrow">&#8594;</div>
+      </div>
+      <div class="opl-card reveal reveal-delay-1">
+        <div class="opl-icon">&#x1F3CD;</div>
+        <div class="opl-title">Motor</div>
+        <div class="opl-desc">A1, A2 en A rijbewijs</div>
+        <div class="opl-arrow">&#8594;</div>
+      </div>
+      <div class="opl-card featured reveal reveal-delay-2">
+        <div class="opl-badge">Populair</div>
+        <div class="opl-icon">&#x1F6F5;</div>
+        <div class="opl-title">Dagcursus bromfiets</div>
+        <div class="opl-desc">In 1 dag je AM rijbewijs</div>
+        <div class="opl-arrow">&#8594;</div>
+      </div>
+      <div class="opl-card reveal">
+        <div class="opl-icon">&#x1F69B;</div>
+        <div class="opl-title">Aanhanger (BE)</div>
+        <div class="opl-desc">Auto met aanhangwagen</div>
+        <div class="opl-arrow">&#8594;</div>
+      </div>
+      <div class="opl-card reveal reveal-delay-1">
+        <div class="opl-icon">&#x1F695;</div>
+        <div class="opl-title">Taxi</div>
+        <div class="opl-desc">Taxipas en chauffeurskaart</div>
+        <div class="opl-arrow">&#8594;</div>
+      </div>
+      <div class="opl-card reveal reveal-delay-2">
+        <div class="opl-icon">&#x1F4DA;</div>
+        <div class="opl-title">Theorie</div>
+        <div class="opl-desc">Auto, motor &amp; bromfiets</div>
+        <div class="opl-arrow">&#8594;</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     04. USP STRIP — 4-col accent bg
+     bg: #FFF0E8 | py: 2.5rem
+     ============================================================ -->
+<section class="usp-strip">
+  <div class="container">
+    <div class="usp-grid">
+      <div class="usp-item reveal">
+        <div class="usp-icon">&#10003;</div>
+        <div class="usp-text">Hoog slagingspercentage</div>
+      </div>
+      <div class="usp-item reveal reveal-delay-1">
+        <div class="usp-icon">&#9825;</div>
+        <div class="usp-text">Persoonlijke aanpak</div>
+      </div>
+      <div class="usp-item reveal reveal-delay-2">
+        <div class="usp-icon">&#9881;</div>
+        <div class="usp-text">Automaat beschikbaar</div>
+      </div>
+      <div class="usp-item reveal reveal-delay-3">
+        <div class="usp-icon">&#9889;</div>
+        <div class="usp-text">Dagcursus in 1 dag</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     05. DAGCURSUS FEATURE — 7/5 asymmetric
+     bg: #F9EFEB | py: 6rem
+     ============================================================ -->
+<section class="dagcursus">
+  <div class="container">
+    <div class="dagcursus-grid">
+      <div class="dagcursus-content reveal">
+        <div class="section-label">Onze topper</div>
+        <h2 class="section-heading">Bromfietsrijbewijs in 1 dag</h2>
+        <p style="color:var(--text-muted);line-height:1.65;">Geen weken wachten — in onze dagcursus haal je je bromfietsrijbewijs in 1 dag. Je begint 's ochtends met de theorie, oefent in de middag op de brommer en doet aan het eind van de dag examen bij het CBR. 90% van onze leerlingen slaagt in 1 keer.</p>
+        <div class="check-list">
+          <div class="check-item"><span class="check-icon">&#10003;</span> Theorie + praktijk op dezelfde dag</div>
+          <div class="check-item"><span class="check-icon">&#10003;</span> Inclusief CBR-examen</div>
+          <div class="check-item"><span class="check-icon">&#10003;</span> 90% slaagt in 1 keer</div>
+          <div class="check-item"><span class="check-icon">&#10003;</span> Kleine groepen, persoonlijke aandacht</div>
+        </div>
+        <a href="#" class="btn btn-primary">Boek je dagcursus &#8594;</a>
+        <p style="font-size:0.75rem;color:var(--text-muted);margin-top:0.75rem;">Vrijblijvend — Binnen 24 uur reactie</p>
+      </div>
+      <div class="dagcursus-img reveal reveal-delay-1">[Foto: leerlingen op brommers bij CBR]</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     06. GESLAAGDEN GALLERY — full-bleed dark, variable card heights
+     bg: #1A1A2E | py: 4rem
+     ============================================================ -->
+<div class="diagonal-to-dark">
+  <svg viewBox="0 0 1440 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="0,0 1440,72 0,72" fill="#1A1A2E"/>
+  </svg>
+</div>
+<section class="geslaagden">
+  <div class="container-wide">
+    <div class="section-label">Onze geslaagden</div>
+    <h2 class="section-heading" style="margin-bottom:0.5rem;">Zij gingen je voor</h2>
+    <p class="section-sub" style="margin-bottom:2rem;">Elke week vieren we nieuwe successen. Echte leerlingen, echte resultaten.</p>
+    <div class="gallery-grid">
+      <div class="gallery-card reveal">
+        <div class="gallery-photo">[Foto: Yassine]</div>
+        <div class="gallery-info">
+          <div class="gallery-name">Yassine</div>
+          <span class="gallery-badge">Motor</span>
+        </div>
+      </div>
+      <div class="gallery-card reveal reveal-delay-1">
+        <div class="gallery-photo">[Foto: Elvira]</div>
+        <div class="gallery-info">
+          <div class="gallery-name">Elvira</div>
+          <span class="gallery-badge">Auto B</span>
+        </div>
+      </div>
+      <div class="gallery-card reveal reveal-delay-2">
+        <div class="gallery-photo">[Foto: Amir]</div>
+        <div class="gallery-info">
+          <div class="gallery-name">Amir</div>
+          <span class="gallery-badge">Auto B</span>
+        </div>
+      </div>
+      <div class="gallery-card reveal reveal-delay-3">
+        <div class="gallery-photo">[Foto: Gijs]</div>
+        <div class="gallery-info">
+          <div class="gallery-name">Gijs</div>
+          <span class="gallery-badge">Bromfiets</span>
+        </div>
+      </div>
+      <div class="gallery-card reveal">
+        <div class="gallery-photo">[Foto: Jet]</div>
+        <div class="gallery-info">
+          <div class="gallery-name">Jet</div>
+          <span class="gallery-badge">Auto B</span>
+        </div>
+      </div>
+      <div class="gallery-card reveal reveal-delay-1">
+        <div class="gallery-photo">[Foto: Soulayman]</div>
+        <div class="gallery-info">
+          <div class="gallery-name">Soulayman</div>
+          <span class="gallery-badge">BE</span>
+        </div>
+      </div>
+      <div class="gallery-card reveal reveal-delay-2">
+        <div class="gallery-photo">[Foto: Fadi]</div>
+        <div class="gallery-info">
+          <div class="gallery-name">Fadi</div>
+          <span class="gallery-badge">Taxi</span>
+        </div>
+      </div>
+      <div class="gallery-card reveal reveal-delay-3">
+        <div class="gallery-photo">[Foto: Nova]</div>
+        <div class="gallery-info">
+          <div class="gallery-name">Nova</div>
+          <span class="gallery-badge">Bromfiets</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="diagonal-from-dark">
+  <svg viewBox="0 0 1440 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="0,72 1440,0 1440,72" fill="#FFFFFF"/>
+  </svg>
+</div>
+
+<!-- ============================================================
+     07. INSTRUCTEUR — 5/7 asymmetric reversed
+     bg: #FFFFFF | py: 6rem
+     ============================================================ -->
+<section class="instructeur">
+  <div class="container">
+    <div class="instructeur-grid">
+      <div class="instructeur-img reveal">[Foto: instructeur portret]</div>
+      <div class="reveal reveal-delay-1">
+        <div class="section-label">Over de instructeur</div>
+        <h2 class="section-heading">Persoonlijk, geduldig en resultaatgericht</h2>
+        <p style="color:var(--text-muted);line-height:1.65;margin-bottom:0.5rem;">Bij ons krijg je geen wisselende instructeurs. Vanaf je eerste les tot je examen werk je met dezelfde persoon. Iemand die je leerstijl kent, weet waar je moeite mee hebt en precies weet hoe het CBR in Tiel werkt.</p>
+        <p style="color:var(--text-muted);line-height:1.65;">De examenwegen? Die kennen we uit ons hoofd. De trucjes waar examinatoren op letten? Daar bereiden we je op voor. Geen verrassingen — alleen vertrouwen.</p>
+        <div class="trait-pills">
+          <span class="trait-pill">&#9745; Geduldig</span>
+          <span class="trait-pill">&#9745; Ervaren</span>
+          <span class="trait-pill">&#9745; Persoonlijk</span>
+          <span class="trait-pill">&#9745; Resultaatgericht</span>
+          <span class="trait-pill">&#9745; CBR Tiel specialist</span>
+        </div>
+        <a href="#" class="btn btn-primary">Plan je proefles &#8594;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     08. REVIEWS — 3-col cards
+     bg: #FFFAF7 | py: 4rem
+     ============================================================ -->
+<section class="reviews">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem;">
+      <div class="section-label" style="text-align:center;">Wat leerlingen zeggen</div>
+      <h2 class="section-heading" style="text-align:center;">5.0/5 op Google — 15 beoordelingen</h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">"Super fijne rijschool! Ik was best zenuwachtig maar de instructeur stelde me helemaal op mijn gemak. In 1x geslaagd voor mijn motor, heel blij!"</p>
+        <div class="review-author">Yassine M.</div>
+        <div class="review-meta">Motorrijbewijs — 2 weken geleden</div>
+      </div>
+      <div class="review-card reveal reveal-delay-1">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">"Dagcursus bromfiets gedaan met mijn zoon. Heel goed geregeld, alles duidelijk uitgelegd. Binnen 1 dag had hij zijn rijbewijs. Aanrader!"</p>
+        <div class="review-author">Sandra K.</div>
+        <div class="review-meta">Bromfiets dagcursus — 1 maand geleden</div>
+      </div>
+      <div class="review-card reveal reveal-delay-2">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="review-text">"Na 2x gezakt bij een andere rijschool ben ik hier terechtgekomen. Wat een verschil! Rustige uitleg, goede tips en eindelijk geslaagd."</p>
+        <div class="review-author">Floris V.</div>
+        <div class="review-meta">Autorijbewijs — 3 weken geleden</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     09. TARIEVEN — 3-col pricing, featured card
+     bg: #FFFFFF | py: 5rem
+     ============================================================ -->
+<section class="tarieven">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem;">
+      <div class="section-label" style="text-align:center;">Tarieven</div>
+      <h2 class="section-heading" style="text-align:center;">Transparante prijzen, geen verborgen kosten</h2>
+      <p class="section-sub" style="text-align:center;margin:0.75rem auto 0;">Kies het pakket dat bij je past. Liever op maat? Neem contact op.</p>
+    </div>
+    <div class="tarieven-grid">
+      <div class="prijs-card reveal">
+        <div class="prijs-name">Autorijbewijs</div>
+        <div class="prijs-amount">&#8364;XX <span>per les</span></div>
+        <div class="prijs-list">
+          <div class="prijs-item"><span class="prijs-check">&#10003;</span> 60 minuten per les</div>
+          <div class="prijs-item"><span class="prijs-check">&#10003;</span> Vaste instructeur</div>
+          <div class="prijs-item"><span class="prijs-check">&#10003;</span> Handgeschakeld of automaat</div>
+          <div class="prijs-item"><span class="prijs-check">&#10003;</span> Inclusief lesmateriaal</div>
+        </div>
+        <a href="#" class="btn btn-outline" style="width:100%;justify-content:center;">Meer info</a>
+      </div>
+      <div class="prijs-card popular reveal reveal-delay-1">
+        <div class="prijs-ribbon">Populair</div>
+        <div class="prijs-name">Dagcursus bromfiets</div>
+        <div class="prijs-amount">&#8364;XXX <span>alles-in</span></div>
+        <div class="prijs-list">
+          <div class="prijs-item"><span class="prijs-check">&#10003;</span> Theorie + praktijk in 1 dag</div>
+          <div class="prijs-item"><span class="prijs-check">&#10003;</span> Inclusief CBR-examen</div>
+          <div class="prijs-item"><span class="prijs-check">&#10003;</span> 90% slaagkans</div>
+          <div class="prijs-item"><span class="prijs-check">&#10003;</span> Kleine groepen</div>
+          <div class="prijs-item"><span class="prijs-check">&#10003;</span> Lesbrommer beschikbaar</div>
+        </div>
+        <a href="#" class="btn btn-primary" style="width:100%;justify-content:center;">Boek je dagcursus &#8594;</a>
+      </div>
+      <div class="prijs-card reveal reveal-delay-2">
+        <div class="prijs-name">Motorrijbewijs</div>
+        <div class="prijs-amount">&#8364;XX <span>per les</span></div>
+        <div class="prijs-list">
+          <div class="prijs-item"><span class="prijs-check">&#10003;</span> AVB + AVD training</div>
+          <div class="prijs-item"><span class="prijs-check">&#10003;</span> Vaste instructeur</div>
+          <div class="prijs-item"><span class="prijs-check">&#10003;</span> 91% slaagkans (1e keer)</div>
+          <div class="prijs-item"><span class="prijs-check">&#10003;</span> Motor beschikbaar</div>
+        </div>
+        <a href="#" class="btn btn-outline" style="width:100%;justify-content:center;">Meer info</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     10. FAQ — accordion, surface bg
+     bg: #F9EFEB | py: 4rem
+     ============================================================ -->
+<section class="faq">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2rem;">
+      <div class="section-label" style="text-align:center;">Vraag &amp; antwoord</div>
+      <h2 class="section-heading" style="text-align:center;">Veelgestelde vragen</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item open">
+        <div class="faq-q">Hoeveel rijlessen heb ik nodig? <span class="toggle">&#8722;</span></div>
+        <div class="faq-a" style="display:block;">Dat verschilt per persoon. Gemiddeld hebben leerlingen tussen de 25 en 40 lessen nodig voor hun autorijbewijs. Na een proefles kunnen we beter inschatten hoeveel lessen jij nodig hebt.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Hoe werkt de dagcursus bromfiets? <span class="toggle">&#43;</span></div>
+        <div class="faq-a">Je komt 's ochtends naar onze locatie in Tiel. We beginnen met theorie, oefenen daarna op de brommer en aan het eind van de dag doe je examen bij het CBR. Alles op 1 dag — inclusief examen.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Kan ik ook op automaat lessen? <span class="toggle">&#43;</span></div>
+        <div class="faq-a">Ja, wij hebben een lesauto met automaat beschikbaar. Handig als je geen zin hebt in schakelen, of als je moeite hebt met de koppeling.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Wat als ik zak voor mijn examen? <span class="toggle">&#43;</span></div>
+        <div class="faq-a">Dat kan altijd gebeuren. We bespreken samen wat er misging en plannen extra oefenlessen in op de punten waar het fout ging. Daarna proberen we het opnieuw.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Waar zijn jullie gevestigd? <span class="toggle">&#43;</span></div>
+        <div class="faq-a">Wij zitten in Tiel en geven les in de regio. Je examen doe je bij CBR Tiel (auto, bromfiets, taxi, aanhanger) of CBR Arnhem (motor voertuigbeheersing).</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     11. CONTACT — 7/5 asymmetric, dark bg
+     bg: #1A1A2E | py: 5rem
+     ============================================================ -->
+<div class="diagonal-to-contact">
+  <svg viewBox="0 0 1440 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="0,0 1440,72 0,72" fill="#1A1A2E"/>
+  </svg>
+</div>
+<section class="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <div class="section-label">Neem contact op</div>
+        <h2 class="section-heading" style="color:var(--white);margin-bottom:2rem;">Plan je proefles of stel een vraag</h2>
+        <form>
+          <div class="form-group">
+            <label class="form-label">Welke opleiding?</label>
+            <select class="form-input" style="appearance:auto;">
+              <option>Auto (B)</option>
+              <option>Motor</option>
+              <option>Bromfiets / Dagcursus</option>
+              <option>Aanhanger (BE)</option>
+              <option>Taxi</option>
+              <option>Theorie</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Je naam</label>
+            <input type="text" class="form-input" placeholder="Voornaam">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Telefoonnummer <span style="opacity:0.5;">(optioneel)</span></label>
+            <input type="tel" class="form-input" placeholder="06...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Bericht <span style="opacity:0.5;">(optioneel)</span></label>
+            <textarea class="form-input" placeholder="Stel gerust je vraag..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Plan je proefles &#8594;</button>
+          <p class="form-note">Vrijblijvend — Binnen 24 uur reactie. Wij respecteren je privacy.</p>
+        </form>
+      </div>
+      <div class="contact-info">
+        <div class="contact-block">
+          <h3>Liever direct contact?</h3>
+          <p>De snelste manier is via WhatsApp. Stuur een berichtje en we reageren meestal binnen een uur.</p>
+          <a href="#" class="btn btn-whatsapp" style="margin-top:1rem;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.122 1.521 5.86L0 24l6.335-1.661A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.78 9.78 0 01-5.283-1.545l-.379-.225-3.932 1.031 1.05-3.834-.247-.394A9.78 9.78 0 012.182 12c0-5.415 4.403-9.818 9.818-9.818S21.818 6.585 21.818 12 17.415 21.818 12 21.818z"/></svg>
+            WhatsApp ons
+          </a>
+        </div>
+        <div class="contact-block">
+          <h3>Bel ons</h3>
+          <p><a href="tel:0628990655">06 28 99 06 55</a></p>
+        </div>
+        <div class="contact-block">
+          <h3>E-mail</h3>
+          <p><a href="mailto:info@rijschoolgoedopweg.nl">info@rijschoolgoedopweg.nl</a></p>
+        </div>
+        <div class="contact-block">
+          <h3>Locatie</h3>
+          <p>Gildehof 18<br>4002 HG Tiel</p>
+        </div>
+        <div style="font-size:0.75rem;color:rgba(255,255,255,0.3);margin-top:0.5rem;">
+          KvK: 51173336 | Rijschoolnummer: 7633G1
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     12. FOOTER
+     bg: #111118
+     ============================================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">GOED OP WEG</div>
+        <p style="max-width:20rem;line-height:1.6;">Rijschool Goed op Weg in Tiel. Persoonlijke rijlessen voor auto, motor, bromfiets, aanhanger en taxi. Hoog slagingspercentage bij CBR Tiel.</p>
+      </div>
+      <div>
+        <h4>Opleidingen</h4>
+        <div class="footer-links">
+          <a href="#">Auto (B)</a>
+          <a href="#">Motor</a>
+          <a href="#">Bromfiets</a>
+          <a href="#">Aanhanger (BE)</a>
+          <a href="#">Taxi</a>
+          <a href="#">Theorie</a>
+        </div>
+      </div>
+      <div>
+        <h4>Informatie</h4>
+        <div class="footer-links">
+          <a href="#">Tarieven</a>
+          <a href="#">Over ons</a>
+          <a href="#">Geslaagd</a>
+          <a href="#">Vraag &amp; antwoord</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <div class="footer-links">
+          <a href="tel:0628990655">06 28 99 06 55</a>
+          <a href="mailto:info@rijschoolgoedopweg.nl">info@rijschoolgoedopweg.nl</a>
+          <p>Gildehof 18, 4002 HG Tiel</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Rijschool Goed op Weg. Alle rechten voorbehouden.</span>
+      <div style="display:flex;gap:1.5rem;">
+        <a href="#">Privacybeleid</a>
+        <a href="#">Algemene voorwaarden</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     STICKY MOBILE BAR
+     ============================================================ -->
+<div class="sticky-mobile">
+  <a href="#" class="sticky-wa">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.122 1.521 5.86L0 24l6.335-1.661A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.78 9.78 0 01-5.283-1.545l-.379-.225-3.932 1.031 1.05-3.834-.247-.394A9.78 9.78 0 012.182 12c0-5.415 4.403-9.818 9.818-9.818S21.818 6.585 21.818 12 17.415 21.818 12 21.818z"/></svg>
+  </a>
+  <a href="#" class="sticky-cta">Plan je proefles</a>
+</div>
+
+</body>
+</html>

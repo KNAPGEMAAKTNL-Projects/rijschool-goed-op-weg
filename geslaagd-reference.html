@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geslaagd — Rijschool Goed op Weg | Graduates Gallery Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ========================================
+   FLUID ROOT
+   ======================================== */
+html { font-size: clamp(1rem, 0.68rem + 0.357vw, 1.25rem); }
+
+/* ========================================
+   RESET
+   ======================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Figtree', sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #211A18;
+  background: #FFFAF7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { border: none; cursor: pointer; font-family: inherit; }
+
+/* ========================================
+   DESIGN TOKENS
+   ======================================== */
+:root {
+  --primary: #F05A1E;
+  --primary-dark: #B62500;
+  --primary-light: #FF9757;
+  --primary-surface: #FFF0E8;
+  --secondary: #83523E;
+  --dark: #1A1A2E;
+  --darkest: #111118;
+  --bg: #FFFAF7;
+  --surface: #F9EFEB;
+  --white: #FFFFFF;
+  --text: #211A18;
+  --text-muted: #655D5A;
+  --border: #CEC5C1;
+  --success: #5D6319;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Figtree', sans-serif;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --text-sm: 0.7502rem;
+  --text-base: 1rem;
+  --text-lg: 1.333rem;
+  --text-xl: 1.7769rem;
+  --text-2xl: 2.3686rem;
+  --text-3xl: 3.1573rem;
+  --text-4xl: 4.2087rem;
+  --max-content: 68.75rem;
+  --max-wide: 87.5rem;
+  --max-nav: 80rem;
+}
+
+/* ========================================
+   UTILITIES
+   ======================================== */
+.container { max-width: var(--max-content); margin: 0 auto; padding: 0 1.5rem; }
+.container-wide { max-width: var(--max-wide); margin: 0 auto; padding: 0 1.5rem; }
+.container-nav { max-width: var(--max-nav); margin: 0 auto; padding: 0 1.5rem; }
+.heading { font-family: var(--font-heading); letter-spacing: -0.02em; color: var(--text); }
+.section-label {
+  font-family: var(--font-heading); font-weight: 600;
+  font-size: var(--text-sm); text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--primary);
+  margin-bottom: 0.75rem;
+}
+.section-heading {
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: var(--text-2xl); letter-spacing: -0.015em;
+  margin-bottom: 0.75rem; color: var(--text);
+}
+.section-sub {
+  color: var(--text-muted); max-width: 40rem;
+  margin-bottom: 2.5rem; line-height: 1.6;
+}
+
+/* Scroll reveal via scroll-driven animations */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: fade-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 80%;
+    }
+    .reveal-delay-1 { animation-delay: 80ms; }
+    .reveal-delay-2 { animation-delay: 160ms; }
+    .reveal-delay-3 { animation-delay: 240ms; }
+    .reveal-delay-4 { animation-delay: 320ms; }
+
+    .reveal-card {
+      animation: card-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 70%;
+    }
+    /* Staggered cards — nth-child based delays */
+    .gallery-card:nth-child(4n+1) .reveal-card { animation-range: entry 0% entry 70%; }
+    .gallery-card:nth-child(4n+2) .reveal-card { animation-range: entry 5% entry 75%; }
+    .gallery-card:nth-child(4n+3) .reveal-card { animation-range: entry 10% entry 80%; }
+    .gallery-card:nth-child(4n+4) .reveal-card { animation-range: entry 15% entry 85%; }
+  }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(1.25rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes card-rise {
+  from { opacity: 0; transform: translateY(2rem) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(1.25rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes count-in {
+  from { opacity: 0; transform: scale(0.7); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: var(--text-base); padding: 0.75rem 1.5rem;
+  border-radius: 8px; transition: all 300ms var(--ease);
+  border: none; cursor: pointer;
+}
+.btn-primary { background: var(--primary); color: var(--text); }
+.btn-primary:hover {
+  background: var(--primary-dark); color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -4px rgba(240,90,30,0.35);
+}
+.btn-outline { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.3); }
+.btn-outline:hover { border-color: var(--primary-light); color: var(--primary-light); }
+.btn-whatsapp { background: #25D366; color: var(--white); }
+.btn-whatsapp:hover { background: #1EBE5A; transform: translateY(-2px); }
+
+/* ========================================
+   01. NAVIGATION — sticky, white, logo orange
+   ======================================== */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: var(--max-nav); margin: 0 auto; padding: 0 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 4rem;
+}
+.nav-logo {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: var(--text-lg); color: var(--primary);
+}
+.nav-links {
+  display: none; gap: 2rem; align-items: center;
+}
+@media (min-width: 768px) { .nav-links { display: flex; } }
+.nav-links a {
+  font-weight: 500; font-size: 0.9375rem; color: var(--text);
+  transition: color 200ms var(--ease);
+}
+.nav-links a:hover { color: var(--primary); }
+.nav-links a.active { color: var(--primary); font-weight: 600; }
+.nav-cta { display: none; }
+@media (min-width: 768px) { .nav-cta { display: inline-flex; } }
+.mobile-toggle {
+  display: flex; flex-direction: column; gap: 5px; background: none;
+}
+@media (min-width: 768px) { .mobile-toggle { display: none; } }
+.mobile-toggle span {
+  display: block; height: 2px; background: var(--text); border-radius: 2px;
+}
+.mobile-toggle span:nth-child(1) { width: 22px; }
+.mobile-toggle span:nth-child(2) { width: 22px; }
+.mobile-toggle span:nth-child(3) { width: 15px; }
+
+/* ========================================
+   02. PAGE HERO — dark bg, breadcrumb, stat
+   ======================================== */
+.page-hero {
+  background: var(--dark); color: var(--white);
+  padding: 5rem 0 4.5rem; position: relative; overflow: hidden;
+}
+@media (max-width: 767px) { .page-hero { padding: 4rem 0 3.5rem; } }
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 70% 20%, rgba(240,90,30,0.08) 0%, transparent 60%);
+}
+.page-hero > * { position: relative; z-index: 1; }
+.breadcrumb {
+  font-size: var(--text-sm); color: rgba(255,255,255,0.5);
+  margin-bottom: 1.5rem; display: flex; gap: 0.5rem; align-items: center;
+}
+.breadcrumb a { color: rgba(255,255,255,0.6); transition: color 200ms var(--ease); }
+.breadcrumb a:hover { color: var(--primary-light); }
+.page-hero h1 {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: var(--text-3xl); line-height: 1.1;
+  letter-spacing: -0.02em; margin-bottom: 1rem;
+  animation: slide-up 0.7s var(--ease) 0.1s both;
+}
+@media (min-width: 768px) { .page-hero h1 { font-size: var(--text-4xl); } }
+.page-hero .hero-subtitle {
+  font-size: var(--text-lg); color: rgba(255,255,255,0.75);
+  max-width: 38rem; margin-bottom: 2.5rem; line-height: 1.55;
+  animation: slide-up 0.7s var(--ease) 0.2s both;
+}
+.hero-stat-badge {
+  display: inline-flex; align-items: center; gap: 0.75rem;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 0.85rem 1.5rem; border-radius: 8px;
+  animation: slide-up 0.7s var(--ease) 0.3s both;
+}
+.hero-stat-badge .stat-num {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: var(--text-2xl); color: var(--primary-light);
+  line-height: 1; animation: count-in 0.6s var(--ease) 0.5s both;
+}
+.hero-stat-badge .stat-label {
+  font-size: var(--text-sm); color: rgba(255,255,255,0.6);
+  line-height: 1.3;
+}
+
+/* Diagonal cut: hero to filter bar */
+.diagonal-hero {
+  background: var(--bg); line-height: 0; margin-top: -1px;
+}
+.diagonal-hero svg { width: 100%; height: 4.5rem; display: block; }
+@media (max-width: 767px) { .diagonal-hero svg { height: 2.5rem; } }
+
+/* ========================================
+   03. FILTER BAR — horizontal pills, sticky
+   ======================================== */
+.filter-bar {
+  background: var(--bg);
+  padding: 1.25rem 0;
+  position: sticky; top: 4rem; z-index: 90;
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 300ms var(--ease);
+}
+.filter-bar.scrolled {
+  box-shadow: 0 4px 16px -4px rgba(0,0,0,0.08);
+}
+.filter-pills {
+  display: flex; gap: 0.5rem; overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 0.25rem;
+}
+.filter-pills::-webkit-scrollbar { display: none; }
+.filter-pill {
+  flex-shrink: 0;
+  font-family: var(--font-heading); font-weight: 600;
+  font-size: 0.875rem; padding: 0.5rem 1.25rem;
+  border-radius: 100px;
+  background: var(--white); color: var(--text);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: all 250ms var(--ease);
+  white-space: nowrap;
+}
+.filter-pill:hover {
+  border-color: var(--primary); color: var(--primary);
+}
+.filter-pill.active {
+  background: var(--primary); color: var(--white);
+  border-color: var(--primary);
+}
+
+/* ========================================
+   04. GALLERY GRID — masonry-feel, celebration wall
+   ======================================== */
+.gallery-section {
+  background: var(--bg);
+  padding: 2.5rem 0 6rem;
+}
+@media (max-width: 767px) { .gallery-section { padding: 2rem 0 4rem; } }
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+@media (max-width: 1023px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 640px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; } }
+
+.gallery-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  border-bottom: 3px solid var(--primary);
+  transition: transform 350ms var(--ease), box-shadow 350ms var(--ease);
+}
+.gallery-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px -8px rgba(240,90,30,0.18);
+}
+
+/* Variable aspect ratios for masonry feel */
+.gallery-photo {
+  background: var(--secondary);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.25);
+  font-size: 0.8125rem; font-family: var(--font-heading); font-weight: 600;
+  position: relative; overflow: hidden;
+}
+/* Default: 3/4 portrait */
+.gallery-photo { aspect-ratio: 3/4; }
+/* Square */
+.gallery-card:nth-child(6n+2) .gallery-photo,
+.gallery-card:nth-child(6n+5) .gallery-photo { aspect-ratio: 1/1; }
+/* Taller portrait */
+.gallery-card:nth-child(6n+4) .gallery-photo { aspect-ratio: 4/5; }
+/* Wider for variety */
+.gallery-card:nth-child(6n+3) .gallery-photo { aspect-ratio: 4/5; }
+
+.gallery-photo::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.15) 0%, transparent 40%);
+}
+
+.gallery-info {
+  padding: 0.85rem 1rem 1rem;
+}
+.gallery-name {
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: 0.9375rem; margin-bottom: 0.35rem;
+}
+.gallery-meta {
+  display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+}
+.gallery-badge {
+  display: inline-block;
+  font-size: 0.6875rem; font-weight: 600;
+  padding: 0.15rem 0.55rem; border-radius: 4px;
+  font-family: var(--font-heading);
+}
+.badge-auto { background: rgba(240,90,30,0.12); color: var(--primary-dark); }
+.badge-motor { background: rgba(93,99,25,0.12); color: var(--success); }
+.badge-bromfiets { background: rgba(131,82,62,0.12); color: var(--secondary); }
+.badge-be { background: rgba(26,26,46,0.1); color: var(--dark); }
+.badge-taxi { background: rgba(240,90,30,0.08); color: #B62500; }
+
+.gallery-date {
+  font-size: 0.6875rem; color: var(--text-muted);
+}
+
+/* ========================================
+   05. CBR STATS — horizontal bar charts
+   ======================================== */
+.cbr-section {
+  background: var(--white);
+  padding: 5.5rem 0;
+}
+@media (max-width: 767px) { .cbr-section { padding: 3.5rem 0; } }
+
+.cbr-header {
+  text-align: center; margin-bottom: 3rem;
+}
+.cbr-header .section-sub {
+  margin-left: auto; margin-right: auto;
+}
+
+.cbr-charts {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 56rem; margin: 0 auto;
+}
+@media (max-width: 767px) { .cbr-charts { grid-template-columns: 1fr; gap: 1.5rem; } }
+
+.cbr-chart-card {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 8px; padding: 1.75rem;
+}
+.cbr-chart-title {
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: var(--text-base); margin-bottom: 1.25rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.cbr-chart-icon { font-size: 1.25rem; }
+
+.cbr-row {
+  margin-bottom: 1rem;
+}
+.cbr-row:last-child { margin-bottom: 0; }
+.cbr-row-header {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-bottom: 0.35rem;
+}
+.cbr-row-label {
+  font-size: 0.8125rem; font-weight: 500;
+}
+.cbr-row-value {
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: 0.9375rem;
+}
+.cbr-bar-track {
+  height: 1.75rem; background: var(--surface);
+  border-radius: 4px; overflow: hidden; position: relative;
+}
+.cbr-bar-fill {
+  height: 100%; border-radius: 4px;
+  transition: width 1s var(--ease);
+  display: flex; align-items: center;
+  padding-left: 0.75rem;
+}
+.cbr-bar-fill.ours {
+  background: var(--primary);
+}
+.cbr-bar-fill.avg {
+  background: var(--border);
+}
+
+.cbr-legend {
+  display: flex; gap: 1.5rem; justify-content: center;
+  margin-top: 2rem;
+}
+.cbr-legend-item {
+  display: flex; align-items: center; gap: 0.4rem;
+  font-size: 0.8125rem; color: var(--text-muted);
+}
+.cbr-legend-dot {
+  width: 0.75rem; height: 0.75rem; border-radius: 2px;
+}
+.cbr-legend-dot.ours { background: var(--primary); }
+.cbr-legend-dot.avg { background: var(--border); }
+
+/* ========================================
+   06. CTA BANNER — dark, diagonal top
+   ======================================== */
+.diagonal-to-cta {
+  background: var(--white); line-height: 0; margin-bottom: -1px;
+}
+.diagonal-to-cta svg { width: 100%; height: 4.5rem; display: block; }
+@media (max-width: 767px) { .diagonal-to-cta svg { height: 2.5rem; } }
+
+.cta-banner {
+  background: var(--dark);
+  padding: 5rem 0 5.5rem;
+  color: var(--white);
+  text-align: center;
+}
+@media (max-width: 767px) { .cta-banner { padding: 3.5rem 0 4rem; } }
+.cta-banner h2 {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: var(--text-2xl); margin-bottom: 0.75rem;
+  color: var(--white); letter-spacing: -0.015em;
+}
+@media (min-width: 768px) { .cta-banner h2 { font-size: var(--text-3xl); } }
+.cta-banner p {
+  color: rgba(255,255,255,0.6); margin-bottom: 2.5rem;
+  max-width: 32rem; margin-left: auto; margin-right: auto;
+  font-size: var(--text-base); line-height: 1.6;
+}
+.cta-btns {
+  display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap;
+}
+
+/* ========================================
+   07. FOOTER — minimal, darkest
+   ======================================== */
+.footer {
+  background: var(--darkest);
+  padding: 2rem 0;
+  color: rgba(255,255,255,0.4);
+  font-size: 0.8125rem;
+}
+.footer-inner {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 1rem;
+}
+.footer a { color: rgba(255,255,255,0.4); transition: color 200ms var(--ease); }
+.footer a:hover { color: var(--primary-light); }
+@media (max-width: 767px) { .footer { padding-bottom: 5rem; } }
+
+/* ========================================
+   08. STICKY MOBILE BAR
+   ======================================== */
+.sticky-mobile {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: var(--white); border-top: 1px solid var(--border);
+  padding: 0.75rem 1rem; display: flex; gap: 0.5rem; z-index: 99;
+}
+@media (min-width: 768px) { .sticky-mobile { display: none; } }
+.sticky-wa {
+  flex: 0 0 auto; width: 2.75rem; height: 2.75rem;
+  background: #25D366; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--white); font-size: 1.25rem;
+}
+.sticky-cta {
+  flex: 1; height: 2.75rem;
+  background: var(--primary); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-heading); font-weight: 700;
+  color: var(--text); font-size: 0.9375rem;
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     01. NAVIGATION
+     ============================================ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">GOED OP WEG</a>
+    <ul class="nav-links">
+      <li><a href="#">Opleidingen</a></li>
+      <li><a href="#">Tarieven</a></li>
+      <li><a href="#" class="active">Geslaagd</a></li>
+      <li><a href="#">Over ons</a></li>
+      <li><a href="#">Vraag &amp; antwoord</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <a href="#" class="btn btn-primary nav-cta" style="font-size:0.875rem;padding:0.5rem 1.25rem;">Plan je proefles</a>
+    <button class="mobile-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ============================================
+     02. PAGE HERO — dark, breadcrumb, H1, stat
+     ============================================ -->
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="#">Home</a> <span>/</span> <span>Geslaagd</span>
+    </div>
+    <h1>Zij gingen je voor</h1>
+    <p class="hero-subtitle">Echte leerlingen, echte resultaten. We zijn trots op iedere leerling die met een rijbewijs op zak de weg op gaat. Dit zijn er een paar van de vele.</p>
+    <div class="hero-stat-badge">
+      <div class="stat-num">850+</div>
+      <div class="stat-label">leerlingen<br>geslaagd</div>
+    </div>
+  </div>
+</section>
+
+<!-- Diagonal cut: hero → filter bar -->
+<div class="diagonal-hero">
+  <svg viewBox="0 0 1440 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="0,0 1440,0 1440,72" fill="var(--dark)"/>
+    <polygon points="0,0 1440,72 0,72" fill="var(--bg)"/>
+  </svg>
+</div>
+
+<!-- ============================================
+     03. FILTER BAR — sticky below nav
+     ============================================ -->
+<div class="filter-bar" id="filterBar">
+  <div class="container-wide">
+    <div class="filter-pills">
+      <button class="filter-pill active" data-filter="all">Alles</button>
+      <button class="filter-pill" data-filter="auto">Auto</button>
+      <button class="filter-pill" data-filter="motor">Motor</button>
+      <button class="filter-pill" data-filter="bromfiets">Bromfiets</button>
+      <button class="filter-pill" data-filter="be">BE</button>
+      <button class="filter-pill" data-filter="taxi">Taxi</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================
+     04. GALLERY GRID — celebration wall
+     ============================================ -->
+<section class="gallery-section">
+  <div class="container-wide">
+    <div class="gallery-grid" id="galleryGrid">
+
+      <!-- Card 1: Yassine — Auto -->
+      <div class="gallery-card" data-type="auto">
+        <div class="reveal-card">
+          <div class="gallery-photo">[Foto: Yassine]</div>
+          <div class="gallery-info">
+            <div class="gallery-name">Yassine</div>
+            <div class="gallery-meta">
+              <span class="gallery-badge badge-auto">Auto (B)</span>
+              <span class="gallery-date">mrt 2026</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Elvira — Motor -->
+      <div class="gallery-card" data-type="motor">
+        <div class="reveal-card">
+          <div class="gallery-photo">[Foto: Elvira]</div>
+          <div class="gallery-info">
+            <div class="gallery-name">Elvira</div>
+            <div class="gallery-meta">
+              <span class="gallery-badge badge-motor">Motor (A)</span>
+              <span class="gallery-date">mrt 2026</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Amir — Auto -->
+      <div class="gallery-card" data-type="auto">
+        <div class="reveal-card">
+          <div class="gallery-photo">[Foto: Amir]</div>
+          <div class="gallery-info">
+            <div class="gallery-name">Amir</div>
+            <div class="gallery-meta">
+              <span class="gallery-badge badge-auto">Auto (B)</span>
+              <span class="gallery-date">feb 2026</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Gijs — Bromfiets -->
+      <div class="gallery-card" data-type="bromfiets">
+        <div class="reveal-card">
+          <div class="gallery-photo">[Foto: Gijs]</div>
+          <div class="gallery-info">
+            <div class="gallery-name">Gijs</div>
+            <div class="gallery-meta">
+              <span class="gallery-badge badge-bromfiets">Bromfiets (AM)</span>
+              <span class="gallery-date">feb 2026</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: Joy — Motor -->
+      <div class="gallery-card" data-type="motor">
+        <div class="reveal-card">
+          <div class="gallery-photo">[Foto: Joy]</div>
+          <div class="gallery-info">
+            <div class="gallery-name">Joy</div>
+            <div class="gallery-meta">
+              <span class="gallery-badge badge-motor">Motor (A)</span>
+              <span class="gallery-date">jan 2026</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6: Bram — BE -->
+      <div class="gallery-card" data-type="be">
+        <div class="reveal-card">
+          <div class="gallery-photo">[Foto: Bram]</div>
+          <div class="gallery-info">
+            <div class="gallery-name">Bram</div>
+            <div class="gallery-meta">
+              <span class="gallery-badge badge-be">BE (aanhanger)</span>
+              <span class="gallery-date">jan 2026</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 7: Tristan — Auto -->
+      <div class="gallery-card" data-type="auto">
+        <div class="reveal-card">
+          <div class="gallery-photo">[Foto: Tristan]</div>
+          <div class="gallery-info">
+            <div class="gallery-name">Tristan</div>
+            <div class="gallery-meta">
+              <span class="gallery-badge badge-auto">Auto (B)</span>
+              <span class="gallery-date">dec 2025</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 8: Floris — Taxi -->
+      <div class="gallery-card" data-type="taxi">
+        <div class="reveal-card">
+          <div class="gallery-photo">[Foto: Floris]</div>
+          <div class="gallery-info">
+            <div class="gallery-name">Floris</div>
+            <div class="gallery-meta">
+              <span class="gallery-badge badge-taxi">Taxi</span>
+              <span class="gallery-date">dec 2025</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 9: Kuba — Auto -->
+      <div class="gallery-card" data-type="auto">
+        <div class="reveal-card">
+          <div class="gallery-photo">[Foto: Kuba]</div>
+          <div class="gallery-info">
+            <div class="gallery-name">Kuba</div>
+            <div class="gallery-meta">
+              <span class="gallery-badge badge-auto">Auto (B)</span>
+              <span class="gallery-date">nov 2025</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 10: Nova — Motor -->
+      <div class="gallery-card" data-type="motor">
+        <div class="reveal-card">
+          <div class="gallery-photo">[Foto: Nova]</div>
+          <div class="gallery-info">
+            <div class="gallery-name">Nova</div>
+            <div class="gallery-meta">
+              <span class="gallery-badge badge-motor">Motor (A)</span>
+              <span class="gallery-date">nov 2025</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 11: Jet — Bromfiets -->
+      <div class="gallery-card" data-type="bromfiets">
+        <div class="reveal-card">
+          <div class="gallery-photo">[Foto: Jet]</div>
+          <div class="gallery-info">
+            <div class="gallery-name">Jet</div>
+            <div class="gallery-meta">
+              <span class="gallery-badge badge-bromfiets">Bromfiets (AM)</span>
+              <span class="gallery-date">okt 2025</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 12: Soulayman — Auto -->
+      <div class="gallery-card" data-type="auto">
+        <div class="reveal-card">
+          <div class="gallery-photo">[Foto: Soulayman]</div>
+          <div class="gallery-info">
+            <div class="gallery-name">Soulayman</div>
+            <div class="gallery-meta">
+              <span class="gallery-badge badge-auto">Auto (B)</span>
+              <span class="gallery-date">okt 2025</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 13: Fadi — Taxi -->
+      <div class="gallery-card" data-type="taxi">
+        <div class="reveal-card">
+          <div class="gallery-photo">[Foto: Fadi]</div>
+          <div class="gallery-info">
+            <div class="gallery-name">Fadi</div>
+            <div class="gallery-meta">
+              <span class="gallery-badge badge-taxi">Taxi</span>
+              <span class="gallery-date">sep 2025</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 14: extra — Daan — BE -->
+      <div class="gallery-card" data-type="be">
+        <div class="reveal-card">
+          <div class="gallery-photo">[Foto: Daan]</div>
+          <div class="gallery-info">
+            <div class="gallery-name">Daan</div>
+            <div class="gallery-meta">
+              <span class="gallery-badge badge-be">BE (aanhanger)</span>
+              <span class="gallery-date">sep 2025</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 15: extra — Merel — Auto -->
+      <div class="gallery-card" data-type="auto">
+        <div class="reveal-card">
+          <div class="gallery-photo">[Foto: Merel]</div>
+          <div class="gallery-info">
+            <div class="gallery-name">Merel</div>
+            <div class="gallery-meta">
+              <span class="gallery-badge badge-auto">Auto (B)</span>
+              <span class="gallery-date">aug 2025</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 16: extra — Sem — Motor -->
+      <div class="gallery-card" data-type="motor">
+        <div class="reveal-card">
+          <div class="gallery-photo">[Foto: Sem]</div>
+          <div class="gallery-info">
+            <div class="gallery-name">Sem</div>
+            <div class="gallery-meta">
+              <span class="gallery-badge badge-motor">Motor (A)</span>
+              <span class="gallery-date">aug 2025</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /gallery-grid -->
+  </div>
+</section>
+
+<!-- ============================================
+     05. CBR STATS — horizontal bar charts
+     ============================================ -->
+<section class="cbr-section">
+  <div class="container">
+    <div class="cbr-header reveal">
+      <div class="section-label">Slagingspercentages</div>
+      <h2 class="section-heading">Bovengemiddeld op alle categorieën</h2>
+      <p class="section-sub">Onze cijfers spreken voor zich. Vergelijk onze slagingspercentages met het landelijk CBR gemiddelde — voor elke rijbewijscategorie scoren we hoger.</p>
+    </div>
+
+    <div class="cbr-charts">
+      <!-- Motor -->
+      <div class="cbr-chart-card reveal">
+        <div class="cbr-chart-title">
+          <span class="cbr-chart-icon">&#127949;</span> Motor (A)
+        </div>
+        <div class="cbr-row">
+          <div class="cbr-row-header">
+            <span class="cbr-row-label" style="font-weight:600;color:var(--primary);">Goed op Weg</span>
+            <span class="cbr-row-value" style="color:var(--primary);">91%</span>
+          </div>
+          <div class="cbr-bar-track">
+            <div class="cbr-bar-fill ours" style="width:91%;"></div>
+          </div>
+        </div>
+        <div class="cbr-row">
+          <div class="cbr-row-header">
+            <span class="cbr-row-label">CBR gemiddelde</span>
+            <span class="cbr-row-value" style="color:var(--text-muted);">82%</span>
+          </div>
+          <div class="cbr-bar-track">
+            <div class="cbr-bar-fill avg" style="width:82%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bromfiets -->
+      <div class="cbr-chart-card reveal">
+        <div class="cbr-chart-title">
+          <span class="cbr-chart-icon">&#128757;</span> Bromfiets (AM)
+        </div>
+        <div class="cbr-row">
+          <div class="cbr-row-header">
+            <span class="cbr-row-label" style="font-weight:600;color:var(--primary);">Goed op Weg</span>
+            <span class="cbr-row-value" style="color:var(--primary);">90%</span>
+          </div>
+          <div class="cbr-bar-track">
+            <div class="cbr-bar-fill ours" style="width:90%;"></div>
+          </div>
+        </div>
+        <div class="cbr-row">
+          <div class="cbr-row-header">
+            <span class="cbr-row-label">CBR gemiddelde</span>
+            <span class="cbr-row-value" style="color:var(--text-muted);">87%</span>
+          </div>
+          <div class="cbr-bar-track">
+            <div class="cbr-bar-fill avg" style="width:87%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Auto -->
+      <div class="cbr-chart-card reveal">
+        <div class="cbr-chart-title">
+          <span class="cbr-chart-icon">&#128663;</span> Auto (B)
+        </div>
+        <div class="cbr-row">
+          <div class="cbr-row-header">
+            <span class="cbr-row-label" style="font-weight:600;color:var(--primary);">Goed op Weg</span>
+            <span class="cbr-row-value" style="color:var(--primary);">62%</span>
+          </div>
+          <div class="cbr-bar-track">
+            <div class="cbr-bar-fill ours" style="width:62%;"></div>
+          </div>
+        </div>
+        <div class="cbr-row">
+          <div class="cbr-row-header">
+            <span class="cbr-row-label">CBR gemiddelde</span>
+            <span class="cbr-row-value" style="color:var(--text-muted);">49%</span>
+          </div>
+          <div class="cbr-bar-track">
+            <div class="cbr-bar-fill avg" style="width:49%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Taxi -->
+      <div class="cbr-chart-card reveal">
+        <div class="cbr-chart-title">
+          <span class="cbr-chart-icon">&#128661;</span> Taxi
+        </div>
+        <div class="cbr-row">
+          <div class="cbr-row-header">
+            <span class="cbr-row-label" style="font-weight:600;color:var(--primary);">Goed op Weg</span>
+            <span class="cbr-row-value" style="color:var(--primary);">100%</span>
+          </div>
+          <div class="cbr-bar-track">
+            <div class="cbr-bar-fill ours" style="width:100%;"></div>
+          </div>
+        </div>
+        <div class="cbr-row">
+          <div class="cbr-row-header">
+            <span class="cbr-row-label">CBR gemiddelde</span>
+            <span class="cbr-row-value" style="color:var(--text-muted);">60%</span>
+          </div>
+          <div class="cbr-bar-track">
+            <div class="cbr-bar-fill avg" style="width:60%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cbr-legend reveal">
+      <div class="cbr-legend-item">
+        <div class="cbr-legend-dot ours"></div>
+        Goed op Weg
+      </div>
+      <div class="cbr-legend-item">
+        <div class="cbr-legend-dot avg"></div>
+        CBR landelijk gemiddelde
+      </div>
+    </div>
+
+    <p style="text-align:center;font-size:var(--text-sm);color:var(--text-muted);margin-top:1.5rem;" class="reveal">Bron: CBR examenresultaten, locatie Tiel. Gebaseerd op eerste examens.</p>
+  </div>
+</section>
+
+<!-- ============================================
+     06. CTA BANNER — diagonal top, dark
+     ============================================ -->
+<div class="diagonal-to-cta">
+  <svg viewBox="0 0 1440 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="0,72 1440,0 1440,72" fill="var(--dark)"/>
+    <polygon points="0,0 1440,0 0,72" fill="var(--white)"/>
+  </svg>
+</div>
+
+<section class="cta-banner">
+  <div class="container">
+    <div class="section-label" style="color:var(--primary-light);">Klaar voor de weg?</div>
+    <h2>Jij kunt de volgende zijn</h2>
+    <p>Plan een vrijblijvende proefles en ontdek hoe snel jij op deze pagina staat. Lessen in Tiel en omgeving, bij een instructeur die in je gelooft.</p>
+    <div class="cta-btns">
+      <a href="#" class="btn btn-primary">Plan je proefles &#8594;</a>
+      <a href="#" class="btn btn-whatsapp">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.122 1.521 5.86L0 24l6.335-1.661A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.78 9.78 0 01-5.283-1.545l-.379-.225-3.932 1.031 1.05-3.834-.247-.394A9.78 9.78 0 012.182 12c0-5.415 4.403-9.818 9.818-9.818S21.818 6.585 21.818 12 17.415 21.818 12 21.818z"/></svg>
+        WhatsApp
+      </a>
+      <a href="#" class="btn btn-outline">Bel 06-XXXXXXXX</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     07. FOOTER — minimal, darkest
+     ============================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <span>&copy; 2026 Rijschool Goed op Weg &mdash; KvK: 51173336</span>
+      <div style="display:flex;gap:1.5rem;">
+        <a href="#">Privacybeleid</a>
+        <a href="#">Algemene voorwaarden</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================
+     08. STICKY MOBILE BAR
+     ============================================ -->
+<div class="sticky-mobile">
+  <a href="#" class="sticky-wa">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.122 1.521 5.86L0 24l6.335-1.661A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.78 9.78 0 01-5.283-1.545l-.379-.225-3.932 1.031 1.05-3.834-.247-.394A9.78 9.78 0 012.182 12c0-5.415 4.403-9.818 9.818-9.818S21.818 6.585 21.818 12 17.415 21.818 12 21.818z"/></svg>
+  </a>
+  <a href="#" class="sticky-cta">Plan je proefles</a>
+</div>
+
+<!-- ============================================
+     FILTER INTERACTION (minimal JS)
+     ============================================ -->
+<script>
+(function() {
+  const pills = document.querySelectorAll('.filter-pill');
+  const cards = document.querySelectorAll('.gallery-card');
+
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      // Update active pill
+      pills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+
+      const filter = pill.dataset.filter;
+
+      cards.forEach((card, i) => {
+        if (filter === 'all' || card.dataset.type === filter) {
+          card.style.display = '';
+          card.style.animation = `card-rise 0.4s ${i * 40}ms var(--ease) both`;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

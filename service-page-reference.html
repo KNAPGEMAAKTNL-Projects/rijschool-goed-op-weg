@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Autorijbewijs (B) — Rijschool Goed op Weg | Service Page Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+html { font-size: clamp(1rem, 0.68rem + 0.357vw, 1.25rem); }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Figtree', sans-serif; font-weight: 400; line-height: 1.5; color: #211A18; background: #FFFAF7; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { text-decoration: none; color: inherit; }
+:root {
+  --primary: #F05A1E; --primary-dark: #B62500; --primary-light: #FF9757; --primary-surface: #FFF0E8;
+  --dark: #1A1A2E; --darkest: #111118; --bg: #FFFAF7; --surface: #F9EFEB; --white: #FFFFFF;
+  --text: #211A18; --text-muted: #655D5A; --border: #CEC5C1; --success: #5D6319;
+  --font-heading: 'Outfit', sans-serif; --font-body: 'Figtree', sans-serif;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --text-sm: 0.7502rem; --text-base: 1rem; --text-lg: 1.333rem; --text-xl: 1.7769rem;
+  --text-2xl: 2.3686rem; --text-3xl: 3.1573rem; --text-4xl: 4.2087rem;
+  --max-content: 68.75rem; --max-nav: 80rem;
+}
+.container { max-width: var(--max-content); margin: 0 auto; padding: 0 1.5rem; }
+.heading { font-family: var(--font-heading); letter-spacing: -0.02em; color: var(--text); }
+.btn { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-heading); font-weight: 700; font-size: var(--text-base); padding: 0.75rem 1.5rem; border-radius: 8px; transition: all 300ms var(--ease); border: none; cursor: pointer; }
+.btn-primary { background: var(--primary); color: var(--text); }
+.btn-primary:hover { background: var(--primary-dark); color: var(--white); transform: translateY(-2px); box-shadow: 0 8px 24px -4px rgba(240,90,30,0.35); }
+.btn-whatsapp { background: #25D366; color: var(--white); }
+.btn-outline { background: transparent; color: var(--text); border: 2px solid var(--border); }
+.btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+.section-label { font-family: var(--font-heading); font-weight: 600; font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.06em; color: var(--primary); margin-bottom: 0.75rem; }
+
+/* NAV — reuse from homepage */
+.nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+.nav-inner { max-width: var(--max-nav); margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; height: 4rem; }
+.nav-logo { font-family: var(--font-heading); font-weight: 800; font-size: var(--text-lg); color: var(--primary); }
+.nav-links { display: none; gap: 2rem; align-items: center; list-style: none; }
+@media (min-width: 768px) { .nav-links { display: flex; } }
+.nav-links a { font-weight: 500; font-size: 0.9375rem; color: var(--text); }
+.nav-links a:hover { color: var(--primary); }
+
+/* SERVICE HERO — compact, breadcrumb, left-aligned */
+.service-hero {
+  background: var(--dark); color: var(--white);
+  padding: 5rem 0 4rem; position: relative; overflow: hidden;
+}
+.service-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(26,26,46,0.95), rgba(26,26,46,0.7));
+}
+.service-hero > * { position: relative; z-index: 1; }
+.breadcrumb { font-size: var(--text-sm); color: rgba(255,255,255,0.5); margin-bottom: 1.5rem; display: flex; gap: 0.5rem; align-items: center; }
+.breadcrumb a { color: rgba(255,255,255,0.6); }
+.breadcrumb a:hover { color: var(--primary-light); }
+.service-hero h1 { font-family: var(--font-heading); font-weight: 800; font-size: var(--text-3xl); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1rem; }
+@media (min-width: 768px) { .service-hero h1 { font-size: var(--text-4xl); } }
+.service-hero p { font-size: var(--text-lg); color: rgba(255,255,255,0.75); max-width: 38rem; margin-bottom: 2rem; line-height: 1.55; }
+.service-hero .hero-stats { display: flex; gap: 2rem; margin-top: 2rem; }
+.hero-stat-item { text-align: left; }
+.hero-stat-item .num { font-family: var(--font-heading); font-weight: 800; font-size: var(--text-2xl); color: var(--primary-light); }
+.hero-stat-item .lbl { font-size: var(--text-sm); color: rgba(255,255,255,0.5); }
+.diagonal-service { line-height: 0; margin-top: -1px; }
+.diagonal-service svg { width: 100%; height: 4.5rem; display: block; }
+@media (max-width: 767px) { .diagonal-service svg { height: 2.5rem; } }
+
+/* CONTENT — 8/4 asymmetric (main content left, sidebar right) */
+.service-content { padding: 5rem 0; background: var(--bg); }
+@media (max-width: 767px) { .service-content { padding: 3rem 0; } }
+.service-grid { display: grid; grid-template-columns: 8fr 4fr; gap: 3rem; }
+@media (max-width: 1023px) { .service-grid { grid-template-columns: 1fr; } }
+.service-main h2 { font-family: var(--font-heading); font-weight: 700; font-size: var(--text-xl); margin-bottom: 1rem; margin-top: 2.5rem; letter-spacing: -0.01em; }
+.service-main h2:first-child { margin-top: 0; }
+.service-main p { color: var(--text-muted); line-height: 1.7; margin-bottom: 1rem; }
+.service-main ul { margin: 1rem 0; padding-left: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+.service-main li { display: flex; align-items: flex-start; gap: 0.6rem; color: var(--text-muted); font-size: 0.9375rem; }
+.service-main li::before { content: '\2713'; color: var(--primary); font-weight: 700; flex-shrink: 0; margin-top: 0.1rem; }
+.service-img { background: var(--secondary, #83523E); border-radius: 8px; aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.3); font-family: var(--font-heading); font-size: 0.875rem; margin: 2rem 0; }
+
+/* SIDEBAR — sticky CTA + quick facts */
+.sidebar { position: sticky; top: 5rem; }
+.sidebar-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem; margin-bottom: 1.25rem; }
+.sidebar-card h3 { font-family: var(--font-heading); font-weight: 700; font-size: var(--text-base); margin-bottom: 1rem; }
+.sidebar-card .price { font-family: var(--font-heading); font-weight: 800; font-size: var(--text-2xl); color: var(--primary); margin-bottom: 0.25rem; }
+.sidebar-card .price span { font-size: var(--text-sm); font-weight: 400; color: var(--text-muted); }
+.sidebar-facts { display: flex; flex-direction: column; gap: 0.75rem; }
+.sidebar-fact { display: flex; justify-content: space-between; font-size: 0.875rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
+.sidebar-fact:last-child { border-bottom: none; padding-bottom: 0; }
+.sidebar-fact .label { color: var(--text-muted); }
+.sidebar-fact .value { font-weight: 600; }
+
+/* PROCESS — 4-step horizontal */
+.process { background: var(--white); padding: 4rem 0; }
+@media (max-width: 767px) { .process { padding: 3rem 0; } }
+.process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; counter-reset: step; }
+@media (max-width: 767px) { .process-grid { grid-template-columns: repeat(2, 1fr); } }
+.process-step { position: relative; counter-increment: step; }
+.process-step::before {
+  content: counter(step); font-family: var(--font-heading); font-weight: 800;
+  font-size: var(--text-2xl); color: var(--primary-surface);
+  position: absolute; top: -0.5rem; left: 0;
+}
+.process-step h3 { font-family: var(--font-heading); font-weight: 700; font-size: var(--text-base); margin-top: 2.5rem; margin-bottom: 0.5rem; }
+.process-step p { font-size: var(--text-sm); color: var(--text-muted); line-height: 1.6; }
+
+/* CBR Stats for this category */
+.cbr-block { background: var(--surface); padding: 3.5rem 0; }
+.cbr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+@media (max-width: 767px) { .cbr-grid { grid-template-columns: 1fr; } }
+.cbr-visual { text-align: center; }
+.cbr-big { font-family: var(--font-heading); font-weight: 800; font-size: 5rem; color: var(--primary); line-height: 1; }
+.cbr-sublabel { font-size: var(--text-sm); color: var(--text-muted); margin-top: 0.5rem; }
+.cbr-bar { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+.cbr-bar-label { font-size: 0.875rem; width: 8rem; flex-shrink: 0; }
+.cbr-bar-track { flex: 1; height: 1.5rem; background: var(--border); border-radius: 4px; overflow: hidden; }
+.cbr-bar-fill { height: 100%; border-radius: 4px; }
+.cbr-bar-fill.ours { background: var(--primary); }
+.cbr-bar-fill.avg { background: var(--text-muted); opacity: 0.4; }
+.cbr-bar-value { font-family: var(--font-heading); font-weight: 700; font-size: 0.875rem; width: 3rem; text-align: right; }
+
+/* CTA BANNER */
+.cta-banner { background: var(--dark); padding: 4rem 0; color: var(--white); text-align: center; }
+.cta-banner h2 { font-family: var(--font-heading); font-weight: 800; font-size: var(--text-2xl); margin-bottom: 1rem; color: var(--white); }
+.cta-banner p { color: rgba(255,255,255,0.6); margin-bottom: 2rem; max-width: 30rem; margin-left: auto; margin-right: auto; }
+.cta-banner .btns { display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; }
+
+/* FOOTER — minimal repeat */
+.footer { background: var(--darkest); padding: 2rem 0; color: rgba(255,255,255,0.4); font-size: 0.8125rem; }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.footer a { color: rgba(255,255,255,0.4); }
+.footer a:hover { color: var(--primary-light); }
+
+/* MOBILE STICKY */
+.sticky-mobile { position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); border-top: 1px solid var(--border); padding: 0.75rem 1rem; display: flex; gap: 0.5rem; z-index: 99; }
+@media (min-width: 768px) { .sticky-mobile { display: none; } }
+.sticky-wa { flex: 0 0 auto; width: 2.75rem; height: 2.75rem; background: #25D366; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 1.25rem; }
+.sticky-cta { flex: 1; height: 2.75rem; background: var(--primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: 700; color: var(--text); font-size: 0.9375rem; }
+@media (max-width: 767px) { .footer { padding-bottom: 5rem; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">GOED OP WEG</a>
+    <ul class="nav-links">
+      <li><a href="#">Opleidingen</a></li>
+      <li><a href="#">Tarieven</a></li>
+      <li><a href="#">Geslaagd</a></li>
+      <li><a href="#">Over ons</a></li>
+      <li><a href="#">Vraag &amp; antwoord</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <a href="#" class="btn btn-primary" style="font-size:0.875rem;padding:0.5rem 1.25rem;display:none;">Plan je proefles</a>
+    <style>@media(min-width:768px){.nav .btn-primary{display:inline-flex!important;}}</style>
+  </div>
+</nav>
+
+<!-- SERVICE HERO — compact, with breadcrumb and inline stat -->
+<section class="service-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="#">Home</a> <span>/</span> <a href="#">Opleidingen</a> <span>/</span> <span>Autorijbewijs (B)</span>
+    </div>
+    <h1>Autorijbewijs halen in Tiel</h1>
+    <p>Leer autorijden met een vaste instructeur die de examenwegen in Tiel kent als zijn broekzak. Handgeschakeld of automaat — jij kiest.</p>
+    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+      <a href="#" class="btn btn-primary">Plan je proefles &#8594;</a>
+      <a href="#" class="btn btn-whatsapp">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.122 1.521 5.86L0 24l6.335-1.661A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.78 9.78 0 01-5.283-1.545l-.379-.225-3.932 1.031 1.05-3.834-.247-.394A9.78 9.78 0 012.182 12c0-5.415 4.403-9.818 9.818-9.818S21.818 6.585 21.818 12 17.415 21.818 12 21.818z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat-item">
+        <div class="num">62%</div>
+        <div class="lbl">Slagingspercentage</div>
+      </div>
+      <div class="hero-stat-item">
+        <div class="num">+13%</div>
+        <div class="lbl">Boven CBR gemiddelde</div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="diagonal-service" style="background:var(--bg);">
+  <svg viewBox="0 0 1440 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="0,72 1440,0 1440,72" fill="var(--bg)"/><polygon points="0,0 1440,0 1440,72" fill="#1A1A2E"/>
+  </svg>
+</div>
+
+<!-- MAIN CONTENT — 8/4 asymmetric with sticky sidebar -->
+<section class="service-content">
+  <div class="container">
+    <div class="service-grid">
+      <div class="service-main">
+        <h2>Wat houdt de autorijles in?</h2>
+        <p>Elke rijles duurt 60 minuten en je hebt steeds dezelfde instructeur. We beginnen rustig in een woonwijk en bouwen langzaam op naar drukker verkeer, snelwegen en de examenwegen van CBR Tiel.</p>
+        <p>Je leert niet alleen autorijden — je leert veilig en zelfverzekerd deelnemen aan het verkeer. We oefenen situaties die je op het examen tegenkomt, zodat je voorbereid bent op alles.</p>
+
+        <div class="service-img">[Foto: lesauto op de weg in Tiel]</div>
+
+        <h2>Handgeschakeld of automaat</h2>
+        <p>Je kunt bij ons kiezen voor handgeschakeld of automaat. De automaat is populair bij leerlingen die moeite hebben met de koppeling of gewoon liever geen zorgen willen over schakelen.</p>
+        <ul>
+          <li>Handgeschakeld — geldig voor zowel handgeschakeld als automaat</li>
+          <li>Automaat — sneller leren, minder afleidingen, alleen geldig voor automaat</li>
+        </ul>
+
+        <h2>Hoe lang duurt de opleiding?</h2>
+        <p>Gemiddeld hebben leerlingen 30 tot 40 lessen nodig. Maar iedereen is anders. Na je proefles maken we samen een inschatting van het aantal lessen dat jij nodig hebt. Geen verplichte pakketten — je betaalt per les.</p>
+
+        <h2>Het examen bij CBR Tiel</h2>
+        <p>Je examen doe je bij CBR Tiel. We kennen de examenwegen en weten precies waar examinatoren op letten. Tijdens je lessen oefenen we de routes die je bij het examen kunt verwachten.</p>
+        <ul>
+          <li>Tussentijdse toets (vrijstelling bijzondere verrichtingen)</li>
+          <li>Praktijkexamen bij CBR Tiel</li>
+          <li>Voorbereiding op examenstress en onverwachte situaties</li>
+        </ul>
+      </div>
+
+      <!-- SIDEBAR — sticky -->
+      <div class="sidebar">
+        <div class="sidebar-card">
+          <h3>Autorijbewijs (B)</h3>
+          <div class="price">&#8364;XX <span>per les</span></div>
+          <p style="font-size:var(--text-sm);color:var(--text-muted);margin-bottom:1.25rem;">60 minuten per les, vaste instructeur</p>
+          <a href="#" class="btn btn-primary" style="width:100%;justify-content:center;">Plan je proefles &#8594;</a>
+          <p style="font-size:0.6875rem;color:var(--text-muted);margin-top:0.75rem;text-align:center;">Vrijblijvend — Binnen 24 uur reactie</p>
+        </div>
+        <div class="sidebar-card">
+          <h3>Snelle feiten</h3>
+          <div class="sidebar-facts">
+            <div class="sidebar-fact">
+              <span class="label">Lesduur</span>
+              <span class="value">60 min</span>
+            </div>
+            <div class="sidebar-fact">
+              <span class="label">Transmissie</span>
+              <span class="value">Handgeschakeld &amp; automaat</span>
+            </div>
+            <div class="sidebar-fact">
+              <span class="label">Examenlocatie</span>
+              <span class="value">CBR Tiel</span>
+            </div>
+            <div class="sidebar-fact">
+              <span class="label">Slagingspercentage</span>
+              <span class="value" style="color:var(--primary);font-weight:700;">62%</span>
+            </div>
+            <div class="sidebar-fact">
+              <span class="label">CBR gemiddelde</span>
+              <span class="value">49%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS — 4 steps -->
+<section class="process">
+  <div class="container">
+    <div class="section-label">Het traject</div>
+    <h2 style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-2xl);letter-spacing:-0.015em;margin-bottom:2rem;">Van proefles tot rijbewijs</h2>
+    <div class="process-grid">
+      <div class="process-step">
+        <h3>Proefles</h3>
+        <p>Kennismaken met de auto, de instructeur en de wegen in Tiel. Na de proefles bespreken we hoeveel lessen je nodig hebt.</p>
+      </div>
+      <div class="process-step">
+        <h3>Rijlessen</h3>
+        <p>Stap voor stap leer je autorijden. Van basishandelingen tot complexe verkeerssituaties en snelwegen.</p>
+      </div>
+      <div class="process-step">
+        <h3>Tussentijdse toets</h3>
+        <p>Halverwege je opleiding doe je een tussentijdse toets bij het CBR. Slaag je? Dan krijg je vrijstelling voor bijzondere verrichtingen.</p>
+      </div>
+      <div class="process-step">
+        <h3>Praktijkexamen</h3>
+        <p>Het moment waar je naartoe hebt gewerkt. We bereiden je grondig voor op het examen bij CBR Tiel.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CBR STATS COMPARISON -->
+<section class="cbr-block">
+  <div class="container">
+    <div class="cbr-grid">
+      <div class="cbr-visual">
+        <div class="cbr-big">62%</div>
+        <div class="cbr-sublabel">slagingspercentage autorijbewijs</div>
+      </div>
+      <div>
+        <h2 style="font-family:var(--font-heading);font-weight:700;font-size:var(--text-xl);margin-bottom:1.5rem;">Boven het CBR gemiddelde</h2>
+        <div class="cbr-bar">
+          <span class="cbr-bar-label" style="font-weight:600;">Goed op Weg</span>
+          <div class="cbr-bar-track"><div class="cbr-bar-fill ours" style="width:62%;"></div></div>
+          <span class="cbr-bar-value" style="color:var(--primary);">62%</span>
+        </div>
+        <div class="cbr-bar">
+          <span class="cbr-bar-label">CBR gemiddelde</span>
+          <div class="cbr-bar-track"><div class="cbr-bar-fill avg" style="width:49%;"></div></div>
+          <span class="cbr-bar-value">49%</span>
+        </div>
+        <p style="font-size:var(--text-sm);color:var(--text-muted);margin-top:1rem;">Bron: CBR examenresultaten, locatie Tiel. Gebaseerd op eerste examens.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="container">
+    <h2>Klaar om te beginnen?</h2>
+    <p>Plan een vrijblijvende proefles en ontdek of wij bij je passen.</p>
+    <div class="btns">
+      <a href="#" class="btn btn-primary">Plan je proefles &#8594;</a>
+      <a href="#" class="btn btn-whatsapp">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.122 1.521 5.86L0 24l6.335-1.661A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.78 9.78 0 01-5.283-1.545l-.379-.225-3.932 1.031 1.05-3.834-.247-.394A9.78 9.78 0 012.182 12c0-5.415 4.403-9.818 9.818-9.818S21.818 6.585 21.818 12 17.415 21.818 12 21.818z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <span>&copy; 2026 Rijschool Goed op Weg — KvK: 51173336</span>
+      <div style="display:flex;gap:1.5rem;"><a href="#">Privacybeleid</a> <a href="#">Algemene voorwaarden</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE -->
+<div class="sticky-mobile">
+  <a href="#" class="sticky-wa">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.122 1.521 5.86L0 24l6.335-1.661A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.78 9.78 0 01-5.283-1.545l-.379-.225-3.932 1.031 1.05-3.834-.247-.394A9.78 9.78 0 012.182 12c0-5.415 4.403-9.818 9.818-9.818S21.818 6.585 21.818 12 17.415 21.818 12 21.818z"/></svg>
+  </a>
+  <a href="#" class="sticky-cta">Plan je proefles</a>
+</div>
+
+</body>
+</html>

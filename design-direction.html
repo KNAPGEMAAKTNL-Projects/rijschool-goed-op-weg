@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Direction — Rijschool Goed op Weg</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ============================================
+     FLUID ROOT — scales everything proportionally
+     16px at 1440px → ~18px at 1920px → 20px at 2560px+
+     ============================================ */
+  html { font-size: clamp(1rem, 0.68rem + 0.357vw, 1.25rem); }
+
+  /* ============================================
+     RESET + BASE
+     ============================================ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Figtree', sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #211A18;
+    background: #FFFAF7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ============================================
+     DESIGN TOKENS
+     ============================================ */
+  :root {
+    /* Color Palette */
+    --color-primary: #F05A1E;
+    --color-primary-dark: #B62500;
+    --color-primary-light: #FF9757;
+    --color-primary-lighter: #FFB371;
+    --color-primary-surface: #FFF0E8;
+    --color-secondary: #83523E;
+    --color-secondary-light: #F5B9A2;
+    --color-accent: #F05A1E;
+    --color-accent-dark: #970000;
+    --color-background: #FFFAF7;
+    --color-surface: #F9EFEB;
+    --color-surface-elevated: #FFFFFF;
+    --color-text: #211A18;
+    --color-text-muted: #655D5A;
+    --color-border: #CEC5C1;
+    --color-error: #CB002A;
+    --color-success: #5D6319;
+
+    /* Typography */
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Figtree', sans-serif;
+
+    /* Scale: Perfect Fourth (1.333) */
+    --font-size-sm: 0.7502rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.333rem;
+    --font-size-xl: 1.7769rem;
+    --font-size-2xl: 2.3686rem;
+    --font-size-3xl: 3.1573rem;
+    --font-size-4xl: 4.2087rem;
+
+    /* Containers (rem-based for fluid scaling) */
+    --max-w-content: 68.75rem;
+    --max-w-wide: 87.5rem;
+    --max-w-nav: 80rem;
+    --max-w-hero-text: 35rem;
+
+    /* Motion */
+    --ease-project: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* ============================================
+     LAYOUT HELPERS
+     ============================================ */
+  .section { padding: 2rem; }
+  .section + .section { border-top: 1px solid var(--color-border); }
+  .section-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: var(--font-size-xl);
+    margin-bottom: 1.5rem;
+    color: var(--color-text);
+    letter-spacing: -0.01em;
+  }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
+
+  /* ============================================
+     1. COLOR SWATCHES
+     ============================================ */
+  .swatch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+  .swatch {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+  }
+  .swatch-color {
+    height: 80px;
+    display: flex;
+    align-items: flex-end;
+    padding: 0.5rem;
+  }
+  .swatch-label {
+    padding: 0.75rem;
+    font-size: 0.8125rem;
+    background: white;
+  }
+  .swatch-label strong { display: block; font-weight: 600; }
+  .swatch-label code {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    font-family: monospace;
+  }
+
+  /* Tonal ramp */
+  .tonal-strip {
+    display: flex;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+  }
+  .tonal-step {
+    flex: 1;
+    height: 60px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 4px;
+    font-size: 0.625rem;
+    font-family: monospace;
+  }
+
+  /* ============================================
+     2. CONTRAST TABLE
+     ============================================ */
+  .contrast-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+  .contrast-table th, .contrast-table td {
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .contrast-table th { font-weight: 600; background: var(--color-surface); }
+  .pass { color: #2D6A2E; font-weight: 600; }
+  .fail { color: #CB002A; font-weight: 600; }
+
+  /* ============================================
+     3. TYPE SCALE
+     ============================================ */
+  .type-sample { margin-bottom: 1.25rem; }
+  .type-sample .label {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    font-family: monospace;
+    margin-bottom: 0.25rem;
+  }
+
+  /* ============================================
+     4. HERO PREVIEW
+     ============================================ */
+  .hero-preview {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1A1A2E 0%, #2D2D44 100%);
+    color: white;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    padding: 3rem;
+  }
+  .hero-preview::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(26,26,46,0.9) 0%, rgba(26,26,46,0.4) 100%);
+    z-index: 1;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: var(--max-w-hero-text); }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: rgba(255,255,255,0.15);
+    padding: 0.35rem 0.75rem;
+    border-radius: 100px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+    backdrop-filter: blur(4px);
+  }
+  .hero-h1 {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: var(--font-size-4xl);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    margin-bottom: 1rem;
+  }
+  .hero-sub {
+    font-size: var(--font-size-lg);
+    line-height: 1.5;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 2rem;
+    max-width: 28rem;
+  }
+  .hero-cta-row { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--color-primary);
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.875rem 1.75rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 300ms var(--ease-project);
+  }
+  .btn-primary:hover {
+    background: var(--color-primary-dark);
+    color: white;
+    transform: translateY(-2px);
+  }
+  .btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #25D366;
+    color: white;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.875rem 1.75rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 300ms var(--ease-project);
+  }
+  .hero-phone {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  .hero-phone a { color: white; text-decoration: none; font-weight: 600; }
+
+  /* ============================================
+     5. NAV PREVIEW
+     ============================================ */
+  .nav-preview {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    margin-bottom: 1.5rem;
+  }
+  .nav-logo {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: var(--color-primary);
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    list-style: none;
+  }
+  .nav-links li a {
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: 500;
+    font-size: 0.9375rem;
+    transition: color 200ms var(--ease-project);
+  }
+  .nav-links li a:hover { color: var(--color-primary); }
+  .nav-cta {
+    background: var(--color-primary) !important;
+    color: var(--color-text) !important;
+    padding: 0.5rem 1.25rem !important;
+    border-radius: 8px !important;
+    font-weight: 700 !important;
+    font-family: var(--font-heading) !important;
+  }
+
+  /* ============================================
+     6. BODY TEXT PREVIEW
+     ============================================ */
+  .body-preview {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    max-width: 65ch;
+  }
+  .body-preview h2 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: var(--font-size-2xl);
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+  }
+  .body-preview p {
+    color: var(--color-text-muted);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+  }
+  .body-preview p:last-child { margin-bottom: 0; }
+
+  /* ============================================
+     7. STAT ROW PREVIEW
+     ============================================ */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .stat-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    border: 1px solid var(--color-border);
+  }
+  .stat-number {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: var(--font-size-3xl);
+    color: var(--color-primary);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .stat-label {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-top: 0.25rem;
+    font-weight: 500;
+  }
+  .stat-compare {
+    font-size: 0.6875rem;
+    color: var(--color-success);
+    font-weight: 600;
+    margin-top: 0.25rem;
+  }
+
+  /* ============================================
+     8. COMPOUND WORD STRESS TEST
+     ============================================ */
+  .stress-test h2 {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: var(--font-size-3xl);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 0.75rem;
+    word-break: break-word;
+    hyphens: auto;
+    color: var(--color-text);
+  }
+  .stress-test p {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  /* ============================================
+     9. SERVICE CARDS PREVIEW
+     ============================================ */
+  .service-card {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1.25rem;
+    text-align: center;
+    transition: all 300ms var(--ease-project);
+    cursor: pointer;
+  }
+  .service-card:hover {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -8px rgba(240,90,30,0.3);
+  }
+  .service-card .icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  .service-card h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1rem;
+  }
+  .service-card p {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-top: 0.25rem;
+  }
+  .service-card:hover p { color: rgba(255,255,255,0.8); }
+  .service-card.featured {
+    border-color: var(--color-primary);
+    background: var(--color-primary-surface);
+  }
+
+  /* ============================================
+     10. MOBILE PREVIEW
+     ============================================ */
+  .mobile-frame {
+    width: 375px;
+    margin: 0 auto;
+    border: 2px solid var(--color-border);
+    border-radius: 24px;
+    overflow: hidden;
+    background: var(--color-background);
+  }
+  .mobile-hero {
+    background: linear-gradient(135deg, #1A1A2E 0%, #2D2D44 100%);
+    color: white;
+    padding: 2rem 1.25rem;
+    position: relative;
+  }
+  .mobile-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(26,26,46,0.7);
+  }
+  .mobile-hero > * { position: relative; z-index: 1; }
+  .mobile-hero h1 {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: var(--font-size-2xl);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    margin-bottom: 0.75rem;
+  }
+  .mobile-hero p {
+    font-size: 0.9375rem;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 1.25rem;
+    line-height: 1.5;
+  }
+  .mobile-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    padding: 1rem 1.25rem;
+  }
+  .mobile-stat {
+    text-align: center;
+    background: white;
+    padding: 0.75rem 0.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+  }
+  .mobile-stat .num {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--color-primary);
+  }
+  .mobile-stat .lbl {
+    font-size: 0.625rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+  }
+  .mobile-sticky {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: white;
+    border-top: 1px solid var(--color-border);
+  }
+  .mobile-sticky .btn-wa {
+    flex: 0 0 auto;
+    background: #25D366;
+    color: white;
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+  }
+  .mobile-sticky .btn-cta {
+    flex: 1;
+    background: var(--color-primary);
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    height: 44px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+
+  /* ============================================
+     ICON SAMPLES
+     ============================================ */
+  .icon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+  }
+  .icon-sample {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+  }
+  .icon-sample svg {
+    width: 28px;
+    height: 28px;
+    stroke: var(--color-text);
+    stroke-width: 2;
+    fill: none;
+  }
+  .icon-sample span {
+    font-size: 0.6875rem;
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .grid-2, .grid-3, .grid-5 { grid-template-columns: 1fr; }
+    .hero-preview { padding: 2rem 1.5rem; min-height: 300px; }
+    .hero-h1 { font-size: var(--font-size-3xl); }
+    .stat-row { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ======================================================
+     DESIGN DIRECTION — RIJSCHOOL GOED OP WEG
+     Generated: 2026-04-12
+     Archetype: E (Lifestyle & Personal Brand)
+     Tone: E7 D6 F3 R6 A5
+     ====================================================== -->
+
+<div class="section">
+  <h1 style="font-family:var(--font-heading);font-weight:800;font-size:var(--font-size-3xl);letter-spacing:-0.02em;margin-bottom:0.5rem;">Design Direction</h1>
+  <p style="color:var(--color-text-muted);font-size:var(--font-size-lg);">Rijschool Goed op Weg &mdash; Archetype E &middot; E7 D6 F3 R6 A5</p>
+</div>
+
+<!-- ==================== COLOR PALETTE ==================== -->
+<div class="section">
+  <div class="section-title">1. Color Palette</div>
+
+  <div class="swatch-grid">
+    <div class="swatch">
+      <div class="swatch-color" style="background:#F05A1E;"></div>
+      <div class="swatch-label"><strong>Primary</strong><code>#F05A1E</code><br>Brand orange &middot; CTA bg</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#B62500;"></div>
+      <div class="swatch-label"><strong>Primary Dark</strong><code>#B62500</code><br>Hover states &middot; Accent text on light</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#FF9757;"></div>
+      <div class="swatch-label"><strong>Primary Light</strong><code>#FF9757</code><br>Highlights &middot; Decorative</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#83523E;"></div>
+      <div class="swatch-label"><strong>Secondary</strong><code>#83523E</code><br>Warm brown &middot; Supporting</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#1A1A2E;"></div>
+      <div class="swatch-label"><strong>Dark</strong><code>#1A1A2E</code><br>Hero bg &middot; Dark sections</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#FFFAF7;"></div>
+      <div class="swatch-label"><strong>Background</strong><code>#FFFAF7</code><br>Page background</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#F9EFEB;"></div>
+      <div class="swatch-label"><strong>Surface</strong><code>#F9EFEB</code><br>Card backgrounds</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#FFFFFF;border:1px solid #eee;"></div>
+      <div class="swatch-label"><strong>Surface Elevated</strong><code>#FFFFFF</code><br>Hover &middot; Popups</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#211A18;"></div>
+      <div class="swatch-label"><strong>Text</strong><code>#211A18</code><br>Primary text</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#655D5A;"></div>
+      <div class="swatch-label"><strong>Text Muted</strong><code>#655D5A</code><br>Secondary text</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#CEC5C1;"></div>
+      <div class="swatch-label"><strong>Border</strong><code>#CEC5C1</code><br>Dividers &middot; Borders</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#CB002A;"></div>
+      <div class="swatch-label"><strong>Error</strong><code>#CB002A</code><br>Form errors</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#5D6319;"></div>
+      <div class="swatch-label"><strong>Success</strong><code>#5D6319</code><br>Form success</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#FFF0E8;"></div>
+      <div class="swatch-label"><strong>Primary Surface</strong><code>#FFF0E8</code><br>Accent bg &middot; Featured cards</div>
+    </div>
+  </div>
+
+  <h3 style="font-family:var(--font-heading);font-weight:600;margin:2rem 0 1rem;">Primary Tonal Ramp</h3>
+  <div class="tonal-strip">
+    <div class="tonal-step" style="background:#000000;color:#fff;">0</div>
+    <div class="tonal-step" style="background:#5f0000;color:#fff;">10</div>
+    <div class="tonal-step" style="background:#790000;color:#fff;">20</div>
+    <div class="tonal-step" style="background:#970000;color:#fff;">30</div>
+    <div class="tonal-step" style="background:#b62500;color:#fff;">40</div>
+    <div class="tonal-step" style="background:#d64403;color:#fff;">50</div>
+    <div class="tonal-step" style="background:#f76024;color:#1A1A2E;">60</div>
+    <div class="tonal-step" style="background:#ff7b3e;color:#1A1A2E;">70</div>
+    <div class="tonal-step" style="background:#ff9757;color:#1A1A2E;">80</div>
+    <div class="tonal-step" style="background:#ffb371;color:#1A1A2E;">90</div>
+    <div class="tonal-step" style="background:#ffc17e;color:#1A1A2E;">95</div>
+    <div class="tonal-step" style="background:#ffcd89;color:#1A1A2E;">99</div>
+    <div class="tonal-step" style="background:#ffffff;color:#1A1A2E;border-left:1px solid #eee;">100</div>
+  </div>
+</div>
+
+<!-- ==================== CONTRAST TABLE ==================== -->
+<div class="section">
+  <div class="section-title">2. Contrast Ratios (WCAG)</div>
+  <table class="contrast-table">
+    <thead>
+      <tr><th>Combination</th><th>Ratio</th><th>AA Normal</th><th>AA Large</th><th>Use</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span style="background:#211A18;color:#FFFAF7;padding:2px 6px;border-radius:3px;">Text on Background</span></td>
+        <td>16.32:1</td><td class="pass">Pass AAA</td><td class="pass">Pass AAA</td>
+        <td>Body text, headings</td>
+      </tr>
+      <tr>
+        <td><span style="background:#FFFAF7;color:#211A18;padding:2px 6px;border-radius:3px;border:1px solid #ddd;">Background on Text</span></td>
+        <td>16.32:1</td><td class="pass">Pass AAA</td><td class="pass">Pass AAA</td>
+        <td>Reverse (dark sections)</td>
+      </tr>
+      <tr>
+        <td><span style="background:#F05A1E;color:#1A1A2E;padding:2px 6px;border-radius:3px;">Dark on Primary (CTA)</span></td>
+        <td>5.02:1</td><td class="pass">Pass AA</td><td class="pass">Pass AA</td>
+        <td>CTA button text</td>
+      </tr>
+      <tr>
+        <td><span style="background:#B62500;color:#FFFFFF;padding:2px 6px;border-radius:3px;">White on Primary Dark</span></td>
+        <td>6.45:1</td><td class="pass">Pass AA</td><td class="pass">Pass AA</td>
+        <td>Hover state CTA text</td>
+      </tr>
+      <tr>
+        <td><span style="background:#FFFAF7;color:#F05A1E;padding:2px 6px;border-radius:3px;">Primary on Background</span></td>
+        <td>3.25:1</td><td class="fail">Fail</td><td class="pass">Pass</td>
+        <td>Large text / icons only</td>
+      </tr>
+      <tr>
+        <td><span style="background:#1A1A2E;color:#F05A1E;padding:2px 6px;border-radius:3px;">Primary on Dark</span></td>
+        <td>5.02:1</td><td class="pass">Pass AA</td><td class="pass">Pass AA</td>
+        <td>Orange accents on dark bg</td>
+      </tr>
+      <tr>
+        <td><span style="background:#FFFAF7;color:#5f0000;padding:2px 6px;border-radius:3px;">Primary-10 on Background</span></td>
+        <td>13.52:1</td><td class="pass">Pass AAA</td><td class="pass">Pass AAA</td>
+        <td>Accent text on light (links)</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size:var(--font-size-sm);color:var(--color-text-muted);margin-top:1rem;">
+    <strong>CTA rule:</strong> Orange buttons use dark text (#1A1A2E). On hover, darken to #B62500 with white text.
+    Orange as text color: large text/icons only on light bg. For body-size accent text, use #5F0000 (primary-10).
+  </p>
+</div>
+
+<!-- ==================== TYPOGRAPHY ==================== -->
+<div class="section">
+  <div class="section-title">3. Typography System</div>
+  <p style="color:var(--color-text-muted);margin-bottom:2rem;">
+    <strong>Heading:</strong> Outfit (Geometric, A-tier, variable 100-900) &nbsp;&middot;&nbsp;
+    <strong>Body:</strong> Figtree (Geometric, A-tier, variable 300-900) &nbsp;&middot;&nbsp;
+    <strong>Scale:</strong> Perfect Fourth (1.333)
+  </p>
+
+  <div class="type-sample">
+    <div class="label">--font-size-4xl: 4.2087rem &middot; Outfit 800 &middot; H1</div>
+    <div style="font-family:var(--font-heading);font-weight:800;font-size:var(--font-size-4xl);line-height:1.1;letter-spacing:-0.025em;">Rij met vertrouwen</div>
+  </div>
+  <div class="type-sample">
+    <div class="label">--font-size-3xl: 3.1573rem &middot; Outfit 700 &middot; H2</div>
+    <div style="font-family:var(--font-heading);font-weight:700;font-size:var(--font-size-3xl);line-height:1.15;letter-spacing:-0.02em;">Onze opleidingen</div>
+  </div>
+  <div class="type-sample">
+    <div class="label">--font-size-2xl: 2.3686rem &middot; Outfit 700 &middot; H3</div>
+    <div style="font-family:var(--font-heading);font-weight:700;font-size:var(--font-size-2xl);line-height:1.25;letter-spacing:-0.015em;">Dagcursus bromfiets</div>
+  </div>
+  <div class="type-sample">
+    <div class="label">--font-size-xl: 1.7769rem &middot; Outfit 600 &middot; H4</div>
+    <div style="font-family:var(--font-heading);font-weight:600;font-size:var(--font-size-xl);line-height:1.35;letter-spacing:-0.01em;">Waarom Goed op Weg?</div>
+  </div>
+  <div class="type-sample">
+    <div class="label">--font-size-lg: 1.333rem &middot; Figtree 400 &middot; Lead text</div>
+    <div style="font-family:var(--font-body);font-size:var(--font-size-lg);line-height:1.5;color:var(--color-text-muted);">Begin je rijopleiding bij Rijschool Goed op Weg en behaal zorgeloos je rijbewijs.</div>
+  </div>
+  <div class="type-sample">
+    <div class="label">--font-size-base: 1rem &middot; Figtree 400 &middot; Body</div>
+    <div style="font-family:var(--font-body);font-size:var(--font-size-base);line-height:1.5;color:var(--color-text-muted);max-width:65ch;">Bij ons krijg je persoonlijke rijlessen van een ervaren instructeur die precies weet wat je nodig hebt. Of je nu gaat voor je autorijbewijs, motorrijbewijs of bromfietsrijbewijs.</div>
+  </div>
+  <div class="type-sample">
+    <div class="label">--font-size-sm: 0.7502rem &middot; Figtree 500 &middot; Caption / Label</div>
+    <div style="font-family:var(--font-body);font-weight:500;font-size:var(--font-size-sm);color:var(--color-text-muted);text-transform:uppercase;letter-spacing:0.05em;">Vrijblijvend &mdash; Binnen 24 uur reactie</div>
+  </div>
+
+  <div style="margin-top:2rem;padding:1.25rem;background:var(--color-surface);border-radius:8px;font-size:var(--font-size-sm);font-family:monospace;color:var(--color-text-muted);">
+    <strong>Fluid root:</strong> html { font-size: clamp(1rem, 0.68rem + 0.357vw, 1.25rem); }<br>
+    16px @1440px &rarr; ~18px @1920px &rarr; 20px @2560px+<br>
+    All containers use rem: content 68.75rem, wide 87.5rem, nav 80rem, hero-text 35rem
+  </div>
+</div>
+
+<!-- ==================== COMPOUND WORD STRESS TEST ==================== -->
+<div class="section stress-test">
+  <div class="section-title">4. Compound Word Stress Test (Outfit 800, H1 size)</div>
+  <h2>schoonmaakdiensten</h2>
+  <p>18 chars, single word — tests width handling</p>
+  <h2>tuinonderhoud</h2>
+  <p>13 chars — moderate length</p>
+  <h2>verwarmingsinstallatie</h2>
+  <p>22 chars — longest Dutch compound typical for H1</p>
+  <h2>kantoorschoonmaak</h2>
+  <p>17 chars — should wrap gracefully at narrow viewport</p>
+  <h2 style="color:var(--color-primary);">bromfietsrijbewijs</h2>
+  <p>18 chars — project-specific compound, displayed in accent color</p>
+</div>
+
+<!-- ==================== NAV PREVIEW ==================== -->
+<div class="section">
+  <div class="section-title">5. Navigation Preview</div>
+  <nav class="nav-preview">
+    <div class="nav-logo">GOED OP WEG</div>
+    <ul class="nav-links">
+      <li><a href="#">Opleidingen</a></li>
+      <li><a href="#">Tarieven</a></li>
+      <li><a href="#">Geslaagd</a></li>
+      <li><a href="#">Over ons</a></li>
+      <li><a href="#">Vraag &amp; antwoord</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#" class="nav-cta">Plan je proefles</a></li>
+    </ul>
+  </nav>
+  <p style="font-size:var(--font-size-sm);color:var(--color-text-muted);">
+    Nav vocabulary based on competitor research: "Opleidingen" (not "Diensten"), "Tarieven" (not "Prijzen"),
+    "Vraag &amp; antwoord" (not "FAQ"), CTA button in nav.
+  </p>
+</div>
+
+<!-- ==================== HERO PREVIEW (Desktop 1440px) ==================== -->
+<div class="section">
+  <div class="section-title">6. Hero Preview (Desktop)</div>
+  <div class="hero-preview">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span style="color:#FFD700;">&#9733;</span> 5.0/5 &mdash; 15 beoordelingen
+      </div>
+      <h1 class="hero-h1">Behaal zorgeloos<br>je rijbewijs</h1>
+      <p class="hero-sub">De opleiding van je leven volg je maar 1 keer. Wij zorgen dat je het in 1x goed doet.</p>
+      <div class="hero-cta-row">
+        <a href="#" class="btn-primary">Plan je proefles &rarr;</a>
+        <a href="#" class="btn-whatsapp">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.122 1.521 5.86L0 24l6.335-1.661A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.78 9.78 0 01-5.283-1.545l-.379-.225-3.932 1.031 1.05-3.834-.247-.394A9.78 9.78 0 012.182 12c0-5.415 4.403-9.818 9.818-9.818S21.818 6.585 21.818 12 17.415 21.818 12 21.818z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+      <p class="hero-phone" style="margin-top:1rem;">Of bel: <a href="tel:0628990655">06 28 99 06 55</a></p>
+    </div>
+  </div>
+
+  <!-- CBR STATS ROW -->
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="stat-number">91%</div>
+      <div class="stat-label">Motor geslaagd</div>
+      <div class="stat-compare">+9% boven gemiddelde</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">90%</div>
+      <div class="stat-label">Bromfiets geslaagd</div>
+      <div class="stat-compare">+3% boven gemiddelde</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Taxi geslaagd</div>
+      <div class="stat-compare">+40% boven gemiddelde</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SERVICE CARDS ==================== -->
+<div class="section">
+  <div class="section-title">7. Service Cards (Color Shift Hover)</div>
+  <p style="color:var(--color-text-muted);margin-bottom:1.25rem;">Hover over cards to see the color shift interaction pattern.</p>
+  <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:1rem;">
+    <div class="service-card">
+      <div class="icon">&#x1F697;</div>
+      <h3>Auto (B)</h3>
+      <p>Handgeschakeld &amp; automaat</p>
+    </div>
+    <div class="service-card">
+      <div class="icon">&#x1F3CD;</div>
+      <h3>Motor</h3>
+      <p>A1, A2 en A</p>
+    </div>
+    <div class="service-card featured">
+      <div class="icon">&#x1F6F5;</div>
+      <h3>Dagcursus bromfiets</h3>
+      <p>In 1 dag je rijbewijs</p>
+    </div>
+    <div class="service-card">
+      <div class="icon">&#x1F69B;</div>
+      <h3>Aanhanger (BE)</h3>
+      <p>Auto + aanhanger</p>
+    </div>
+    <div class="service-card">
+      <div class="icon">&#x1F695;</div>
+      <h3>Taxi</h3>
+      <p>Taxipas / chauffeurskaart</p>
+    </div>
+    <div class="service-card">
+      <div class="icon">&#x1F4DA;</div>
+      <h3>Theorie</h3>
+      <p>Auto, motor &amp; bromfiets</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== BODY TEXT PREVIEW ==================== -->
+<div class="section">
+  <div class="section-title">8. Body Text Preview</div>
+  <div class="body-preview">
+    <h2>Persoonlijke aanpak, echt resultaat</h2>
+    <p>Bij Rijschool Goed op Weg draait alles om jou. Geen standaard lesprogramma, maar rijlessen die aansluiten bij jouw tempo en leerstijl. Of je nu zenuwachtig bent voor je eerste les of al een paar keer gezakt bent &mdash; wij helpen je er doorheen.</p>
+    <p>Onze instructeur kent de examenwegen in Tiel als zijn broekzak en weet precies waar het CBR op let. Dat merk je aan de resultaten: onze leerlingen voor motor en bromfiets scoren ver boven het landelijk gemiddelde.</p>
+    <p>Benieuwd of we bij je passen? Plan een vrijblijvende proefles en ontdek het zelf.</p>
+  </div>
+</div>
+
+<!-- ==================== ICON SYSTEM ==================== -->
+<div class="section">
+  <div class="section-title">9. Icon System &mdash; Phosphor (F3 casual)</div>
+  <p style="color:var(--color-text-muted);margin-bottom:1.25rem;">
+    Formality 3 = casual/playful &rarr; Phosphor icons (rounded, friendly). Stroke width: 2px.
+    Install: copy SVGs from phosphoricons.com. Below are icon NAME references for implementation.
+  </p>
+  <div class="icon-grid">
+    <div class="icon-sample">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+      <span>ph-check-circle<br>Geslaagd / USP</span>
+    </div>
+    <div class="icon-sample">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 8v8M8 12h8"/></svg>
+      <span>ph-plus-square<br>Service card</span>
+    </div>
+    <div class="icon-sample">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      <span>ph-phone<br>Contact / CTA</span>
+    </div>
+    <div class="icon-sample">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span>ph-map-pin<br>Locatie / Tiel</span>
+    </div>
+    <div class="icon-sample">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <span>ph-star<br>Reviews / Rating</span>
+    </div>
+    <div class="icon-sample">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      <span>ph-clock<br>Openingstijden</span>
+    </div>
+    <div class="icon-sample">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+      <span>ph-chart-bar<br>CBR Statistieken</span>
+    </div>
+    <div class="icon-sample">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      <span>ph-chat<br>WhatsApp / FAQ</span>
+    </div>
+    <div class="icon-sample">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+      <span>ph-wrench<br>Automaat / Extra</span>
+    </div>
+    <div class="icon-sample">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+      <span>ph-briefcase<br>Taxi / Zakelijk</span>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== MOBILE PREVIEW ==================== -->
+<div class="section">
+  <div class="section-title">10. Mobile Preview (375px)</div>
+  <div class="mobile-frame">
+    <!-- Mobile nav -->
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:0.75rem 1.25rem;background:white;border-bottom:1px solid var(--color-border);">
+      <span style="font-family:var(--font-heading);font-weight:800;font-size:1rem;color:var(--color-primary);">GOED OP WEG</span>
+      <div style="display:flex;flex-direction:column;gap:4px;cursor:pointer;">
+        <span style="display:block;width:20px;height:2px;background:var(--color-text);"></span>
+        <span style="display:block;width:20px;height:2px;background:var(--color-text);"></span>
+        <span style="display:block;width:14px;height:2px;background:var(--color-text);"></span>
+      </div>
+    </div>
+    <!-- Mobile hero -->
+    <div class="mobile-hero">
+      <div style="display:inline-flex;align-items:center;gap:0.3rem;background:rgba(255,255,255,0.15);padding:0.25rem 0.6rem;border-radius:100px;font-size:0.75rem;margin-bottom:0.75rem;backdrop-filter:blur(4px);">
+        <span style="color:#FFD700;">&#9733;</span> 5.0/5 &mdash; 15 reviews
+      </div>
+      <h1>Behaal zorgeloos je rijbewijs</h1>
+      <p>De opleiding van je leven volg je maar 1 keer.</p>
+      <a href="#" class="btn-primary" style="width:100%;justify-content:center;font-size:0.9375rem;padding:0.75rem;">Plan je proefles &rarr;</a>
+    </div>
+    <!-- Mobile stats -->
+    <div class="mobile-stats">
+      <div class="mobile-stat">
+        <div class="num">91%</div>
+        <div class="lbl">Motor</div>
+      </div>
+      <div class="mobile-stat">
+        <div class="num">90%</div>
+        <div class="lbl">Bromfiets</div>
+      </div>
+      <div class="mobile-stat">
+        <div class="num">100%</div>
+        <div class="lbl">Taxi</div>
+      </div>
+    </div>
+    <!-- Mobile sticky bar -->
+    <div class="mobile-sticky">
+      <div class="btn-wa">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.122 1.521 5.86L0 24l6.335-1.661A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.78 9.78 0 01-5.283-1.545l-.379-.225-3.932 1.031 1.05-3.834-.247-.394A9.78 9.78 0 012.182 12c0-5.415 4.403-9.818 9.818-9.818S21.818 6.585 21.818 12 17.415 21.818 12 21.818z"/></svg>
+      </div>
+      <a href="#" class="btn-cta">Plan je proefles</a>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== DESIGN DECISIONS SUMMARY ==================== -->
+<div class="section" style="background:var(--color-surface);">
+  <div class="section-title">Design Decisions Summary</div>
+  <div class="grid-2" style="gap:2rem;">
+    <div>
+      <h3 style="font-family:var(--font-heading);font-weight:700;font-size:1.125rem;margin-bottom:0.75rem;">Palette</h3>
+      <ul style="list-style:none;font-size:0.9375rem;line-height:1.8;color:var(--color-text-muted);">
+        <li><strong style="color:var(--color-text);">Anchor:</strong> #F05A1E (vivid vermillion-orange)</li>
+        <li><strong style="color:var(--color-text);">Temperature:</strong> Warm</li>
+        <li><strong style="color:var(--color-text);">Saturation:</strong> Vivid</li>
+        <li><strong style="color:var(--color-text);">Neutrals:</strong> Warm-toned (brown undertone)</li>
+        <li><strong style="color:var(--color-text);">CTA rule:</strong> Dark text on orange, white on dark-orange hover</li>
+      </ul>
+    </div>
+    <div>
+      <h3 style="font-family:var(--font-heading);font-weight:700;font-size:1.125rem;margin-bottom:0.75rem;">Typography</h3>
+      <ul style="list-style:none;font-size:0.9375rem;line-height:1.8;color:var(--color-text-muted);">
+        <li><strong style="color:var(--color-text);">Heading:</strong> Outfit (800 for H1, 700 for H2-H3, 600 for H4)</li>
+        <li><strong style="color:var(--color-text);">Body:</strong> Figtree (400 regular, 500 medium, 600 semi)</li>
+        <li><strong style="color:var(--color-text);">Scale:</strong> Perfect Fourth (1.333)</li>
+        <li><strong style="color:var(--color-text);">Icons:</strong> Phosphor (rounded, casual)</li>
+        <li><strong style="color:var(--color-text);">Easing:</strong> cubic-bezier(0.16, 1, 0.3, 1) (snappy)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

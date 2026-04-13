@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tarieven — Rijschool Goed op Weg | Tarieven Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ========================================
+   FLUID ROOT
+   ======================================== */
+html { font-size: clamp(1rem, 0.68rem + 0.357vw, 1.25rem); }
+
+/* ========================================
+   RESET
+   ======================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Figtree', sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #211A18;
+  background: #FFFAF7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { border: none; cursor: pointer; font-family: inherit; }
+
+/* ========================================
+   DESIGN TOKENS
+   ======================================== */
+:root {
+  --primary: #F05A1E;
+  --primary-dark: #B62500;
+  --primary-light: #FF9757;
+  --primary-surface: #FFF0E8;
+  --secondary: #83523E;
+  --dark: #1A1A2E;
+  --darkest: #111118;
+  --bg: #FFFAF7;
+  --surface: #F9EFEB;
+  --white: #FFFFFF;
+  --text: #211A18;
+  --text-muted: #655D5A;
+  --border: #CEC5C1;
+  --error: #CB002A;
+  --success: #5D6319;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Figtree', sans-serif;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --text-sm: 0.7502rem;
+  --text-base: 1rem;
+  --text-lg: 1.333rem;
+  --text-xl: 1.7769rem;
+  --text-2xl: 2.3686rem;
+  --text-3xl: 3.1573rem;
+  --text-4xl: 4.2087rem;
+  --max-content: 68.75rem;
+  --max-wide: 87.5rem;
+  --max-nav: 80rem;
+}
+
+/* ========================================
+   UTILITIES
+   ======================================== */
+.container { max-width: var(--max-content); margin: 0 auto; padding: 0 1.5rem; }
+.container-nav { max-width: var(--max-nav); margin: 0 auto; padding: 0 1.5rem; }
+.heading { font-family: var(--font-heading); letter-spacing: -0.02em; color: var(--text); }
+.section-label {
+  font-family: var(--font-heading); font-weight: 600;
+  font-size: var(--text-sm); text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--primary);
+  margin-bottom: 0.75rem;
+}
+.section-heading {
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: var(--text-2xl); letter-spacing: -0.015em;
+  margin-bottom: 0.75rem; color: var(--text);
+}
+.section-sub {
+  color: var(--text-muted); max-width: 40rem;
+  margin-bottom: 2.5rem; line-height: 1.6;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: var(--text-base); padding: 0.75rem 1.5rem;
+  border-radius: 8px; transition: all 300ms var(--ease);
+  border: none; cursor: pointer;
+}
+.btn-primary { background: var(--primary); color: var(--text); }
+.btn-primary:hover {
+  background: var(--primary-dark); color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -4px rgba(240,90,30,0.35);
+}
+.btn-outline { background: transparent; color: var(--text); border: 2px solid var(--border); }
+.btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+.btn-whatsapp { background: #25D366; color: var(--white); }
+.btn-whatsapp:hover { background: #1EBE5A; transform: translateY(-2px); }
+.btn-sm { padding: 0.5rem 1.25rem; font-size: 0.875rem; }
+.btn-card {
+  width: 100%; justify-content: center;
+  background: var(--primary); color: var(--text);
+  font-size: 0.9375rem; padding: 0.65rem 1.25rem;
+}
+.btn-card:hover {
+  background: var(--primary-dark); color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -4px rgba(240,90,30,0.35);
+}
+
+/* Scroll reveal */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: fade-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 80%;
+    }
+    .reveal-delay-1 { animation-delay: 80ms; }
+    .reveal-delay-2 { animation-delay: 160ms; }
+    .reveal-delay-3 { animation-delay: 240ms; }
+    .reveal-delay-4 { animation-delay: 320ms; }
+    .reveal-delay-5 { animation-delay: 400ms; }
+  }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(1.25rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========================================
+   01. NAVIGATION
+   ======================================== */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 4rem;
+}
+.nav-logo {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: var(--text-lg); color: var(--primary);
+}
+.nav-links {
+  display: none; gap: 2rem; align-items: center;
+}
+@media (min-width: 768px) { .nav-links { display: flex; } }
+.nav-links a {
+  font-weight: 500; font-size: 0.9375rem; color: var(--text);
+  transition: color 200ms var(--ease);
+}
+.nav-links a:hover { color: var(--primary); }
+.nav-links a.active { color: var(--primary); font-weight: 600; }
+.nav-cta { display: none; }
+@media (min-width: 768px) { .nav-cta { display: inline-flex; } }
+.mobile-toggle {
+  display: flex; flex-direction: column; gap: 5px; background: none;
+}
+@media (min-width: 768px) { .mobile-toggle { display: none; } }
+.mobile-toggle span {
+  display: block; height: 2px; background: var(--text); border-radius: 2px;
+}
+.mobile-toggle span:nth-child(1) { width: 22px; }
+.mobile-toggle span:nth-child(2) { width: 22px; }
+.mobile-toggle span:nth-child(3) { width: 15px; }
+
+/* ========================================
+   02. PAGE HERO — compact dark
+   ======================================== */
+.page-hero {
+  background: var(--dark); color: var(--white);
+  padding: 4.5rem 0 3.5rem; position: relative; overflow: hidden;
+}
+@media (max-width: 767px) { .page-hero { padding: 3.5rem 0 2.5rem; } }
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 80% 20%, rgba(240,90,30,0.06) 0%, transparent 60%);
+}
+.page-hero > * { position: relative; z-index: 1; }
+.breadcrumb {
+  font-size: var(--text-sm); color: rgba(255,255,255,0.5);
+  margin-bottom: 1.25rem; display: flex; gap: 0.5rem; align-items: center;
+}
+.breadcrumb a { color: rgba(255,255,255,0.6); transition: color 200ms; }
+.breadcrumb a:hover { color: var(--primary-light); }
+.page-hero h1 {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: var(--text-3xl); line-height: 1.1;
+  letter-spacing: -0.02em; margin-bottom: 0.75rem;
+}
+@media (min-width: 768px) { .page-hero h1 { font-size: var(--text-4xl); } }
+.page-hero p {
+  font-size: var(--text-lg); color: rgba(255,255,255,0.7);
+  max-width: 38rem; line-height: 1.55;
+}
+
+/* Diagonal cut: hero -> pricing */
+.diagonal-hero {
+  line-height: 0; margin-top: -1px;
+}
+.diagonal-hero svg { width: 100%; height: 4.5rem; display: block; }
+@media (max-width: 767px) { .diagonal-hero svg { height: 2.5rem; } }
+
+/* ========================================
+   03. PRICING GRID
+   ======================================== */
+.pricing {
+  background: var(--bg);
+  padding: 5rem 0 5.5rem;
+}
+@media (max-width: 767px) { .pricing { padding: 3rem 0 3.5rem; } }
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+@media (max-width: 1023px) { .pricing-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .pricing-grid { grid-template-columns: 1fr; max-width: 26rem; margin-left: auto; margin-right: auto; } }
+
+.prijs-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2rem;
+  position: relative; overflow: hidden;
+  transition: all 400ms var(--ease);
+}
+.prijs-card:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--white);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px -8px rgba(240,90,30,0.25);
+}
+.prijs-card:hover .prijs-amount { color: var(--white); }
+.prijs-card:hover .prijs-amount span { color: rgba(255,255,255,0.7); }
+.prijs-card:hover .prijs-item { color: rgba(255,255,255,0.85); }
+.prijs-card:hover .prijs-check { color: var(--white); }
+.prijs-card:hover .prijs-sub { color: rgba(255,255,255,0.65); }
+.prijs-card:hover .btn-card {
+  background: var(--white); color: var(--primary);
+}
+.prijs-card:hover .prijs-ribbon { background: var(--white); color: var(--primary); }
+
+/* Featured / popular card */
+.prijs-card.popular {
+  border-color: var(--primary);
+  border-top: 4px solid var(--primary);
+  transform: scale(1.04);
+  box-shadow: 0 12px 32px -8px rgba(240,90,30,0.15);
+}
+.prijs-card.popular:hover {
+  transform: scale(1.04) translateY(-4px);
+}
+
+.prijs-ribbon {
+  position: absolute; top: 1.25rem; right: -2.25rem;
+  background: var(--primary); color: var(--white);
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: 0.6875rem; padding: 0.25rem 2.75rem;
+  transform: rotate(45deg);
+  text-transform: uppercase; letter-spacing: 0.04em;
+  transition: all 400ms var(--ease);
+}
+
+.prijs-name {
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: var(--text-lg); margin-bottom: 0.25rem;
+}
+.prijs-sub {
+  font-size: var(--text-sm); color: var(--text-muted);
+  margin-bottom: 1rem; transition: color 400ms var(--ease);
+}
+.prijs-amount {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: var(--text-2xl); color: var(--primary);
+  margin-bottom: 1.25rem;
+  transition: color 400ms var(--ease);
+}
+.prijs-amount span {
+  font-size: var(--text-sm); font-weight: 400;
+  color: var(--text-muted); transition: color 400ms var(--ease);
+}
+.prijs-list {
+  display: flex; flex-direction: column; gap: 0.6rem;
+  margin-bottom: 1.75rem;
+}
+.prijs-item {
+  display: flex; align-items: flex-start; gap: 0.5rem;
+  font-size: 0.875rem; color: var(--text-muted);
+  transition: color 400ms var(--ease);
+}
+.prijs-check {
+  color: var(--primary); font-weight: 700;
+  flex-shrink: 0; margin-top: 0.05rem;
+  transition: color 400ms var(--ease);
+}
+
+/* ========================================
+   04. INCLUSIEF SECTION
+   ======================================== */
+.inclusief {
+  background: var(--white);
+  padding: 4.5rem 0;
+}
+@media (max-width: 767px) { .inclusief { padding: 3rem 0; } }
+.inclusief-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+@media (max-width: 640px) { .inclusief-grid { grid-template-columns: 1fr; } }
+.inclusief-item {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1.25rem;
+  background: var(--bg); border-radius: 8px;
+  border: 1px solid transparent;
+  transition: border-color 300ms var(--ease);
+}
+.inclusief-item:hover { border-color: var(--border); }
+.inclusief-icon {
+  width: 2.5rem; height: 2.5rem; flex-shrink: 0;
+  background: var(--primary-surface); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--primary); font-size: 1.125rem;
+}
+.inclusief-item h3 {
+  font-family: var(--font-heading); font-weight: 700;
+  font-size: var(--text-base); margin-bottom: 0.25rem;
+}
+.inclusief-item p {
+  font-size: var(--text-sm); color: var(--text-muted); line-height: 1.55;
+}
+
+/* Diagonal cut: inclusief -> FAQ */
+.diagonal-to-faq {
+  background: var(--white); line-height: 0; margin-bottom: -1px;
+}
+.diagonal-to-faq svg { width: 100%; height: 4.5rem; display: block; }
+@media (max-width: 767px) { .diagonal-to-faq svg { height: 2.5rem; } }
+
+/* ========================================
+   05. FAQ
+   ======================================== */
+.faq {
+  background: var(--surface);
+  padding: 4.5rem 0 5rem;
+}
+@media (max-width: 767px) { .faq { padding: 3rem 0 3.5rem; } }
+.faq-list {
+  max-width: 45rem; margin: 0 auto;
+  display: flex; flex-direction: column; gap: 0.75rem;
+}
+.faq-item {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; overflow: hidden;
+}
+.faq-q {
+  padding: 1.25rem 1.5rem;
+  font-family: var(--font-heading); font-weight: 600;
+  font-size: var(--text-base);
+  display: flex; justify-content: space-between; align-items: center;
+  cursor: pointer;
+  transition: color 200ms var(--ease);
+}
+.faq-q:hover { color: var(--primary); }
+.faq-q .toggle {
+  color: var(--primary); font-size: 1.25rem;
+  transition: transform 300ms var(--ease);
+  flex-shrink: 0; margin-left: 1rem;
+}
+.faq-item.open .faq-q .toggle { transform: rotate(45deg); }
+.faq-a {
+  max-height: 0; overflow: hidden;
+  transition: max-height 400ms var(--ease), padding 400ms var(--ease);
+  padding: 0 1.5rem;
+  font-size: 0.9375rem; color: var(--text-muted);
+  line-height: 1.65;
+}
+.faq-item.open .faq-a {
+  max-height: 20rem;
+  padding: 0 1.5rem 1.25rem;
+}
+
+/* ========================================
+   06. CTA BANNER
+   ======================================== */
+.cta-banner {
+  background: var(--dark); padding: 4.5rem 0;
+  color: var(--white); text-align: center;
+}
+@media (max-width: 767px) { .cta-banner { padding: 3.5rem 0; } }
+.cta-banner h2 {
+  font-family: var(--font-heading); font-weight: 800;
+  font-size: var(--text-2xl); margin-bottom: 0.75rem; color: var(--white);
+  letter-spacing: -0.015em;
+}
+.cta-banner p {
+  color: rgba(255,255,255,0.6); margin-bottom: 2rem;
+  max-width: 32rem; margin-left: auto; margin-right: auto;
+  line-height: 1.6;
+}
+.cta-btns {
+  display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap;
+}
+
+/* ========================================
+   07. FOOTER
+   ======================================== */
+.footer {
+  background: var(--darkest);
+  padding: 2.5rem 0;
+  color: rgba(255,255,255,0.4);
+  font-size: 0.8125rem;
+}
+.footer-inner {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 1rem;
+}
+.footer a { color: rgba(255,255,255,0.4); transition: color 200ms; }
+.footer a:hover { color: var(--primary-light); }
+.footer-links { display: flex; gap: 1.5rem; }
+
+/* ========================================
+   08. STICKY MOBILE BAR
+   ======================================== */
+.sticky-mobile {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  padding: 0.75rem 1rem;
+  display: flex; gap: 0.5rem;
+  z-index: 99;
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.06);
+}
+@media (min-width: 768px) { .sticky-mobile { display: none; } }
+.sticky-wa {
+  flex: 0 0 auto; width: 2.75rem; height: 2.75rem;
+  background: #25D366; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--white); font-size: 1.25rem;
+  transition: background 200ms var(--ease);
+}
+.sticky-wa:hover { background: #1EBE5A; }
+.sticky-cta {
+  flex: 1; height: 2.75rem;
+  background: var(--primary); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-heading); font-weight: 700;
+  color: var(--text); font-size: 0.9375rem;
+  transition: background 200ms var(--ease);
+}
+.sticky-cta:hover { background: var(--primary-dark); color: var(--white); }
+
+/* Extra bottom padding for mobile sticky bar */
+@media (max-width: 767px) { .footer { padding-bottom: 5rem; } }
+
+/* ========================================
+   WHATSAPP SVG inline helper
+   ======================================== */
+.wa-icon { display: inline-flex; align-items: center; }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<nav class="nav">
+  <div class="container-nav nav-inner">
+    <a href="#" class="nav-logo">GOED OP WEG</a>
+    <ul class="nav-links">
+      <li><a href="#">Opleidingen</a></li>
+      <li><a href="#" class="active">Tarieven</a></li>
+      <li><a href="#">Geslaagd</a></li>
+      <li><a href="#">Over ons</a></li>
+      <li><a href="#">Vraag &amp; antwoord</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <a href="#" class="btn btn-primary btn-sm nav-cta">Plan je proefles</a>
+      <button class="mobile-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================================================
+     02. PAGE HERO — compact dark, breadcrumb
+     ============================================================ -->
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="#">Home</a> <span>/</span> <span>Tarieven</span>
+    </div>
+    <h1>Transparante tarieven</h1>
+    <p>Geen verborgen kosten, geen verplichte pakketten. Bij ons weet je precies waar je aan toe bent — voor, tijdens en na je opleiding.</p>
+  </div>
+</section>
+<div class="diagonal-hero" style="background:var(--bg);">
+  <svg viewBox="0 0 1440 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="0,72 1440,0 1440,72" fill="var(--bg)"/>
+    <polygon points="0,0 1440,0 1440,72" fill="var(--dark)"/>
+  </svg>
+</div>
+
+<!-- ============================================================
+     03. PRICING GRID — 6 services, 3-col desktop
+     ============================================================ -->
+<section class="pricing">
+  <div class="container">
+    <div class="section-label">Onze tarieven</div>
+    <h2 class="section-heading">Kies de opleiding die bij je past</h2>
+    <p class="section-sub">Alle prijzen zijn inclusief btw. Je betaalt per les, tenzij anders vermeld. Geen verplichte pakketten — je bepaalt zelf je tempo.</p>
+
+    <div class="pricing-grid">
+
+      <!-- CARD 1: Auto (B) -->
+      <div class="prijs-card reveal">
+        <div class="prijs-name">Auto (B)</div>
+        <div class="prijs-sub">Handgeschakeld &amp; automaat</div>
+        <div class="prijs-amount">&euro;XX <span>per les</span></div>
+        <ul class="prijs-list">
+          <li class="prijs-item"><span class="prijs-check">&#10003;</span> 60 minuten per les</li>
+          <li class="prijs-item"><span class="prijs-check">&#10003;</span> Vaste instructeur</li>
+          <li class="prijs-item"><span class="prijs-check">&#10003;</span> Handgeschakeld of automaat</li>
+          <li class="prijs-item"><span class="prijs-check">&#10003;</span> Ophaalservice in Tiel e.o.</li>
+          <li class="prijs-item"><span class="prijs-check">&#10003;</span> Geen verplicht pakket</li>
+        </ul>
+        <a href="#" class="btn btn-card">Meer informatie &#8594;</a>
+      </div>
+
+      <!-- CARD 2: Motor -->
+      <div class="prijs-card reveal reveal-delay-1">
+        <div class="prijs-name">Motor</div>
+        <div class="prijs-sub">A1 / A2 / A</div>
+        <div class="prijs-amount">&euro;XX <span>per les</span></div>
+        <ul class="prijs-list">
+          <li class="prijs-item"><span class="prijs-check">&#10003;</span> 60 minuten per les</li>
+          <li class="prijs-item"><span class="prijs-check">&#10003;</span> Alle categorieeen: A1, A2, A</li>
+          <li class="prijs-item"><span class="prijs-check">&#10003;</span> 91% slagingspercentage</li>
+          <li class="prijs-item"><span class="prijs-check">&#10003;</span> Motor en beschermkleding aanwezig</li>
+          <li class="prijs-item"><span class="prijs-check">&#10003;</span> AVB + AVD training</li>
+        </ul>
+        <a href="#" class="btn btn-card">Meer informatie &#8594;</a>
+      </div>
+
+      <!-- CARD 3: Dagcursus bromfiets — FEATURED -->
+      <div class="prijs-card popular reveal reveal-delay-2">
+        <div class="prijs-ribbon">Populair</div>
+        <div class="prijs-name">Dagcursus bromfiets</div>
+        <div class="prijs-sub">Theorie + praktijk + examen in 1 dag</div>
+        <div class="prijs-amount">&euro;XXX <span>alles-in</span></div>
+        <ul class="prijs-list">
+          <li class="prijs-item"><span class="prijs-check">&#10003;</span> Complete dagcursus</li>
+          <li class="prijs-item"><span class="prijs-check">&#10003;</span> Theorie, praktijk en examen</li>
+          <li class="prijs-item"><span class="prijs-check">&#10003;</span> 90% slaagkans</li>
+          <li class="prijs-item"><span class="prijs-check">&#10003;</span> Brommer beschikbaar</li>
+          <li class="prijs-item"><span class="prijs-check">&#10003;</span> Inclusief CBR-kosten</li>
+        </ul>
+        <a href="#" class="btn btn-card">Meer informatie &#8594;</a>
+      </div>
+
+      <!-- CARD 4: Aanhanger (BE) -->
+      <div class="prijs-card reveal reveal-delay-3">
+        <div class="prijs-name">Aanhanger (BE)</div>
+        <div class="prijs-sub">Rijbewijs E achter B</div>
+        <div class="prijs-amount">&euro;XX <span>per les</span></div>
+        <ul class="prijs-list">
+          <li class="prijs-item"><span class="prijs-check">&#10003;</span> 60 minuten per les</li>
+          <li class="prijs-item"><span class="prijs-check">&#10003;</span> Aanhanger aanwezig</li>
+          <li class="prijs-item"><span class="prijs-check">&#10003;</span> Manoeuvreren + achteruitrijden</li>
+          <li class="prijs-item"><span class="prijs-check">&#10003;</span> Koppelen en ontkoppelen</li>
+        </ul>
+        <a href="#" class="btn btn-card">Meer informatie &#8594;</a>
+      </div>
+
+      <!-- CARD 5: Taxi -->
+      <div class="prijs-card reveal reveal-delay-4">
+        <div class="prijs-name">Taxi</div>
+        <div class="prijs-sub">Taxipas / chauffeurskaart</div>
+        <div class="prijs-amount">&euro;XXX <span>totaal</span></div>
+        <ul class="prijs-list">
+          <li class="prijs-item"><span class="prijs-check">&#10003;</span> Volledige taxiopleiding</li>
+          <li class="prijs-item"><span class="prijs-check">&#10003;</span> Richting- en stratenkennis</li>
+          <li class="prijs-item"><span class="prijs-check">&#10003;</span> Sociale vaardigheden</li>
+          <li class="prijs-item"><span class="prijs-check">&#10003;</span> Examenbegeleiding</li>
+        </ul>
+        <a href="#" class="btn btn-card">Meer informatie &#8594;</a>
+      </div>
+
+      <!-- CARD 6: Theorie -->
+      <div class="prijs-card reveal reveal-delay-5">
+        <div class="prijs-name">Theorie</div>
+        <div class="prijs-sub">Auto / motor / bromfiets</div>
+        <div class="prijs-amount">&euro;XX <span>per cursus</span></div>
+        <ul class="prijs-list">
+          <li class="prijs-item"><span class="prijs-check">&#10003;</span> Theorie-examentraining</li>
+          <li class="prijs-item"><span class="prijs-check">&#10003;</span> Online oefenomgeving</li>
+          <li class="prijs-item"><span class="prijs-check">&#10003;</span> Auto, motor of bromfiets</li>
+          <li class="prijs-item"><span class="prijs-check">&#10003;</span> Inclusief lesmateriaal</li>
+        </ul>
+        <a href="#" class="btn btn-card">Meer informatie &#8594;</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     04. INCLUSIEF — what's included in every lesson
+     ============================================================ -->
+<section class="inclusief">
+  <div class="container">
+    <div class="section-label">Standaard inbegrepen</div>
+    <h2 class="section-heading">Bij elke les inbegrepen</h2>
+    <p class="section-sub">Geen extra kosten, geen kleine lettertjes. Dit zit standaard in elke rijles die je bij ons boekt.</p>
+
+    <div class="inclusief-grid">
+
+      <div class="inclusief-item reveal">
+        <div class="inclusief-icon">&#128100;</div>
+        <div>
+          <h3>Vaste instructeur</h3>
+          <p>Je hebt altijd dezelfde instructeur. Dat zorgt voor vertrouwen, een vaste leerstijl en snellere voortgang.</p>
+        </div>
+      </div>
+
+      <div class="inclusief-item reveal reveal-delay-1">
+        <div class="inclusief-icon">&#128663;</div>
+        <div>
+          <h3>Ophaalservice</h3>
+          <p>We halen je op van huis, school of werk in Tiel en omgeving. Zo verlies je geen tijd aan reizen.</p>
+        </div>
+      </div>
+
+      <div class="inclusief-item reveal reveal-delay-2">
+        <div class="inclusief-icon">&#128218;</div>
+        <div>
+          <h3>Lesmateriaal</h3>
+          <p>Toegang tot online theorie-oefeningen en lesmateriaal. Alles wat je nodig hebt om goed voorbereid op examen te gaan.</p>
+        </div>
+      </div>
+
+      <div class="inclusief-item reveal reveal-delay-3">
+        <div class="inclusief-icon">&#128200;</div>
+        <div>
+          <h3>Voortgangsoverzicht</h3>
+          <p>Na elke les bespreken we je voortgang. Je weet altijd precies hoe je ervoor staat en hoeveel lessen je nog nodig hebt.</p>
+        </div>
+      </div>
+
+      <div class="inclusief-item reveal reveal-delay-4">
+        <div class="inclusief-icon">&#128176;</div>
+        <div>
+          <h3>Geen verplichte pakketten</h3>
+          <p>Betaal per les, per pakket of een combinatie. Je zit nergens aan vast en bepaalt zelf je tempo.</p>
+        </div>
+      </div>
+
+      <div class="inclusief-item reveal reveal-delay-5">
+        <div class="inclusief-icon">&#128736;</div>
+        <div>
+          <h3>Examenbegeleiding</h3>
+          <p>Op de dag van je examen halen we je op en rijden we samen naar het CBR. Geen stress, goed voorbereid.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Diagonal cut: inclusief -> FAQ -->
+<div class="diagonal-to-faq">
+  <svg viewBox="0 0 1440 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="0,0 1440,72 1440,0" fill="var(--white)"/>
+    <polygon points="0,0 0,72 1440,72" fill="var(--surface)"/>
+  </svg>
+</div>
+
+<!-- ============================================================
+     05. VEELGESTELDE VRAGEN OVER PRIJZEN
+     ============================================================ -->
+<section class="faq">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="section-label">Veelgestelde vragen</div>
+      <h2 class="section-heading" style="margin-left:auto;margin-right:auto;">Vragen over onze prijzen</h2>
+      <p class="section-sub" style="margin-left:auto;margin-right:auto;">De meestgestelde vragen over betaling, pakketten en kosten. Staat je vraag er niet bij? Neem gerust contact op.</p>
+    </div>
+
+    <div class="faq-list">
+
+      <div class="faq-item open reveal">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Welke betaalmethoden accepteren jullie?</span>
+          <span class="toggle">+</span>
+        </div>
+        <div class="faq-a">
+          Je kunt per les betalen met pin, contant of via een bankoverschrijving. We sturen ook gewoon een Tikkie als je dat makkelijker vindt. Bij een pakket betaal je vooraf via overschrijving.
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-1">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Wat als ik een les moet annuleren?</span>
+          <span class="toggle">+</span>
+        </div>
+        <div class="faq-a">
+          Annuleren kan kosteloos tot 48 uur voor de les. Bij annulering binnen 48 uur worden de kosten van de les in rekening gebracht. We begrijpen dat er altijd onverwachte situaties zijn — neem even contact op, dan kijken we samen naar een oplossing.
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-2">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Is een pakket voordeliger dan losse lessen?</span>
+          <span class="toggle">+</span>
+        </div>
+        <div class="faq-a">
+          Ja, bij een pakket krijg je korting op de prijs per les. Maar je bent nooit verplicht een pakket te nemen. Na je proefles bespreken we samen welke optie het beste bij jouw situatie past. Zo betaal je nooit te veel.
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-3">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Zitten er extra kosten bovenop de lesprijs?</span>
+          <span class="toggle">+</span>
+        </div>
+        <div class="faq-a">
+          Nee, de lesprijs is wat je betaalt. De enige extra kosten zijn de CBR-examens (theorie en praktijk), die betaal je rechtstreeks aan het CBR. Bij de dagcursus bromfiets zitten de CBR-kosten al inbegrepen.
+        </div>
+      </div>
+
+      <div class="faq-item reveal reveal-delay-4">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span>Kan ik in termijnen betalen?</span>
+          <span class="toggle">+</span>
+        </div>
+        <div class="faq-a">
+          Bij een pakket is betaling in termijnen bespreekbaar. We willen dat geld geen drempel is om je rijbewijs te halen. Neem contact op, dan maken we een betalingsregeling die bij je past.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     06. CTA BANNER
+     ============================================================ -->
+<section class="cta-banner">
+  <div class="container">
+    <h2>Benieuwd welk pakket bij je past?</h2>
+    <p>Plan een vrijblijvende proefles en we bespreken samen welke opleiding en opzet het beste bij jou past. Geen verplichtingen.</p>
+    <div class="cta-btns">
+      <a href="#" class="btn btn-primary">Plan je proefles &#8594;</a>
+      <a href="#" class="btn btn-whatsapp">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.122 1.521 5.86L0 24l6.335-1.661A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.78 9.78 0 01-5.283-1.545l-.379-.225-3.932 1.031 1.05-3.834-.247-.394A9.78 9.78 0 012.182 12c0-5.415 4.403-9.818 9.818-9.818S21.818 6.585 21.818 12 17.415 21.818 12 21.818z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     07. FOOTER
+     ============================================================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <span>&copy; 2026 Rijschool Goed op Weg &mdash; KvK: 51173336</span>
+      <div class="footer-links">
+        <a href="#">Privacybeleid</a>
+        <a href="#">Algemene voorwaarden</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     08. STICKY MOBILE BAR
+     ============================================================ -->
+<div class="sticky-mobile">
+  <a href="#" class="sticky-wa">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.122 1.521 5.86L0 24l6.335-1.661A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.78 9.78 0 01-5.283-1.545l-.379-.225-3.932 1.031 1.05-3.834-.247-.394A9.78 9.78 0 012.182 12c0-5.415 4.403-9.818 9.818-9.818S21.818 6.585 21.818 12 17.415 21.818 12 21.818z"/></svg>
+  </a>
+  <a href="#" class="sticky-cta">Plan je proefles</a>
+</div>
+
+</body>
+</html>
