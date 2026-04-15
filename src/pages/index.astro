@@ -1,20 +1,1276 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ContactForm from '../components/ContactForm.astro';
+import DiagonalDivider from '../components/DiagonalDivider.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import MobileCta from '../components/MobileCta.astro';
+import services from '../data/services.json';
+
+const stats = [
+  { value: 91, suffix: '%', label: 'Motor geslaagd', comparison: '+9% boven CBR-gemiddelde' },
+  { value: 90, suffix: '%', label: 'Bromfiets geslaagd', comparison: '+3% boven gemiddelde' },
+  { value: 100, suffix: '%', label: 'Taxi geslaagd', comparison: '+40% boven gemiddelde' },
+];
+
+const faqItems = [
+  { q: 'Hoeveel rijlessen heb ik nodig voor mijn rijbewijs?', a: 'Dat verschilt per persoon. Gemiddeld heb je 35 tot 45 lessen nodig voor je autorijbewijs. Na een paar lessen kan ik een betere inschatting geven van wat jij nodig hebt.' },
+  { q: 'Kan ik rijles nemen met een automaat?', a: 'Ja, er is een auto met automaat beschikbaar. Je haalt dan een B-rijbewijs voor automaat. Wil je later toch schakelen? Dan kun je altijd een aanvullend examen doen.' },
+  { q: 'Hoe oud moet ik zijn om te beginnen met rijles?', a: 'Voor autorijles kun je starten vanaf 16,5 jaar (met 2toDrive) of vanaf 17 jaar regulier. Bromfiets mag vanaf 16 jaar. Motorrijles kan vanaf 20 jaar, of 24 voor onbeperkt vermogen.' },
+  { q: 'Wat als ik zak voor mijn examen?', a: 'Dat kan gebeuren, geen stress. Ik plan gewoon extra lessen in en je doet opnieuw examen. De meeste leerlingen slagen de tweede keer wel.' },
+  { q: 'Hoe werkt de dagcursus bromfiets?', a: "Je doet theorie en praktijk op dezelfde dag. 's Ochtends beginnen met theorie, daarna oefenen op de weg, en aan het eind van de dag doe je examen bij het CBR in Tiel." },
+  { q: 'Hoe plan ik een proefles?', a: 'Stuur gerust een appje via WhatsApp, bel 06 28990655, of vul het formulier hieronder in. Je hoort binnen 24 uur van mij.' },
+  { q: 'Moet ik zelf mijn theorie regelen?', a: 'Ja, theorie doe je via een online theorie-app in je eigen tempo. Tijdens de rijlessen bespreken we wel de verkeerssituaties die je tegenkomt op de weg.' },
+  { q: 'Geef je ook les buiten Tiel?', a: 'Ja, ik geef ook les in de omgeving. Denk aan Geldermalsen, Culemborg, Buren en de rest van de Betuwe. Het CBR-examen doe je in Tiel (motor voertuigbeheersing in Arnhem).' },
+];
+
+/* Placeholder gallery students — replace with real Facebook data */
+const students = [
+  { name: 'Amin', category: 'Motor', tall: true },
+  { name: 'Sinem', category: 'Auto', tall: false },
+  { name: 'Youssef', category: 'Bromfiets', tall: false },
+  { name: 'Melisa', category: 'Auto', tall: true },
+  { name: 'Berk', category: 'Motor', tall: false },
+  { name: 'Sara', category: 'Bromfiets', tall: true },
+  { name: 'Nabil', category: 'Taxi', tall: false },
+  { name: 'Daan', category: 'Auto', tall: false },
+  { name: 'Fatima', category: 'Motor', tall: true },
+  { name: 'Ayoub', category: 'Bromfiets', tall: false },
+  { name: 'Lotte', category: 'Auto', tall: false },
+  { name: 'Thomas', category: 'BE', tall: true },
+];
+
+const traits = ['Geduldig', 'Ervaren', 'Eerlijk', 'Persoonlijk'];
+
+const pricingCards = [
+  {
+    title: 'Autorijles',
+    price: '€\u00a0XX',
+    unit: 'per les',
+    features: ['60 minuten per les', 'Haal- en brengservice in Tiel', 'Examenvoorbereiding'],
+    cta: 'Plan je proefles',
+    ctaStyle: 'outline',
+    featured: false,
+  },
+  {
+    title: 'Dagcursus bromfiets',
+    price: '€\u00a0XXX',
+    unit: 'alles-in',
+    features: ['Theorie + praktijk + examen', 'Alles op één dag', 'Geschikt vanaf 16 jaar'],
+    cta: 'Boek je dagcursus',
+    ctaStyle: 'primary',
+    featured: true,
+    badge: 'Populair',
+  },
+  {
+    title: 'Motorrijles',
+    price: '€\u00a0XX',
+    unit: 'per les',
+    features: ['AVB + verkeersdeelname', 'Eigen motor beschikbaar', '91% slagingspercentage'],
+    cta: 'Plan je proefles',
+    ctaStyle: 'outline',
+    featured: false,
+  },
+];
 ---
-<Layout title="Rijschool Goed op Weg — Rijlessen in Tiel">
+<Layout
+  title="Rijschool Tiel | 91% Motor Geslaagd | Goed op Weg"
+  description="Rijles in Tiel met slagingspercentages ver boven het CBR-gemiddelde. Motor 91%, bromfiets 90%, taxi 100%. Plan je proefles, vrijblijvend."
+>
+  <Header />
+
   <main>
-    <!-- Homepage: 12 sections per DESIGN.md -->
-    <!-- 1. Hero -->
-    <!-- 2. Stats row (CBR slagingspercentages) -->
-    <!-- 3. Opleidingen cards -->
-    <!-- 4. USP strip -->
-    <!-- 5. Dagcursus feature -->
-    <!-- 6. Geslaagden gallery -->
-    <!-- 7. Over de instructeur -->
-    <!-- 8. Reviews -->
-    <!-- 9. Tarieven -->
-    <!-- 10. FAQ -->
-    <!-- 11. Contact -->
-    <!-- 12. Footer -->
+    {/* ═══════════════════════════════════════════════════════════
+        SECTION 1: HERO — full-bleed dark overlay, left-aligned
+        Padding: 0 (full-viewport, min-h: 92vh)
+        Background: #1A1A2E with image overlay
+    ═══════════════════════════════════════════════════════════ */}
+    <section class="hero" id="hero">
+      <div class="hero-bg" aria-hidden="true">
+        {/* Placeholder — replace with real CBR celebration photo */}
+        <div class="hero-bg-placeholder"></div>
+      </div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="hero-content hero-entrance">
+        <div class="hero-badge">
+          <svg width="14" height="14" viewBox="0 0 256 256" fill="currentColor" class="hero-badge-star"><path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,91l59.46-5.15,23.21-55.36a16.4,16.4,0,0,1,30.5,0l23.21,55.36L226.92,91a16.46,16.46,0,0,1,9.37,23.84Z"/></svg>
+          <span>5,0/5 &middot; 15 Google Reviews</span>
+        </div>
+
+        <h1>Rijles in Tiel? Goed op Weg.</h1>
+
+        <p class="hero-sub">Motor 91% geslaagd, bromfiets 90%, taxi 100%. Ver boven het CBR-gemiddelde. Persoonlijke rijlessen in Tiel en de Betuwe.</p>
+
+        <div class="hero-ctas">
+          <a href="#contact" class="btn-primary">
+            Plan je proefles
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+          <a href="https://wa.me/31628990655?text=Hoi!%20Ik%20heb%20interesse%20in%20rijles%20bij%20Goed%20op%20Weg." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+        </div>
+
+        <a href="tel:0628990655" class="hero-phone">06 28990655</a>
+        <p class="hero-micro">Vrijblijvend &middot; Binnen 24 uur reactie</p>
+      </div>
+    </section>
+
+    {/* Diagonal: Hero → Stats */}
+    <DiagonalDivider direction="right-down" fill="var(--hex-bg)" />
+
+    {/* ═══════════════════════════════════════════════════════════
+        SECTION 2: STATS ROW — CBR slagingspercentages
+        Padding: 4rem / 3rem mobile
+        Background: #FFFAF7
+    ═══════════════════════════════════════════════════════════ */}
+    <section class="stats scroll-fade-up" id="stats">
+      <div class="stats-container">
+        <p class="stats-intro">Rijschool Goed op Weg verzorgt rijlessen voor auto, motor, bromfiets, aanhangwagen en taxi in Tiel en de Betuwe. Eén vaste instructeur begeleidt je persoonlijk tot aan je examen. De slagingspercentages liggen ver boven het CBR-gemiddelde: 91% voor motor, 90% voor bromfiets en 100% voor taxi.</p>
+        <div class="stats-grid stagger-container">
+          {stats.map((stat) => (
+            <div class="stat-card scroll-scale-reveal">
+              <span class="stat-number">{stat.value}{stat.suffix}</span>
+              <span class="stat-label">{stat.label}</span>
+              <span class="stat-comparison">{stat.comparison}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ═══════════════════════════════════════════════════════════
+        SECTION 3: OPLEIDINGEN — 3×2 card grid with featured
+        Padding: 5rem / 3.5rem mobile
+        Background: #FFFFFF
+    ═══════════════════════════════════════════════════════════ */}
+    <section class="opleidingen scroll-fade-up" id="opleidingen">
+      <div class="section-container">
+        <h2>Welke opleiding past bij jou?</h2>
+        <p class="section-sub">Van je eerste autorijles tot een dagcursus bromfiets. Kies wat bij je past.</p>
+        <div class="opl-grid stagger-container">
+          {services.map((svc) => (
+            <div class:list={['opl-card', { 'opl-card-featured': svc.featured }]}>
+              {svc.featured && <span class="populair-badge">Populair</span>}
+              <span class="opl-icon" aria-hidden="true">
+                {svc.icon === 'car' && <svg width="28" height="28" viewBox="0 0 256 256" fill="currentColor"><path d="M240,112H229.2L201.42,49.5A16,16,0,0,0,186.8,40H69.2a16,16,0,0,0-14.62,9.5L26.8,112H16a8,8,0,0,0,0,16h8v80a16,16,0,0,0,16,16H64a16,16,0,0,0,16-16V192h96v16a16,16,0,0,0,16,16h24a16,16,0,0,0,16-16V128h8a8,8,0,0,0,0-16ZM69.2,56H186.8l24.89,56H44.31ZM64,208H40V192H64Zm128,0V192h24v16Zm24-32H40V128H216ZM56,152a8,8,0,0,1,8-8H80a8,8,0,0,1,0,16H64A8,8,0,0,1,56,152Zm112,0a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,152Z"/></svg>}
+                {svc.icon === 'motorcycle' && <svg width="28" height="28" viewBox="0 0 256 256" fill="currentColor"><path d="M216,120a41,41,0,0,0-6.19.47L186,80H208a8,8,0,0,0,0-16H176a8,8,0,0,0-6.91,4L146.46,104H112V96h24a8,8,0,0,0,0-16H88a8,8,0,0,0,0,16h8v8H80.42L70,81.63A8,8,0,0,0,62.8,76.2l-.41,0A48,48,0,1,0,40,168a47.69,47.69,0,0,0,27.2-8.42l22.52,33.78A8,8,0,0,0,96.38,197L97,197a8,8,0,0,0,6.61-3.48L135.1,146a8,8,0,0,0-1.31-10.09L117.47,120h25.34l14.28-24.56L176.41,128A48.07,48.07,0,1,0,216,120ZM40,152a32,32,0,0,1,23.79-30.89L92,163.84A31.84,31.84,0,0,1,40,152Zm56.56,24.68L69.15,133.5a31.93,31.93,0,0,1,11.72-4.48ZM216,152a32,32,0,0,1-24.41-52.56l19.5,39A8,8,0,0,0,225.5,131,32.09,32.09,0,0,1,216,152Z"/></svg>}
+                {svc.icon === 'moped' && <svg width="28" height="28" viewBox="0 0 256 256" fill="currentColor"><path d="M216,120a41,41,0,0,0-6.19.47L186,80H208a8,8,0,0,0,0-16H176a8,8,0,0,0-6.91,4l-23,39.55L136,96H88a8,8,0,0,0,0,16h40.37l-16,27.47A48.07,48.07,0,1,0,40,168a47.54,47.54,0,0,0,22.38-5.57L74,180.3A8,8,0,0,0,80.65,184H81a8,8,0,0,0,6.66-3.56l28.85-44.53,38.23,28.17A8,8,0,0,0,162,161L176.41,128A48.07,48.07,0,1,0,216,120ZM40,152a32,32,0,1,1,32-32A32,32,0,0,1,40,152Zm176,0a32,32,0,1,1,32-32A32,32,0,0,1,216,152Z"/></svg>}
+                {svc.icon === 'trailer' && <svg width="28" height="28" viewBox="0 0 256 256" fill="currentColor"><path d="M224,96H176V72a8,8,0,0,0-8-8H24A16,16,0,0,0,8,80v96a8,8,0,0,0,8,8H40.29a32,32,0,0,0,63.42,0h48.58a32,32,0,0,0,63.42,0H240a8,8,0,0,0,8-8V120A24,24,0,0,0,224,96ZM160,80v96H152.29a32,32,0,0,0-63.42,0V80Zm-88,96a16,16,0,1,1,16-16A16,16,0,0,1,72,192ZM24,80H88v96H103.71a32,32,0,0,0-31.42,0H24ZM184,192a16,16,0,1,1,16-16A16,16,0,0,1,184,192Zm48-16H215.71a32,32,0,0,0-63.42,0H176V112h48a8,8,0,0,1,8,8Z"/></svg>}
+                {svc.icon === 'taxi' && <svg width="28" height="28" viewBox="0 0 256 256" fill="currentColor"><path d="M240,112H229.2L201.42,49.5A16,16,0,0,0,186.8,40H156V24a8,8,0,0,0-8-8H108a8,8,0,0,0-8,8V40H69.2a16,16,0,0,0-14.62,9.5L26.8,112H16a8,8,0,0,0,0,16h8v80a16,16,0,0,0,16,16H64a16,16,0,0,0,16-16V192h96v16a16,16,0,0,0,16,16h24a16,16,0,0,0,16-16V128h8a8,8,0,0,0,0-16ZM116,32h24V40H116ZM69.2,56H186.8l24.89,56H44.31ZM64,208H40V192H64Zm128,0V192h24v16Zm24-32H40V128H216ZM56,152a8,8,0,0,1,8-8H80a8,8,0,0,1,0,16H64A8,8,0,0,1,56,152Zm112,0a8,8,0,0,1,8-8h16a8,8,0,0,1,0,16H176A8,8,0,0,1,168,152Z"/></svg>}
+                {svc.icon === 'lightning' && <svg width="28" height="28" viewBox="0 0 256 256" fill="currentColor"><path d="M215.79,118.17a8,8,0,0,0-5-5.66L153.18,90.9l14.66-73.33a8,8,0,0,0-13.69-7l-112,120a8,8,0,0,0,3,12.95l57.63,21.61L88.16,238.43a8,8,0,0,0,13.69,7l112-120A8,8,0,0,0,215.79,118.17ZM109.37,214l10.47-52.38a8,8,0,0,0-5-9.06L62,132.71l84.62-90.66L136.16,94.43a8,8,0,0,0,5,9.06l52.8,19.8Z"/></svg>}
+              </span>
+              <h3 class="opl-title">{svc.title}</h3>
+              <p class="opl-body">{svc.body}</p>
+              <a href={svc.link} class="opl-link">
+                {svc.linkText}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ═══════════════════════════════════════════════════════════
+        SECTION 4: USP STRIP
+        Padding: 2.5rem / 2rem mobile
+        Background: #FFF0E8
+    ═══════════════════════════════════════════════════════════ */}
+    <section class="usp-strip scroll-fade-up">
+      <div class="section-container">
+        <div class="usp-grid">
+          <div class="usp-item">
+            <svg width="24" height="24" viewBox="0 0 256 256" fill="currentColor"><path d="M232,128A104,104,0,1,0,128,232,104.12,104.12,0,0,0,232,128Zm-16,0a87.45,87.45,0,0,1-20.41,56.28L147.32,136H216A87.48,87.48,0,0,1,216,128ZM40,128a88.1,88.1,0,0,1,88-88,87.45,87.45,0,0,1,56.28,20.41l-48.27,48.28H40.67A88.51,88.51,0,0,1,40,128Zm88,88a88.1,88.1,0,0,1-88-88,88.51,88.51,0,0,1,.67-10.72l89.33.01L178.28,165.6A87.45,87.45,0,0,1,128,216Z"/></svg>
+            <span>Eén vaste instructeur</span>
+          </div>
+          <div class="usp-item">
+            <svg width="24" height="24" viewBox="0 0 256 256" fill="currentColor"><path d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V48a8,8,0,0,1,16,0V156.69l50.34-50.35a8,8,0,0,1,11.32,0L128,132.69,180.69,80H160a8,8,0,0,1,0-16h40a8,8,0,0,1,8,8v40a8,8,0,0,1-16,0V91.31l-58.34,58.35a8,8,0,0,1-11.32,0L96,123.31l-56,56V200H224A8,8,0,0,1,232,208Z"/></svg>
+            <span>Ver boven CBR-gemiddelde</span>
+          </div>
+          <div class="usp-item">
+            <svg width="24" height="24" viewBox="0 0 256 256" fill="currentColor"><path d="M240,112H229.2L201.42,49.5A16,16,0,0,0,186.8,40H69.2a16,16,0,0,0-14.62,9.5L26.8,112H16a8,8,0,0,0,0,16h8v80a16,16,0,0,0,16,16H64a16,16,0,0,0,16-16V192h96v16a16,16,0,0,0,16,16h24a16,16,0,0,0,16-16V128h8a8,8,0,0,0,0-16ZM69.2,56H186.8l24.89,56H44.31ZM64,208H40V192H64Zm128,0V192h24v16Zm24-32H40V128H216Z"/></svg>
+            <span>Schakelen én automaat</span>
+          </div>
+          <div class="usp-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span>Direct via WhatsApp</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ═══════════════════════════════════════════════════════════
+        SECTION 5: DAGCURSUS — 7/5 asymmetric
+        Padding: 6rem / 4rem mobile
+        Background: #F9EFEB
+    ═══════════════════════════════════════════════════════════ */}
+    <section class="dagcursus scroll-fade-up" id="dagcursus">
+      <div class="section-container">
+        <div class="dagcursus-grid">
+          <div class="dagcursus-content">
+            <span class="section-label">Populairste opleiding</span>
+            <h2>In één dag je bromfietsrijbewijs</h2>
+            <p>De dagcursus bromfiets is veruit de populairste opleiding. Logisch, want je hebt in één dag je AM-rijbewijs.</p>
+            <p>Je begint 's ochtends met theorie. Daarna oefen je op de bromfiets in het verkeer. Aan het eind van de dag doe je gewoon examen bij het CBR in Tiel. 90% van de leerlingen slaagt in één keer.</p>
+            <p>Geschikt vanaf 16 jaar. Ervaring hoeft niet.</p>
+            <ul class="check-list">
+              <li><svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg> Theorie + praktijk op één dag</li>
+              <li><svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg> CBR-examen inclusief</li>
+              <li><svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg> Geschikt vanaf 16 jaar</li>
+              <li><svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg> 90% slaagt in één keer</li>
+              <li><svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg> Geen voorkennis nodig</li>
+            </ul>
+            <div class="dagcursus-cta-row">
+              <a href="#contact" class="btn-primary">Boek je dagcursus</a>
+              <span class="cta-micro">Vrijblijvend &middot; Binnen 24 uur reactie</span>
+            </div>
+          </div>
+          <div class="dagcursus-img">
+            {/* Placeholder — replace with real dagcursus/moped photo */}
+            <div class="img-placeholder" style="aspect-ratio:4/5;background:var(--color-secondary);border-radius:8px;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Diagonal: Surface → Geslaagden (dark) */}
+    <DiagonalDivider direction="left-down" fill="var(--hex-dark)" />
+
+    {/* ═══════════════════════════════════════════════════════════
+        SECTION 6: GESLAAGDEN GALLERY — full-bleed dark
+        Padding: 4rem / 3rem mobile
+        Background: #1A1A2E
+    ═══════════════════════════════════════════════════════════ */}
+    <section class="geslaagden" id="geslaagden">
+      <div class="section-container">
+        <span class="section-label" style="color:var(--color-primary-light);">Geslaagden</span>
+        <h2 class="text-white">Geslaagd bij Goed op Weg</h2>
+        <p class="section-sub text-white-60">Elke week nieuwe geslaagden. Hier zijn er een paar.</p>
+        <div class="gallery-grid stagger-container">
+          {students.map((student) => (
+            <div class:list={['gallery-card', { 'gallery-card-tall': student.tall }]}>
+              <div class="gallery-photo" style={`background:var(--color-secondary);aspect-ratio:${student.tall ? '3/4' : '4/3'};border-radius:8px 8px 0 0;`}></div>
+              <div class="gallery-info">
+                <span class="gallery-name">{student.name}</span>
+                <span class="gallery-cat">{student.category}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+        <a href="/geslaagd" class="gallery-link">
+          Bekijk alle geslaagden
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </section>
+
+    {/* Diagonal: Geslaagden → Instructeur (white) */}
+    <DiagonalDivider direction="right-down" fill="#FFFFFF" />
+
+    {/* ═══════════════════════════════════════════════════════════
+        SECTION 7: INSTRUCTEUR — 5/7 asymmetric reversed
+        Padding: 6rem / 4rem mobile
+        Background: #FFFFFF
+    ═══════════════════════════════════════════════════════════ */}
+    <section class="instructeur scroll-fade-up" id="instructeur">
+      <div class="section-container">
+        <div class="instructeur-grid">
+          <div class="instructeur-img">
+            {/* Placeholder — replace with real instructor photo */}
+            <div class="img-placeholder instructor-photo" style="aspect-ratio:4/5;background:var(--color-secondary);border-radius:8px;"></div>
+          </div>
+          <div class="instructeur-content">
+            <h2>Je instructeur</h2>
+            <p>Ik ben [Voornaam], de instructeur achter Rijschool Goed op Weg. Rijles geven is gewoon wat ik het liefste doe.</p>
+            <p>Wat je van mij kunt verwachten: geduld, duidelijke uitleg, en eerlijk vertellen hoe je ervoor staat. Niet pas na tien lessen, maar elke les. Zo weet je precies waar je aan toe bent.</p>
+            <p>En als je slaagt? Dan vier ik het écht net zo hard als jij.</p>
+            <div class="trait-pills">
+              {traits.map((trait) => (
+                <span class="trait-pill">{trait}</span>
+              ))}
+            </div>
+            <a href="#contact" class="btn-primary" style="margin-top:1.5rem;">
+              Plan je proefles
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* ═══════════════════════════════════════════════════════════
+        SECTION 8: REVIEWS — 3-col cards
+        Padding: 4rem / 3rem mobile
+        Background: #FFFAF7
+    ═══════════════════════════════════════════════════════════ */}
+    <section class="reviews scroll-fade-up" id="reviews">
+      <div class="section-container">
+        <h2>Wat zeggen leerlingen?</h2>
+        <p class="section-sub">5,0 uit 5 op Google &middot; 15 beoordelingen</p>
+        <div class="reviews-grid stagger-container">
+          {[1, 2, 3].map(() => (
+            <div class="review-card">
+              <div class="review-stars" aria-label="5 sterren">
+                {[1,2,3,4,5].map(() => (
+                  <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor"><path d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,91l59.46-5.15,23.21-55.36a16.4,16.4,0,0,1,30.5,0l23.21,55.36L226.92,91a16.46,16.46,0,0,1,9.37,23.84Z"/></svg>
+                ))}
+              </div>
+              <p class="review-text">"[Echte Google Review tekst]"</p>
+              <p class="review-author">[Voornaam], [categorie]</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ═══════════════════════════════════════════════════════════
+        SECTION 9: TARIEVEN — 3 pricing cards
+        Padding: 5rem / 3.5rem mobile
+        Background: #FFFFFF
+    ═══════════════════════════════════════════════════════════ */}
+    <section class="tarieven scroll-fade-up" id="tarieven">
+      <div class="section-container">
+        <h2>Wat kost rijles bij Goed op Weg?</h2>
+        <p class="section-sub">Transparante prijzen, geen verplichte pakketten. Rijlessen zijn vrijgesteld van BTW. Alle prijzen zijn eindprijzen.</p>
+        <div class="pricing-grid">
+          {pricingCards.map((card) => (
+            <div class:list={['pricing-card', { 'pricing-card-featured': card.featured }]}>
+              {card.featured && <span class="pricing-badge">{card.badge}</span>}
+              <h3 class="pricing-title">{card.title}</h3>
+              <div class="pricing-price">
+                <span class="pricing-amount">{card.price}</span>
+                <span class="pricing-unit">{card.unit}</span>
+              </div>
+              <ul class="pricing-features">
+                {card.features.map((feat) => (
+                  <li>
+                    <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg>
+                    {feat}
+                  </li>
+                ))}
+              </ul>
+              <a href="#contact" class:list={['pricing-cta', { 'pricing-cta-primary': card.ctaStyle === 'primary', 'pricing-cta-outline': card.ctaStyle === 'outline' }]}>
+                {card.cta}
+              </a>
+            </div>
+          ))}
+        </div>
+        <a href="/tarieven" class="section-link">
+          Bekijk alle tarieven
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </section>
+
+    {/* ═══════════════════════════════════════════════════════════
+        SECTION 10: FAQ — native details/summary accordion
+        Padding: 4rem / 3rem mobile
+        Background: #F9EFEB
+    ═══════════════════════════════════════════════════════════ */}
+    <section class="faq scroll-fade-up" id="faq">
+      <div class="faq-container">
+        <h2>Veelgestelde vragen</h2>
+        <div class="faq-list">
+          {faqItems.map((item) => (
+            <details class="faq-item">
+              <summary class="faq-question">
+                <span>{item.q}</span>
+                <svg class="faq-chevron" width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+              </summary>
+              <p class="faq-answer">{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Diagonal: FAQ → Contact (dark) */}
+    <DiagonalDivider direction="left-down" fill="var(--hex-dark)" />
+
+    {/* ═══════════════════════════════════════════════════════════
+        SECTION 11: CONTACT — dark section, 7/5 grid
+        Padding: 5rem / 3.5rem mobile
+        Background: #1A1A2E
+    ═══════════════════════════════════════════════════════════ */}
+    <section class="contact-section" id="contact">
+      <div class="section-container">
+        <h2 class="text-white">Zin in een proefles?</h2>
+        <p class="section-sub text-white-60">Stuur een berichtje via WhatsApp, bel 06 28990655, of vul het formulier in. Je hoort binnen 24 uur van mij.</p>
+        <div class="contact-grid">
+          <div class="contact-form-col">
+            <h3 class="text-white" style="margin-bottom:0.25rem;">Plan je proefles</h3>
+            <p class="text-white-40" style="margin-bottom:1.5rem;font-size:0.875rem;">Vrijblijvend &middot; Binnen 24 uur reactie</p>
+            <ContactForm />
+          </div>
+          <div class="contact-info-col">
+            <div class="contact-info-item">
+              <svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46ZM176,208A128.14,128.14,0,0,1,48,80,40.2,40.2,0,0,1,82.87,40a.61.61,0,0,0,0,.12l21,47L83.2,111.86a6.13,6.13,0,0,0-.57.77,16,16,0,0,0-1,15.7c9.06,18.53,27.73,37.06,46.46,46.11a16,16,0,0,0,15.17-1.4,8.12,8.12,0,0,0,.75-.56L168.89,152l47,21.05h0s.08,0,.11,0A40.21,40.21,0,0,1,176,208Z"/></svg>
+              <div>
+                <span class="contact-info-label">Telefoon</span>
+                <a href="tel:0628990655" class="contact-info-value">06 28990655</a>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              <div>
+                <span class="contact-info-label">WhatsApp</span>
+                <a href="https://wa.me/31628990655" target="_blank" rel="noopener noreferrer" class="contact-info-value">06 28990655</a>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"/></svg>
+              <div>
+                <span class="contact-info-label">E-mail</span>
+                <a href="mailto:info@rijschoolgoedopweg.nl" class="contact-info-value">info@rijschoolgoedopweg.nl</a>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M128,16a88.1,88.1,0,0,0-88,88c0,75.3,80,132.17,83.41,134.55a8,8,0,0,0,9.18,0C136,236.17,216,179.3,216,104A88.1,88.1,0,0,0,128,16Zm0,56a32,32,0,1,1-32,32A32,32,0,0,1,128,72Z"/></svg>
+              <div>
+                <span class="contact-info-label">Adres</span>
+                <span class="contact-info-value">Gildehof 18, 4002 HG Tiel</span>
+              </div>
+            </div>
+            <div class="contact-info-item">
+              <svg width="20" height="20" viewBox="0 0 256 256" fill="currentColor"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm64-88a8,8,0,0,1-8,8H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48A8,8,0,0,1,192,128Z"/></svg>
+              <div>
+                <span class="contact-info-label">Openingstijden</span>
+                <span class="contact-info-value">Op afspraak</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <Footer />
+  <WhatsAppButton />
+  <MobileCta />
 </Layout>
+
+<style>
+  /* CSS variables from global.css are available globally — no @reference needed */
+
+  /* ── Layout helpers ────────────────────────────────────── */
+  .section-container {
+    max-width: 68.75rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .section-label {
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-sub {
+    color: var(--color-text-muted);
+    font-size: 1.125rem;
+    max-width: 36rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    color: var(--color-primary);
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 2rem;
+    transition: gap 300ms var(--ease-project);
+  }
+  @media (hover: hover) {
+    .section-link:hover { gap: 0.625rem; }
+  }
+
+  .text-white { color: white; }
+  .text-white-60 { color: rgba(255, 255, 255, 0.6); }
+  .text-white-40 { color: rgba(255, 255, 255, 0.4); }
+
+  /* ── BTN ─────────────────────────────────────────────── */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 200px;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--color-primary);
+    color: var(--color-dark);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    border-radius: 8px;
+    border: none;
+    transition: all 300ms var(--ease-project);
+  }
+  @media (hover: hover) {
+    .btn-primary:hover {
+      background-color: var(--color-primary-dark);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px -8px rgba(240, 90, 30, 0.3);
+    }
+  }
+
+  .btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--color-whatsapp);
+    color: white;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 300ms var(--ease-project);
+  }
+  @media (hover: hover) {
+    .btn-whatsapp:hover {
+      background-color: var(--color-whatsapp-hover);
+      transform: translateY(-2px);
+    }
+  }
+
+  .cta-micro {
+    display: block;
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    margin-top: 0.5rem;
+  }
+
+  /* ═══════════════ SECTION 1: HERO ═══════════════════════ */
+  .hero {
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    padding-top: 4rem; /* nav height */
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hero-bg-placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--color-dark);
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(26, 26, 46, 0.92) 0%,
+      rgba(26, 26, 46, 0.5) 60%,
+      rgba(26, 26, 46, 0.3) 100%
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 35rem;
+    padding: 4rem 1.5rem 6rem;
+    margin-left: max(1.5rem, calc((100% - 68.75rem) / 2));
+  }
+
+  @media (max-width: 767px) {
+    .hero-content { padding: 3rem 1.5rem 4rem; margin-left: 0; }
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 0.875rem;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 100px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.8125rem;
+    color: white;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-badge-star { color: #FFD700; }
+
+  .hero h1 {
+    color: white;
+    margin-bottom: 1rem;
+  }
+
+  .hero-sub {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.75);
+    margin-bottom: 2rem;
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  @media (max-width: 480px) {
+    .hero-ctas { flex-direction: column; }
+    .hero-ctas .btn-primary,
+    .hero-ctas .btn-whatsapp { width: 100%; justify-content: center; }
+  }
+
+  .hero-phone {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: white;
+    text-decoration: none;
+    transition: color 200ms var(--ease-project);
+  }
+  @media (hover: hover) {
+    .hero-phone:hover { color: var(--color-primary-light); }
+  }
+
+  .hero-micro {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 0.75rem;
+  }
+
+  /* ═══════════════ SECTION 2: STATS ═════════════════════ */
+  .stats {
+    background-color: var(--color-bg);
+    padding: 4rem 0;
+  }
+  @media (max-width: 767px) { .stats { padding: 3rem 0; } }
+
+  .stats-container {
+    max-width: 68.75rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .stats-intro {
+    max-width: 48rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  @media (max-width: 639px) {
+    .stats-grid { grid-template-columns: 1fr; gap: 1rem; }
+  }
+
+  .stat-card {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .stat-number {
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: clamp(2rem, 1.5rem + 1.5vw, 3.15rem);
+    color: var(--color-primary);
+    line-height: 1.1;
+  }
+
+  .stat-label {
+    display: block;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text);
+    margin-top: 0.5rem;
+  }
+
+  .stat-comparison {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--color-success);
+    margin-top: 0.25rem;
+  }
+
+  /* ═══════════════ SECTION 3: OPLEIDINGEN ═══════════════ */
+  .opleidingen {
+    background: white;
+    padding: 5rem 0;
+  }
+  @media (max-width: 767px) { .opleidingen { padding: 3.5rem 0; } }
+
+  .opl-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  @media (max-width: 1023px) { .opl-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 639px) { .opl-grid { grid-template-columns: 1fr; } }
+
+  .opl-card {
+    position: relative;
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all 300ms var(--ease-project);
+    overflow: hidden;
+  }
+
+  @media (hover: hover) {
+    .opl-card:hover {
+      background-color: var(--color-primary);
+      color: white;
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px -8px rgba(240, 90, 30, 0.3);
+      border-color: var(--color-primary);
+    }
+    .opl-card:hover .opl-icon { color: white; }
+    .opl-card:hover .opl-body { color: rgba(255, 255, 255, 0.8); }
+    .opl-card:hover .opl-link { color: white; }
+  }
+
+  .opl-card-featured {
+    background: var(--color-primary-surface);
+    border-color: var(--color-primary);
+  }
+
+  .populair-badge {
+    position: absolute;
+    top: 0.75rem;
+    right: -2rem;
+    background: var(--color-primary);
+    color: white;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 2.5rem;
+    transform: rotate(45deg);
+    transform-origin: center;
+  }
+
+  .opl-icon {
+    display: block;
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .opl-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+    hyphens: auto;
+  }
+
+  .opl-body {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .opl-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: gap 300ms var(--ease-project);
+  }
+  @media (hover: hover) {
+    .opl-link:hover { gap: 0.5rem; }
+  }
+
+  /* ═══════════════ SECTION 4: USP STRIP ═════════════════ */
+  .usp-strip {
+    background-color: var(--color-primary-surface);
+    padding: 2.5rem 0;
+  }
+  @media (max-width: 767px) { .usp-strip { padding: 2rem 0; } }
+
+  .usp-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  @media (max-width: 767px) { .usp-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; } }
+
+  .usp-item {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--color-text);
+  }
+  .usp-item svg { color: var(--color-primary); flex-shrink: 0; }
+
+  /* ═══════════════ SECTION 5: DAGCURSUS ═════════════════ */
+  .dagcursus {
+    background-color: var(--color-surface);
+    padding: 6rem 0;
+  }
+  @media (max-width: 767px) { .dagcursus { padding: 4rem 0; } }
+
+  .dagcursus-grid {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  @media (max-width: 1023px) {
+    .dagcursus-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .dagcursus-img { order: -1; }
+  }
+
+  .dagcursus-content p {
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .check-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+  .check-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    color: var(--color-text);
+  }
+  .check-list svg { color: var(--color-primary); flex-shrink: 0; }
+
+  .dagcursus-cta-row {
+    margin-top: 1.5rem;
+  }
+
+  /* ═══════════════ SECTION 6: GESLAAGDEN ════════════════ */
+  .geslaagden {
+    background-color: var(--color-dark);
+    padding: 4rem 0;
+  }
+  @media (max-width: 767px) { .geslaagden { padding: 3rem 0; } }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  @media (max-width: 1023px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 639px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .gallery-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+    border-bottom: 3px solid var(--color-primary);
+  }
+
+  .gallery-info {
+    padding: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .gallery-name {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: white;
+  }
+
+  .gallery-cat {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-primary-light);
+    background: rgba(255, 151, 87, 0.15);
+    padding: 0.125rem 0.5rem;
+    border-radius: 100px;
+  }
+
+  .gallery-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 2rem;
+    transition: color 200ms var(--ease-project), gap 300ms var(--ease-project);
+  }
+  @media (hover: hover) {
+    .gallery-link:hover { color: white; gap: 0.625rem; }
+  }
+
+  /* ═══════════════ SECTION 7: INSTRUCTEUR ═══════════════ */
+  .instructeur {
+    background: white;
+    padding: 6rem 0;
+  }
+  @media (max-width: 767px) { .instructeur { padding: 4rem 0; } }
+
+  .instructeur-grid {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  @media (max-width: 1023px) {
+    .instructeur-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  .instructor-photo {
+    box-shadow: 12px 12px 0 var(--color-primary-surface);
+  }
+
+  .instructeur-content p {
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .trait-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+  }
+
+  .trait-pill {
+    display: inline-block;
+    padding: 0.375rem 1rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 100px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.8125rem;
+    color: var(--color-text);
+    transition: all 300ms var(--ease-project);
+  }
+  @media (hover: hover) {
+    .trait-pill:hover {
+      background: var(--color-primary);
+      color: white;
+      border-color: var(--color-primary);
+    }
+  }
+
+  /* ═══════════════ SECTION 8: REVIEWS ═══════════════════ */
+  .reviews {
+    background-color: var(--color-bg);
+    padding: 4rem 0;
+  }
+  @media (max-width: 767px) { .reviews { padding: 3rem 0; } }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  @media (max-width: 767px) { .reviews-grid { grid-template-columns: 1fr; } }
+
+  .review-card {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+
+  .review-stars {
+    display: flex;
+    gap: 0.125rem;
+    color: #FFD700;
+    margin-bottom: 0.75rem;
+  }
+
+  .review-text {
+    font-style: italic;
+    color: var(--color-text);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .review-author {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  /* ═══════════════ SECTION 9: TARIEVEN ═════════════════ */
+  .tarieven {
+    background: white;
+    padding: 5rem 0;
+  }
+  @media (max-width: 767px) { .tarieven { padding: 3.5rem 0; } }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    align-items: start;
+  }
+  @media (max-width: 767px) { .pricing-grid { grid-template-columns: 1fr; } }
+
+  .pricing-card {
+    position: relative;
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .pricing-card-featured {
+    border-color: var(--color-primary);
+    border-top: 4px solid var(--color-primary);
+    transform: scale(1.04);
+    box-shadow: 0 8px 32px -8px rgba(240, 90, 30, 0.2);
+  }
+
+  .pricing-badge {
+    position: absolute;
+    top: 1rem;
+    right: -2.25rem;
+    background: var(--color-primary);
+    color: white;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    padding: 0.25rem 2.5rem;
+    transform: rotate(45deg);
+  }
+
+  .pricing-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .pricing-amount {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: clamp(1.75rem, 1.25rem + 1vw, 2.37rem);
+    color: var(--color-primary);
+  }
+
+  .pricing-unit {
+    display: block;
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    margin-top: 0.25rem;
+  }
+
+  .pricing-features {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+  .pricing-features li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--color-text);
+  }
+  .pricing-features svg { color: var(--color-primary); flex-shrink: 0; }
+
+  .pricing-cta {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    text-align: center;
+    transition: all 300ms var(--ease-project);
+  }
+
+  .pricing-cta-primary {
+    background-color: var(--color-primary);
+    color: var(--color-dark);
+  }
+  @media (hover: hover) {
+    .pricing-cta-primary:hover {
+      background-color: var(--color-primary-dark);
+      color: white;
+      transform: translateY(-2px);
+    }
+  }
+
+  .pricing-cta-outline {
+    background: transparent;
+    color: var(--color-text);
+    border: 2px solid var(--color-border);
+  }
+  @media (hover: hover) {
+    .pricing-cta-outline:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+    }
+  }
+
+  /* ═══════════════ SECTION 10: FAQ ═════════════════════ */
+  .faq {
+    background-color: var(--color-surface);
+    padding: 4rem 0;
+  }
+  @media (max-width: 767px) { .faq { padding: 3rem 0; } }
+
+  .faq-container {
+    max-width: 45rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .faq h2 { text-align: center; margin-bottom: 2rem; }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .faq-item {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: var(--color-text);
+    list-style: none;
+  }
+  .faq-question::-webkit-details-marker { display: none; }
+
+  .faq-chevron {
+    flex-shrink: 0;
+    transition: transform 300ms var(--ease-project);
+    color: var(--color-text-muted);
+  }
+
+  .faq-item[open] .faq-chevron { transform: rotate(180deg); }
+
+  .faq-answer {
+    padding: 0 1.5rem 1.25rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* ═══════════════ SECTION 11: CONTACT ═════════════════ */
+  .contact-section {
+    background-color: var(--color-dark);
+    padding: 5rem 0;
+  }
+  @media (max-width: 767px) { .contact-section { padding: 3.5rem 0; } }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  @media (max-width: 1023px) {
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+
+  .contact-info-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-top: 3rem;
+  }
+  @media (max-width: 1023px) { .contact-info-col { padding-top: 0; } }
+
+  .contact-info-item {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  .contact-info-item svg {
+    color: var(--color-primary);
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+  }
+
+  .contact-info-label {
+    display: block;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.125rem;
+  }
+
+  .contact-info-value {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9375rem;
+    transition: color 200ms var(--ease-project);
+  }
+  a.contact-info-value:hover { color: var(--color-primary-light); }
+</style>

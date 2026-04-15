@@ -1,0 +1,43 @@
+---
+/**
+ * Diagonal section divider — sharp polygon cuts expressing speed and forward motion.
+ * Source: DESIGN.md §7. Client rejected waves ("cleaning company feel").
+ *
+ * @prop {"right-down" | "left-down"} direction - Diagonal direction
+ * @prop {string} fill - Fill color (hex) matching the NEXT section's background
+ */
+interface Props {
+  direction: 'right-down' | 'left-down';
+  fill: string;
+}
+
+const { direction, fill } = Astro.props;
+
+// right-down: hero→stats, geslaagden→instructeur
+// left-down: surface→geslaagden, FAQ→contact
+const points = direction === 'right-down'
+  ? '0,72 1440,0 1440,72'
+  : '0,0 1440,72 0,72';
+---
+<div class="diagonal-divider" aria-hidden="true">
+  <svg viewBox="0 0 1440 72" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points={points} fill={fill} />
+  </svg>
+</div>
+
+<style>
+  .diagonal-divider {
+    line-height: 0;
+    overflow: hidden;
+  }
+  .diagonal-divider svg {
+    width: 100%;
+    height: 4.5rem;
+    display: block;
+  }
+  @media (max-width: 767px) {
+    .diagonal-divider svg {
+      height: 2.5rem;
+    }
+  }
+</style>

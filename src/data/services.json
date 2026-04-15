@@ -1,0 +1,57 @@
+[
+  {
+    "title": "Autorijles",
+    "slug": "autorijles",
+    "icon": "car",
+    "body": "Leer autorijden in Tiel. Schakelen of automaat, jij kiest. Inclusief examenvoorbereiding en theorie-ondersteuning.",
+    "link": "/opleidingen/autorijles",
+    "linkText": "Meer over autorijles",
+    "featured": false
+  },
+  {
+    "title": "Motorrijles",
+    "slug": "motorrijles",
+    "icon": "motorcycle",
+    "body": "91% geslaagd voor motor. Van voertuigbeheersing tot verkeersdeelname, je leert het op de openbare weg in de Betuwe.",
+    "link": "/opleidingen/motorrijles",
+    "linkText": "Meer over motorrijles",
+    "featured": false
+  },
+  {
+    "title": "Bromfiets (AM)",
+    "slug": "bromfiets",
+    "icon": "moped",
+    "body": "90% slagingspercentage. Losse lessen of de populaire dagcursus. Vanaf 16 jaar op je eigen brommer de weg op.",
+    "link": "/opleidingen/bromfiets",
+    "linkText": "Meer over bromfiets",
+    "featured": false
+  },
+  {
+    "title": "Aanhangwagen (BE)",
+    "slug": "aanhangwagen-be",
+    "icon": "trailer",
+    "body": "Je autorijbewijs uitbreiden met BE. Handig als je een caravan, paardentrailer of aanhanger wilt trekken.",
+    "link": "/opleidingen/aanhangwagen-be",
+    "linkText": "Meer over BE",
+    "featured": false
+  },
+  {
+    "title": "Taxiopleiding",
+    "slug": "taxiopleiding",
+    "icon": "taxi",
+    "body": "100% geslaagd voor de taxipas. Theorie en praktijk in één opleiding. Klaar om professioneel de weg op te gaan.",
+    "link": "/opleidingen/taxiopleiding",
+    "linkText": "Meer over taxi",
+    "featured": false
+  },
+  {
+    "title": "Dagcursus bromfiets",
+    "slug": "dagcursus-bromfiets",
+    "icon": "lightning",
+    "body": "In één dag je bromfietsrijbewijs. Theorie, praktijk en examen op dezelfde dag. Dé snelste route naar je AM.",
+    "link": "/opleidingen/dagcursus-bromfiets",
+    "linkText": "Boek je dagcursus",
+    "featured": true,
+    "badge": "Populair"
+  }
+]

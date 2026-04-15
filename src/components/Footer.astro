@@ -1,0 +1,188 @@
+---
+/**
+ * Site footer — brand, nav links, legal, credentials, contact, copyright.
+ * Source: CONTENT/homepage.md Footer section, DESIGN.md §16.
+ * Background: #111118 (darkest).
+ */
+const navLinks = [
+  { label: 'Opleidingen', href: '/opleidingen/autorijles' },
+  { label: 'Tarieven', href: '/tarieven' },
+  { label: 'Geslaagd', href: '/geslaagd' },
+  { label: 'Over ons', href: '/over-ons' },
+  { label: 'Contact', href: '/contact' },
+  { label: 'FAQ', href: '/faq' },
+];
+
+const legalLinks = [
+  { label: 'Privacybeleid', href: '/privacy' },
+  { label: 'Algemene voorwaarden', href: '/voorwaarden' },
+];
+---
+<footer class="site-footer">
+  <div class="footer-inner">
+    <!-- Brand -->
+    <div class="footer-brand">
+      <a href="/" class="footer-logo">RIJSCHOOL GOED OP WEG</a>
+      <p class="footer-tagline">Rijles in Tiel en de Betuwe</p>
+    </div>
+
+    <!-- Nav -->
+    <nav class="footer-nav" aria-label="Footer navigatie">
+      <ul>
+        {navLinks.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Contact -->
+    <div class="footer-contact">
+      <a href="tel:0628990655">06 28990655</a>
+      <a href="mailto:info@rijschoolgoedopweg.nl">info@rijschoolgoedopweg.nl</a>
+    </div>
+
+    <!-- Bottom row: legal + credentials -->
+    <div class="footer-bottom">
+      <div class="footer-legal">
+        {legalLinks.map((link, i) => (
+          <Fragment>
+            {i > 0 && <span class="footer-sep" aria-hidden="true">&middot;</span>}
+            <a href={link.href}>{link.label}</a>
+          </Fragment>
+        ))}
+      </div>
+      <p class="footer-credentials">KvK 51173336 &middot; Rijschoolnummer 7633G1</p>
+      <p class="footer-copy">&copy; 2026 Rijschool Goed op Weg</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background-color: var(--color-darkest);
+    color: rgba(255, 255, 255, 0.6);
+    padding: 4rem 0 2rem;
+  }
+
+  /* Extra bottom padding on mobile for sticky CTA bar */
+  @media (max-width: 767px) {
+    .site-footer {
+      padding-bottom: 5rem;
+    }
+  }
+
+  .footer-inner {
+    max-width: 68.75rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+  }
+
+  @media (max-width: 767px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  .footer-logo {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--color-primary);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  .footer-tagline {
+    font-size: 0.875rem;
+    margin: 0.25rem 0 0;
+  }
+
+  .footer-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+  }
+
+  .footer-nav a {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: color 200ms var(--ease-project);
+  }
+
+  @media (hover: hover) {
+    .footer-nav a:hover { color: var(--color-primary); }
+  }
+
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .footer-contact a {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: color 200ms var(--ease-project);
+  }
+
+  @media (hover: hover) {
+    .footer-contact a:hover { color: white; }
+  }
+
+  .footer-bottom {
+    grid-column: 1 / -1;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2rem;
+    align-items: center;
+  }
+
+  .footer-legal {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .footer-legal a {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    transition: color 200ms var(--ease-project);
+  }
+
+  @media (hover: hover) {
+    .footer-legal a:hover { color: rgba(255, 255, 255, 0.7); }
+  }
+
+  .footer-sep {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 0.75rem;
+  }
+
+  .footer-credentials,
+  .footer-copy {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.3);
+    margin: 0;
+  }
+
+  .footer-copy {
+    margin-left: auto;
+  }
+
+  @media (max-width: 767px) {
+    .footer-copy { margin-left: 0; }
+  }
+</style>
