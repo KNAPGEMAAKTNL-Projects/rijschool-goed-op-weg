@@ -1,8 +1,503 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import CtaSection from '../../components/CtaSection.astro';
+import DiagonalDivider from '../../components/DiagonalDivider.astro';
 ---
-<Layout title="Autorijles (B) — Rijschool Goed op Weg">
+<Layout title="Autorijles Tiel | Schakelen & Automaat | Goed op Weg" description="Autorijles in Tiel bij Rijschool Goed op Weg. Schakelen of automaat, jij kiest. Boven het CBR-gemiddelde. Plan je proefles, vrijblijvend.">
+  <Header />
   <main>
-    <!-- Autorijles service page -->
+    <!-- Service Hero -->
+    <section class="service-hero">
+      <div class="service-hero-inner">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="/opleidingen/autorijles">Opleidingen</a>
+          <span aria-hidden="true">/</span>
+          <span>Autorijles</span>
+        </nav>
+        <h1>Autorijles in Tiel</h1>
+        <p class="service-hero-sub">Autorijles bij Rijschool Goed op Weg in Tiel. Je leert autorijden bij één vaste instructeur die je persoonlijk begeleidt van de eerste les tot aan het CBR-examen. Schakelen of automaat, jij kiest. Het slagingspercentage ligt 13% boven het CBR-gemiddelde op examenlocatie Tiel.</p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="stat-num">62%</span>
+            <span class="stat-lbl">Geslaagd</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-num">49%</span>
+            <span class="stat-lbl">CBR-gemiddelde</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <DiagonalDivider direction="right-down" fill="var(--hex-bg)" />
+
+    <!-- 8/4 Content Grid -->
+    <section class="service-content">
+      <div class="service-grid">
+        <!-- Main content (8 cols) -->
+        <div class="service-main">
+          <h2>Beschrijving</h2>
+          <p>Elke les duurt 60 minuten. Je haalt en breng ik in Tiel, dus je hoeft niet zelf naar een lespunt te komen. De eerste lessen beginnen rustig: starten, schakelen, remmen, sturen. Daarna bouwen we op naar het echte verkeer.</p>
+          <p>Je leert rijden op de routes rond Tiel en in de Betuwe. Dat is ook waar je straks examen doet, dus je kent de wegen al. Rotondes, voorrangssituaties, invoegen op de N-weg: je oefent alles in het verkeer waar je later zelf rijdt.</p>
+          <p>Heb je al een beetje ervaring? Dan kijken we waar je staat en gaan we verder waar je gebleven bent. Geen vaste pakketten, gewoon les tot je er klaar voor bent.</p>
+          <p>Je kunt kiezen tussen schakelen en automaat. De auto met automaat is beschikbaar voor wie dat prettiger vindt. Met een automaat-rijbewijs mag je alleen automaat rijden. Met schakelen mag je allebei.</p>
+          <p>Theorie regel je zelf via een online theorie-app. Tijdens de rijlessen bespreken we wel verkeerssituaties en borden die je tegenkomt.</p>
+
+          <h2>Waarom autorijles bij Goed op Weg?</h2>
+          <ul>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg>
+              <span><strong>13% boven het CBR-gemiddelde</strong>: het slagingspercentage voor auto op examenlocatie Tiel is 62%, tegenover een gemiddelde van 49%. Dat is geen toeval.</span>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg>
+              <span><strong>Eén instructeur van begin tot eind</strong>: je rijdt niet de ene les met iemand anders dan de volgende. Ik ken je sterke punten en weet waar we aan moeten werken.</span>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg>
+              <span><strong>Schakelen én automaat beschikbaar</strong>: je hoeft niet van tevoren te beslissen. Na een paar lessen weet je vanzelf wat bij je past.</span>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg>
+              <span><strong>Examenroutes die je al kent</strong>: je oefent op dezelfde wegen als waar je examen doet bij het CBR in Tiel.</span>
+            </li>
+          </ul>
+
+          <h2>Hoe werkt het?</h2>
+          <div class="process-steps">
+            <div class="process-step">
+              <h3>Proefles</h3>
+              <p>Je begint met een proefles. Daar kijken we samen hoe je achter het stuur zit en wat je al kunt. Na die eerste les geef ik je een eerlijke inschatting van hoeveel lessen je nodig hebt.</p>
+            </div>
+            <div class="process-step">
+              <h3>Lessen plannen</h3>
+              <p>Daarna plannen we de lessen in op tijden die jou uitkomen. Gemiddeld heb je 35 tot 45 lessen nodig, maar dat verschilt per persoon. Sommige leerlingen zijn er eerder klaar voor, anderen hebben wat meer tijd nodig. Geen druk.</p>
+            </div>
+            <div class="process-step">
+              <h3>Tussentijdse toets</h3>
+              <p>Als je er klaar voor bent, plan ik je tussentijdse toets (TTT) bij het CBR. Dat is een oefenexamen met een CBR-examinator erbij. Daarna weten we precies hoe ver je bent.</p>
+            </div>
+            <div class="process-step">
+              <h3>Examen</h3>
+              <p>En als alles goed gaat: examen.</p>
+            </div>
+          </div>
+
+          <h2>Prijs</h2>
+          <p>&euro; [XX] per les (60 minuten). Geen vaste pakketten, je betaalt per les. Rijlessen zijn vrijgesteld van BTW, alle prijzen zijn eindprijzen.</p>
+          <p>Bekijk alle <a href="/tarieven">tarieven</a> voor een compleet overzicht.</p>
+
+          <h2>Veelgestelde vragen over autorijles</h2>
+          <div class="service-faq">
+            <details>
+              <summary>
+                Hoeveel autorijlessen heb ik nodig?
+                <svg class="chevron" width="18" height="18" viewBox="0 0 256 256" fill="currentColor"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+              </summary>
+              <p class="faq-answer">Gemiddeld 35 tot 45 lessen. Na een paar lessen geef ik je een persoonlijke inschatting. Het hangt af van hoe snel je leert en hoeveel je tussendoor oefent (als je een begeleiderspas hebt).</p>
+            </details>
+            <details>
+              <summary>
+                Wat is het verschil tussen schakelen en automaat?
+                <svg class="chevron" width="18" height="18" viewBox="0 0 256 256" fill="currentColor"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+              </summary>
+              <p class="faq-answer">Met een schakelrijbewijs mag je zowel schakel- als automaatauto's rijden. Met een automaatrijbewijs alleen automaat. Automaat is makkelijker om te leren, maar schakelen geeft je meer flexibiliteit.</p>
+            </details>
+            <details>
+              <summary>
+                Kan ik beginnen met 2toDrive?
+                <svg class="chevron" width="18" height="18" viewBox="0 0 256 256" fill="currentColor"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+              </summary>
+              <p class="faq-answer">Ja. Met 2toDrive mag je vanaf 16,5 jaar starten met autorijlessen. Je mag na je examen rijden met een begeleider tot je 18 bent.</p>
+            </details>
+            <details>
+              <summary>
+                Hoe lang duurt een autorijles?
+                <svg class="chevron" width="18" height="18" viewBox="0 0 256 256" fill="currentColor"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+              </summary>
+              <p class="faq-answer">60 minuten. Inclusief ophalen en terugbrengen in Tiel.</p>
+            </details>
+          </div>
+        </div>
+
+        <!-- Sidebar (4 cols) -->
+        <aside class="service-sidebar">
+          <div class="sidebar-card sidebar-pricing">
+            <h3>Autorijles</h3>
+            <div class="sidebar-price">&euro; [XX] <span>per les</span></div>
+            <a href="/contact" class="sidebar-cta">Plan je proefles &rarr;</a>
+            <p class="sidebar-micro">Vrijblijvend &middot; Binnen 24 uur reactie</p>
+          </div>
+          <div class="sidebar-card sidebar-facts">
+            <h3>In het kort</h3>
+            <dl class="fact-list">
+              <div class="fact-row">
+                <dt class="fact-label">Lesduur</dt>
+                <dd class="fact-value">60 minuten</dd>
+              </div>
+              <div class="fact-row">
+                <dt class="fact-label">Transmissie</dt>
+                <dd class="fact-value">Schakelen of automaat</dd>
+              </div>
+              <div class="fact-row">
+                <dt class="fact-label">Examenlocatie</dt>
+                <dd class="fact-value">CBR Tiel</dd>
+              </div>
+              <div class="fact-row">
+                <dt class="fact-label">Instructeur</dt>
+                <dd class="fact-value">Eén vaste instructeur</dd>
+              </div>
+            </dl>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Related Services -->
+    <section class="related-services">
+      <div class="related-inner">
+        <h2>Ook interessant</h2>
+        <div class="related-grid">
+          <div class="related-card">
+            <h3>Dagcursus bromfiets</h3>
+            <p>In één dag je AM-rijbewijs halen. Theorie, praktijk en examen op dezelfde dag.</p>
+            <a href="/opleidingen/dagcursus-bromfiets" class="related-card-link">
+              Bekijk dagcursus
+              <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69l-58.35-58.34a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg>
+            </a>
+          </div>
+          <div class="related-card">
+            <h3>Motorrijles</h3>
+            <p>91% geslaagd voor verkeersdeelname. Leer motorrijden bij een vaste instructeur in Tiel.</p>
+            <a href="/opleidingen/motorrijles" class="related-card-link">
+              Bekijk motorrijles
+              <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69l-58.35-58.34a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <CtaSection heading="Plan je proefles" subtext="Vrijblijvend · Binnen 24 uur reactie" buttonText="Plan je proefles" buttonHref="/contact" />
   </main>
+  <Footer />
 </Layout>
+
+<style>
+  .service-hero {
+    background-color: var(--color-dark);
+    color: white;
+    padding: 8rem 0 4rem;
+    position: relative;
+  }
+  .service-hero-inner {
+    max-width: 68.75rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .breadcrumb {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 1.5rem;
+  }
+  .breadcrumb a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: color 200ms var(--ease-project);
+  }
+  .breadcrumb a:hover { color: var(--color-primary-light); }
+  .service-hero h1 { margin-bottom: 1rem; color: white; }
+  .service-hero-sub {
+    font-size: 1.125rem;
+    color: rgba(255,255,255,0.75);
+    max-width: 38rem;
+    line-height: 1.6;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .hero-stat .stat-num {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: clamp(1.5rem, 1rem + 1vw, 2.37rem);
+    color: var(--color-primary-light);
+  }
+  .hero-stat .stat-lbl {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    display: block;
+  }
+
+  /* Content grid */
+  .service-content {
+    background-color: var(--color-bg);
+    padding: 5rem 0;
+  }
+  @media (max-width: 767px) { .service-content { padding: 3rem 0; } }
+  .service-grid {
+    max-width: 68.75rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: 8fr 4fr;
+    gap: 3rem;
+  }
+  @media (max-width: 1023px) {
+    .service-grid {
+      grid-template-columns: 1fr;
+    }
+    .service-sidebar { order: -1; }
+  }
+  .service-main h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  .service-main h2:first-child { margin-top: 0; }
+  .service-main p {
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+  .service-main a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .service-main a:hover {
+    color: var(--color-primary-dark);
+  }
+  .service-main ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+  .service-main li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    color: var(--color-text);
+  }
+  .service-main li svg {
+    color: var(--color-primary);
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+
+  /* Process steps */
+  .process-steps {
+    counter-reset: step;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 1rem 0 1.5rem;
+  }
+  .process-step {
+    counter-increment: step;
+    position: relative;
+    padding-left: 3rem;
+  }
+  .process-step::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    width: 2rem;
+    text-align: center;
+  }
+  .process-step h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+  .process-step p {
+    font-size: 0.9375rem;
+  }
+
+  /* Sidebar */
+  .service-sidebar { position: sticky; top: 5rem; }
+  .sidebar-card {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .sidebar-card h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  .sidebar-price {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: clamp(1.5rem, 1rem + 1vw, 2.37rem);
+    color: var(--color-primary);
+    margin-bottom: 0.25rem;
+  }
+  .sidebar-price span {
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: var(--color-text-muted);
+  }
+  .sidebar-cta {
+    display: block;
+    text-align: center;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--color-primary);
+    color: var(--color-dark);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    border-radius: 8px;
+    margin-top: 1rem;
+    transition: all 300ms var(--ease-project);
+  }
+  @media (hover: hover) {
+    .sidebar-cta:hover {
+      background-color: var(--color-primary-dark);
+      color: white;
+      transform: translateY(-2px);
+    }
+  }
+  .sidebar-micro {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin-top: 0.5rem;
+  }
+  .fact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .fact-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .fact-row:last-child { border-bottom: none; }
+  .fact-label { color: var(--color-text-muted); }
+  .fact-value { font-weight: 600; }
+
+  /* Service FAQ */
+  .service-faq {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  .service-faq details {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .service-faq summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: var(--color-text);
+    list-style: none;
+  }
+  .service-faq summary::-webkit-details-marker { display: none; }
+  .service-faq .chevron {
+    flex-shrink: 0;
+    transition: transform 300ms var(--ease-project);
+    color: var(--color-text-muted);
+  }
+  .service-faq details[open] .chevron { transform: rotate(180deg); }
+  .service-faq .faq-answer {
+    padding: 0 1.25rem 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* Related services */
+  .related-services {
+    background: white;
+    padding: 4rem 0;
+  }
+  @media (max-width: 767px) { .related-services { padding: 3rem 0; } }
+  .related-inner {
+    max-width: 68.75rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .related-inner h2 { margin-bottom: 1.5rem; }
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+  @media (max-width: 639px) { .related-grid { grid-template-columns: 1fr; } }
+  .related-card {
+    position: relative;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all 300ms var(--ease-project);
+  }
+  @media (hover: hover) {
+    .related-card:hover {
+      border-color: var(--color-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px -4px rgba(240,90,30,0.15);
+    }
+  }
+  .related-card h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+  .related-card p {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+  .related-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+  .related-card-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+</style>

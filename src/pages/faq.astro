@@ -1,8 +1,210 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CtaSection from '../components/CtaSection.astro';
+
+const faqItems = [
+  {
+    q: 'Wat kost rijles bij Goed op Weg?',
+    a: 'Autorijles kost &euro;&nbsp;[XX] per les van 60 minuten. Motorrijles en bromfietslessen hebben dezelfde lesprijs. De dagcursus bromfiets kost &euro;&nbsp;[XXX] alles-in, inclusief theorie, praktijk en CBR-examen. Rijlessen zijn vrijgesteld van BTW, dus alle prijzen zijn eindprijzen. Bekijk het volledige overzicht op de <a href="/tarieven">tarievenpagina</a>.',
+  },
+  {
+    q: 'Hoeveel rijlessen heb ik nodig voor mijn rijbewijs?',
+    a: 'Gemiddeld heb je 35 tot 45 lessen nodig voor je autorijbewijs B. Dat verschilt per persoon. Na een paar lessen kan ik een betere inschatting geven van wat jij nodig hebt. Voor motor, bromfiets en aanhangwagen ligt het anders. Meer per opleiding op de <a href="/opleidingen/autorijles">autorijlespagina</a>.',
+  },
+  {
+    q: 'Hoe plan ik een proefles?',
+    a: 'Stuur een appje via <a href="https://wa.me/31628990655" target="_blank" rel="noopener noreferrer">WhatsApp</a>, bel 06 28990655, of vul het <a href="/contact">contactformulier</a> in. Je hoort binnen 24 uur van mij. Tijdens de proefles kijken we samen hoe je rijdt en bespreken we hoeveel lessen je nodig hebt. Vrijblijvend, je zit nergens aan vast.',
+  },
+  {
+    q: 'Hoe snel kan ik beginnen met rijles?',
+    a: 'Meestal kun je binnen een week na je eerste contact beginnen. Na de proefles plannen we samen een schema dat bij jou past. Overdag, \'s avonds of op zaterdag. Je hoeft niet lang van tevoren te boeken.',
+  },
+  {
+    q: 'Kan ik rijles nemen met een automaat?',
+    a: 'Ja, er is een auto met automaat beschikbaar. Je haalt dan een B-rijbewijs voor automaat. Wil je later toch schakelen? Dan kun je altijd een aanvullend examen doen. Je kiest gewoon zelf wat het beste bij je past. Meer op de <a href="/opleidingen/autorijles">autorijlespagina</a>.',
+  },
+  {
+    q: 'Hoe oud moet ik zijn om te beginnen met rijles?',
+    a: 'Voor autorijles kun je starten vanaf 16,5 jaar (met 2toDrive) of vanaf 17 jaar regulier. Bromfiets mag vanaf 16 jaar. Motorrijles kan vanaf 20 jaar (A2) of 24 jaar voor onbeperkt vermogen (A). Neem gerust contact op als je twijfelt over wat bij jouw leeftijd past.',
+  },
+  {
+    q: 'Hoe werkt de dagcursus bromfiets?',
+    a: 'In één dag doe je theorie, praktijk en examen. \'s Ochtends beginnen met theorie, \'s middags oefenen op de bromfiets, en aan het eind van de dag examen bij het CBR in Tiel. 90% slaagt in één keer. Geschikt vanaf 16 jaar. Alles over de <a href="/opleidingen/dagcursus-bromfiets">dagcursus</a>.',
+  },
+  {
+    q: 'Wat als ik zak voor mijn examen?',
+    a: 'Dat kan gebeuren, geen stress. Ik plan extra lessen in om te oefenen op de onderdelen die beter moeten. Daarna doe je gewoon opnieuw examen. De meeste leerlingen slagen de tweede keer wel. De kosten voor een herexamen bij het CBR zijn apart.',
+  },
+  {
+    q: 'Moet ik zelf mijn theorie regelen?',
+    a: 'Voor autorijles: ja, theorie doe je via een online theorie-app in je eigen tempo. Tijdens de rijlessen bespreken we wel de verkeerssituaties die je tegenkomt op de weg. Bij de dagcursus bromfiets zit de theorievoorbereiding er al bij in.',
+  },
+  {
+    q: 'In welk gebied geef je les?',
+    a: 'Ik geef les in Tiel en de wijde omgeving. Denk aan Geldermalsen, Culemborg, Buren en de rest van de Betuwe. Autorijexamen, bromfiets, aanhangwagen en taxi doe je bij het CBR in Tiel. Motor voertuigbeheersing (AVB) is bij het CBR in Arnhem.',
+  },
+  {
+    q: 'Is Goed op Weg een erkende rijschool?',
+    a: 'Ja. Rijschool Goed op Weg is een officieel erkende rijschool met rijschoolnummer 7633G1. De instructeur is WRM-gecertificeerd en voldoet aan alle eisen van het IBKI om rijles te mogen geven. Ingeschreven bij de Kamer van Koophandel onder nummer 51173336.',
+  },
+];
 ---
-<Layout title="Veelgestelde Vragen — Rijschool Goed op Weg">
+<Layout
+  title="Veelgestelde Vragen | Rijles Tiel | Goed op Weg"
+  description="Veelgestelde vragen over rijles bij Rijschool Goed op Weg in Tiel. Kosten, lessen, examen, dagcursus bromfiets. Antwoord op de meestgestelde vragen."
+>
+  <Header />
   <main>
-    <!-- FAQ page: accordion -->
+    <!-- Page hero -->
+    <section class="page-hero-light">
+      <div class="page-hero-inner">
+        <h1>Veelgestelde vragen</h1>
+        <p class="page-hero-sub">
+          De meestgestelde vragen over rijles bij Rijschool Goed op Weg in Tiel. Van kosten en lesduur tot examenvoorbereiding en de dagcursus bromfiets. Staat je vraag er niet bij? Neem gerust contact op via <a href="https://wa.me/31628990655" target="_blank" rel="noopener noreferrer" class="hero-link">WhatsApp</a> of bel 06 28990655.
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ accordion -->
+    <section class="faq-section">
+      <div class="faq-inner">
+        {faqItems.map((item) => (
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>{item.q}</span>
+              <svg class="chevron" width="18" height="18" viewBox="0 0 256 256" fill="currentColor"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p set:html={item.a} />
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <CtaSection
+      heading="Staat je vraag er niet bij?"
+      subtext="Neem gerust contact op — WhatsApp, bel of formulier"
+      buttonText="Neem contact op"
+      buttonHref="/contact"
+      showWhatsApp={true}
+    />
   </main>
+  <Footer />
 </Layout>
+
+<style>
+  /* ── Page hero light ──────────────────────────────── */
+  .page-hero-light {
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    padding: 8rem 0 4rem;
+  }
+  .page-hero-inner {
+    max-width: 68.75rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .page-hero-light h1 {
+    margin-bottom: 1rem;
+  }
+  .page-hero-sub {
+    font-size: 1.125rem;
+    max-width: 38rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+  }
+  .hero-link {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  /* ── FAQ section ──────────────────────────────────── */
+  .faq-section {
+    padding: 4rem 0 5rem;
+    background-color: var(--color-bg);
+  }
+  .faq-inner {
+    max-width: 45rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* Accordion item */
+  .faq-item {
+    border-bottom: 1px solid var(--color-border);
+  }
+  .faq-item:first-child {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 0;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1.0625rem;
+    line-height: 1.4;
+    list-style: none;
+    color: var(--color-text);
+    transition: color 300ms var(--ease-project);
+  }
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-question .chevron {
+    flex-shrink: 0;
+    color: var(--color-text-muted);
+    transition: transform 300ms var(--ease-project);
+  }
+
+  .faq-item[open] .faq-question .chevron {
+    transform: rotate(180deg);
+  }
+
+  .faq-item[open] .faq-question {
+    color: var(--color-primary);
+  }
+
+  .faq-answer {
+    padding: 0 0 1.5rem;
+  }
+  .faq-answer p {
+    line-height: 1.7;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+  .faq-answer a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 300ms var(--ease-project);
+  }
+  @media (hover: hover) {
+    .faq-answer a:hover {
+      color: var(--color-primary-dark);
+    }
+    .faq-question:hover {
+      color: var(--color-primary);
+    }
+  }
+
+  /* ── Responsive ───────────────────────────────────── */
+  @media (max-width: 768px) {
+    .page-hero-light {
+      padding: 6rem 0 3rem;
+    }
+    .faq-question {
+      font-size: 1rem;
+    }
+  }
+</style>

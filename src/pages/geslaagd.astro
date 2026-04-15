@@ -1,8 +1,438 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CtaSection from '../components/CtaSection.astro';
+
+const filters = ['Alles', 'Auto', 'Motor', 'Bromfiets', 'BE', 'Taxi'];
+
+const students = [
+  { name: '[Naam]', category: 'Auto (B)', date: '[mnd jaar]' },
+  { name: '[Naam]', category: 'Motor (A)', date: '[mnd jaar]' },
+  { name: '[Naam]', category: 'Auto (B)', date: '[mnd jaar]' },
+  { name: '[Naam]', category: 'Bromfiets (AM)', date: '[mnd jaar]' },
+  { name: '[Naam]', category: 'Motor (A)', date: '[mnd jaar]' },
+  { name: '[Naam]', category: 'BE (aanhanger)', date: '[mnd jaar]' },
+  { name: '[Naam]', category: 'Auto (B)', date: '[mnd jaar]' },
+  { name: '[Naam]', category: 'Taxi', date: '[mnd jaar]' },
+  { name: '[Naam]', category: 'Auto (B)', date: '[mnd jaar]' },
+  { name: '[Naam]', category: 'Motor (A)', date: '[mnd jaar]' },
+  { name: '[Naam]', category: 'Bromfiets (AM)', date: '[mnd jaar]' },
+  { name: '[Naam]', category: 'Auto (B)', date: '[mnd jaar]' },
+  { name: '[Naam]', category: 'Taxi', date: '[mnd jaar]' },
+  { name: '[Naam]', category: 'BE (aanhanger)', date: '[mnd jaar]' },
+  { name: '[Naam]', category: 'Auto (B)', date: '[mnd jaar]' },
+  { name: '[Naam]', category: 'Motor (A)', date: '[mnd jaar]' },
+];
+
+const passRates = [
+  { category: 'Motor (A)', school: 91, cbr: 82 },
+  { category: 'Bromfiets (AM)', school: 90, cbr: 87 },
+  { category: 'Auto (B)', school: 62, cbr: 49 },
+  { category: 'Taxi', school: 100, cbr: 60 },
+];
 ---
-<Layout title="Geslaagd — Rijschool Goed op Weg">
+<Layout
+  title="Geslaagd bij Goed op Weg | Slagingspercentages Tiel"
+  description="Geslaagd bij Rijschool Goed op Weg in Tiel. Motor 91%, bromfiets 90%, taxi 100%. Bekijk de foto's van leerlingen die hun rijbewijs hebben gehaald."
+>
+  <Header />
   <main>
-    <!-- Geslaagd gallery page: filter bar + masonry grid + CBR bar charts -->
+    <!-- Page hero (dark) -->
+    <section class="page-hero">
+      <div class="page-hero-inner">
+        <h1>Zij gingen je voor</h1>
+        <span class="stat-badge">[XXX]+ leerlingen geslaagd</span>
+        <p class="page-hero-sub">
+          Geslaagd bij Rijschool Goed op Weg in Tiel. Elke week halen leerlingen hun rijbewijs: auto, motor, bromfiets, aanhangwagen of taxi. De slagingspercentages liggen ver boven het CBR-gemiddelde: motor 91%, bromfiets 90% en taxi 100%. Hieronder de foto's van leerlingen die hun rijbewijs op zak hebben.
+        </p>
+      </div>
+    </section>
+
+    <!-- Filter bar -->
+    <section class="filter-section">
+      <div class="filter-inner">
+        <div class="filter-bar" role="group" aria-label="Filter geslaagden per categorie">
+          {filters.map((f, i) => (
+            <button
+              class:list={['filter-pill', { 'filter-pill--active': i === 0 }]}
+              type="button"
+              aria-pressed={i === 0 ? 'true' : 'false'}
+            >
+              {f}
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery grid -->
+    <section class="gallery-section">
+      <div class="gallery-inner">
+        <div class="gallery-grid">
+          {students.map((s) => (
+            <div class="student-card">
+              <div class="student-photo" aria-label={`${s.name}, geslaagd voor ${s.category} bij Rijschool Goed op Weg in Tiel.`}>
+                <svg width="32" height="32" viewBox="0 0 256 256" fill="currentColor" opacity="0.25"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,16a88,88,0,0,1,71.87,37.27,64,64,0,0,0-115.74,0A88,88,0,0,1,128,40Zm0,176a87.76,87.76,0,0,1-64-27.78V176a16,16,0,0,1,16-16h96a16,16,0,0,1,16,16v12.22A87.76,87.76,0,0,1,128,216ZM96,120a32,32,0,1,1,32,32A32,32,0,0,1,96,120Z"/></svg>
+              </div>
+              <div class="student-info">
+                <span class="student-name">{s.name}</span>
+                <div class="student-meta">
+                  <span class="category-badge">{s.category}</span>
+                  <span class="student-date">{s.date}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CBR comparison -->
+    <section class="comparison-section">
+      <div class="comparison-inner">
+        <span class="section-label">Slagingspercentages</span>
+        <h2>Ver boven het CBR-gemiddelde</h2>
+        <p class="comparison-sub">Vergelijk de slagingspercentages van Goed op Weg met het gemiddelde van CBR-examenlocatie Tiel.</p>
+
+        <div class="bars-grid">
+          {passRates.map((rate) => (
+            <div class="bar-card">
+              <h3 class="bar-category">{rate.category}</h3>
+
+              <!-- School bar -->
+              <div class="bar-row">
+                <span class="bar-label">Goed op Weg</span>
+                <div class="bar-track">
+                  <div class="bar-fill bar-fill--school" style={`width: ${rate.school}%`}>
+                    <span class="bar-value">{rate.school}%</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CBR bar -->
+              <div class="bar-row">
+                <span class="bar-label">CBR-gemiddelde</span>
+                <div class="bar-track">
+                  <div class="bar-fill bar-fill--cbr" style={`width: ${rate.cbr}%`}>
+                    <span class="bar-value">{rate.cbr}%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="legend">
+          <span class="legend-item"><span class="legend-dot legend-dot--school"></span> Goed op Weg</span>
+          <span class="legend-item"><span class="legend-dot legend-dot--cbr"></span> CBR-gemiddelde examenlocatie Tiel</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <CtaSection
+      heading="Jij kunt de volgende zijn"
+      subtext="Vrijblijvend · Binnen 24 uur reactie"
+      buttonText="Plan je proefles"
+      buttonHref="/contact"
+      showWhatsApp={true}
+    />
   </main>
+  <Footer />
 </Layout>
+
+<style>
+  /* ── Page hero (dark) ─────────────────────────────── */
+  .page-hero {
+    background-color: var(--color-dark);
+    color: white;
+    padding: 8rem 0 4rem;
+  }
+  .page-hero-inner {
+    max-width: 68.75rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .page-hero h1 {
+    margin-bottom: 1rem;
+  }
+  .page-hero-sub {
+    font-size: 1.125rem;
+    max-width: 38rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  /* Stat badge */
+  .stat-badge {
+    display: inline-block;
+    background-color: var(--color-primary);
+    color: var(--color-dark);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.875rem;
+    padding: 0.375rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Filter bar ───────────────────────────────────── */
+  .filter-section {
+    background-color: var(--color-dark);
+    padding: 0 0 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .filter-inner {
+    max-width: 68.75rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .filter-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1.25rem;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 300ms var(--ease-project);
+  }
+  .filter-pill--active {
+    background-color: var(--color-primary);
+    color: var(--color-dark);
+    border-color: var(--color-primary);
+  }
+  @media (hover: hover) {
+    .filter-pill:not(.filter-pill--active):hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+    }
+  }
+
+  /* ── Gallery grid ─────────────────────────────────── */
+  .gallery-section {
+    padding: 4rem 0 5rem;
+    background-color: var(--color-bg);
+  }
+  .gallery-inner {
+    max-width: 68.75rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  /* Student card */
+  .student-card {
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: var(--color-surface);
+    border-bottom: 3px solid var(--color-primary);
+    transition: transform 300ms var(--ease-project), box-shadow 300ms var(--ease-project);
+  }
+  @media (hover: hover) {
+    .student-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.1);
+    }
+  }
+  .student-photo {
+    aspect-ratio: 1;
+    background-color: var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+  }
+  .student-info {
+    padding: 0.875rem 1rem;
+  }
+  .student-name {
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    margin-bottom: 0.375rem;
+  }
+  .student-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .category-badge {
+    display: inline-block;
+    background-color: var(--color-primary-surface);
+    color: var(--color-primary-dark);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.6875rem;
+    padding: 0.1875rem 0.5rem;
+    border-radius: 100px;
+    letter-spacing: 0.02em;
+  }
+  .student-date {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  /* ── Comparison section ───────────────────────────── */
+  .comparison-section {
+    padding: 5rem 0;
+    background-color: var(--color-surface);
+  }
+  .comparison-inner {
+    max-width: 68.75rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .section-label {
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+  }
+  .comparison-inner h2 {
+    margin-bottom: 0.5rem;
+  }
+  .comparison-sub {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    max-width: 38rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .bars-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  .bar-card {
+    background-color: var(--color-bg);
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+  .bar-category {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  .bar-row {
+    margin-bottom: 0.75rem;
+  }
+  .bar-row:last-child {
+    margin-bottom: 0;
+  }
+  .bar-label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.25rem;
+  }
+  .bar-track {
+    background-color: var(--color-surface);
+    border-radius: 100px;
+    height: 2rem;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    padding: 0 0.75rem;
+    min-width: 3rem;
+    transition: width 800ms var(--ease-project);
+  }
+  .bar-fill--school {
+    background-color: var(--color-primary);
+  }
+  .bar-fill--cbr {
+    background-color: var(--color-border);
+  }
+  .bar-value {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.8125rem;
+    color: var(--color-dark);
+    white-space: nowrap;
+  }
+  .bar-fill--cbr .bar-value {
+    color: var(--color-text-muted);
+  }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+  }
+  .legend-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+  .legend-dot--school {
+    background-color: var(--color-primary);
+  }
+  .legend-dot--cbr {
+    background-color: var(--color-border);
+  }
+
+  /* ── Responsive ───────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .gallery-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  @media (max-width: 768px) {
+    .page-hero {
+      padding: 6rem 0 3rem;
+    }
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .bars-grid {
+      grid-template-columns: 1fr;
+    }
+    .filter-bar {
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 0.25rem;
+    }
+    .filter-bar::-webkit-scrollbar {
+      display: none;
+    }
+    .filter-pill {
+      white-space: nowrap;
+    }
+  }
+</style>

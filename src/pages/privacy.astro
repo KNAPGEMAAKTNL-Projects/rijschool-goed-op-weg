@@ -1,8 +1,144 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 ---
-<Layout title="Privacybeleid — Rijschool Goed op Weg">
+
+<Layout title="Privacyverklaring | Rijschool Goed op Weg" description="Privacyverklaring van Rijschool Goed op Weg in Tiel. Hoe we omgaan met je gegevens, welke rechten je hebt en hoe je contact opneemt.">
+  <Header />
   <main>
-    <!-- Privacybeleid page -->
+    <article class="legal-page">
+      <div class="legal-inner">
+        <h1>Privacyverklaring</h1>
+        <p class="legal-updated">Laatst bijgewerkt: [datum]</p>
+
+        <h2>Wie is verantwoordelijk voor je gegevens?</h2>
+        <p>
+          Rijschool Goed op Weg<br>
+          [Voornaam] El Amrani<br>
+          Gildehof 18<br>
+          4002 HG Tiel
+        </p>
+        <p>
+          E-mail: <a href="mailto:info@rijschoolgoedopweg.nl">info@rijschoolgoedopweg.nl</a><br>
+          Telefoon: <a href="tel:0628990655">06 28990655</a><br>
+          KvK: 51173336
+        </p>
+        <p>Heb je vragen over deze privacyverklaring of over je gegevens? Stuur een e-mail naar <a href="mailto:info@rijschoolgoedopweg.nl">info@rijschoolgoedopweg.nl</a>.</p>
+
+        <h2>Welke gegevens verzamelen we?</h2>
+
+        <h3>Contactformulier</h3>
+        <p>Als je het contactformulier op de website invult, slaan we de volgende gegevens op:</p>
+        <ul>
+          <li>Je naam</li>
+          <li>Je telefoonnummer (als je dat invult)</li>
+          <li>Je e-mailadres</li>
+          <li>De opleiding die je kiest</li>
+          <li>Je bericht (als je dat invult)</li>
+        </ul>
+        <p>We gebruiken deze gegevens alleen om je aanvraag te beantwoorden en eventueel een proefles te plannen. We delen je gegevens niet met anderen.</p>
+        <p><strong>Grondslag</strong>: gerechtvaardigd belang. Je vult het formulier zelf in met de verwachting dat we contact opnemen.</p>
+
+        <h3>WhatsApp en telefoon</h3>
+        <p>Als je belt of een appje stuurt, verwerken we je telefoonnummer en eventuele berichtinhoud om je vraag te beantwoorden. Dit valt onder normaal zakelijk contact.</p>
+
+        <h3>Websitebezoek</h3>
+        <p>We gebruiken Cloudflare Web Analytics om te zien hoeveel mensen de website bezoeken. Dit systeem:</p>
+        <ul>
+          <li>Plaatst geen cookies</li>
+          <li>Slaat geen persoonsgegevens op</li>
+          <li>Slaat je IP-adres niet op</li>
+          <li>Vereist geen toestemming</li>
+        </ul>
+        <p>Er worden geen tracking-, advertentie- of analytische cookies geplaatst.</p>
+
+        <h3>Spambescherming</h3>
+        <p>Het contactformulier gebruikt Cloudflare Turnstile om spam te voorkomen. Dit werkt zonder cookies en slaat geen persoonsgegevens op.</p>
+
+        <h2>Hoe lang bewaren we je gegevens?</h2>
+        <p>Gegevens uit het contactformulier bewaren we maximaal 12 maanden na je laatste contact. Daarna verwijderen we ze. Gegevens die nodig zijn voor de financi&euml;le administratie (facturen, betalingen) bewaren we 7 jaar, zoals de wet voorschrijft.</p>
+
+        <h2>Delen we je gegevens met anderen?</h2>
+        <p>Nee. We delen je gegevens niet met derden, behalve als we daar wettelijk toe verplicht zijn.</p>
+        <p>De website wordt gehost op Cloudflare Pages. Cloudflare verwerkt technische gegevens (zoals IP-adressen) om de website te laden. Dit valt onder hun eigen privacybeleid.</p>
+
+        <h2>Jouw rechten</h2>
+        <p>Volgens de AVG (Algemene verordening gegevensbescherming) heb je het recht om:</p>
+        <ul>
+          <li><strong>Inzage</strong> te vragen in je gegevens</li>
+          <li>Je gegevens te laten <strong>corrigeren</strong> als ze niet kloppen</li>
+          <li>Je gegevens te laten <strong>verwijderen</strong></li>
+          <li><strong>Bezwaar</strong> te maken tegen de verwerking van je gegevens</li>
+          <li>Je gegevens op te vragen in een gangbaar formaat (<strong>dataportabiliteit</strong>)</li>
+        </ul>
+        <p>Wil je gebruik maken van een van deze rechten? Stuur een e-mail naar <a href="mailto:info@rijschoolgoedopweg.nl">info@rijschoolgoedopweg.nl</a>. We reageren binnen 30 dagen.</p>
+        <p>Vind je dat we niet goed omgaan met je gegevens? Dan kun je een klacht indienen bij de <a href="https://autoriteitpersoonsgegevens.nl" target="_blank" rel="noopener noreferrer">Autoriteit Persoonsgegevens</a>.</p>
+
+        <h2>Cookies</h2>
+        <p>Deze website gebruikt geen cookies. Geen tracking-cookies, geen advertentiecookies, geen analytische cookies. Er is geen cookiebanner nodig.</p>
+
+        <h2>Wijzigingen</h2>
+        <p>We kunnen deze privacyverklaring aanpassen als daar aanleiding toe is. De meest recente versie staat altijd op deze pagina.</p>
+      </div>
+    </article>
   </main>
+  <Footer />
 </Layout>
+
+<style>
+  .legal-page {
+    background-color: var(--color-bg);
+    padding: 8rem 0 5rem;
+  }
+  @media (max-width: 767px) {
+    .legal-page {
+      padding: 6rem 0 3rem;
+    }
+  }
+  .legal-inner {
+    max-width: 45rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .legal-inner h1 {
+    margin-bottom: 0.5rem;
+  }
+  .legal-updated {
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    margin-bottom: 3rem;
+  }
+  .legal-inner h2 {
+    font-size: 1.25rem;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .legal-inner h3 {
+    font-size: 1.0625rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .legal-inner p {
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+  .legal-inner ul,
+  .legal-inner ol {
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin: 0.75rem 0 1.25rem 1.5rem;
+  }
+  .legal-inner li {
+    margin-bottom: 0.375rem;
+  }
+  .legal-inner a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .legal-inner a:hover {
+    color: var(--color-primary-dark);
+  }
+</style>

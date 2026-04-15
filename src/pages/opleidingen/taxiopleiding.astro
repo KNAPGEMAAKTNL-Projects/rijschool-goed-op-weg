@@ -1,8 +1,498 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import CtaSection from '../../components/CtaSection.astro';
+import DiagonalDivider from '../../components/DiagonalDivider.astro';
 ---
-<Layout title="Taxiopleiding — Rijschool Goed op Weg">
+<Layout title="Taxiopleiding Tiel | 100% Geslaagd | Goed op Weg" description="Taxiopleiding in Tiel bij Rijschool Goed op Weg. 100% geslaagd, ver boven het landelijk gemiddelde van 60%. Theorie en praktijk. Plan je opleiding.">
+  <Header />
   <main>
-    <!-- Taxiopleiding service page -->
+    <!-- Service Hero -->
+    <section class="service-hero">
+      <div class="service-hero-inner">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span aria-hidden="true">/</span>
+          <a href="/opleidingen/autorijles">Opleidingen</a>
+          <span aria-hidden="true">/</span>
+          <span>Taxiopleiding</span>
+        </nav>
+        <h1>Taxiopleiding in Tiel</h1>
+        <p class="service-hero-sub">Taxiopleiding bij Rijschool Goed op Weg in Tiel. Je haalt je taxipas (chauffeurskaart) met theorie en praktijk bij één vaste instructeur. Het slagingspercentage is 100%, tegenover een landelijk CBR-gemiddelde van 60%. Je hebt een geldig rijbewijs B nodig om te starten.</p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="stat-num">100%</span>
+            <span class="stat-lbl">Geslaagd</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-num">60%</span>
+            <span class="stat-lbl">CBR-gemiddelde</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <DiagonalDivider direction="right-down" fill="var(--hex-bg)" />
+
+    <!-- 8/4 Content Grid -->
+    <section class="service-content">
+      <div class="service-grid">
+        <!-- Main content (8 cols) -->
+        <div class="service-main">
+          <h2>Beschrijving</h2>
+          <p>Wil je professioneel als taxichauffeur aan de slag? Dan heb je een chauffeurskaart nodig. Daarvoor moet je het taxi-examen halen bij het CBR. Bij Goed op Weg bereid ik je voor op zowel het theorie-examen als het praktijkexamen.</p>
+          <p>Het theorie-examen gaat over verkeersregels, klantomgang, route-efficiëntie en veiligheid. Niet alleen verkeer, maar ook hoe je met passagiers omgaat en wat er van je verwacht wordt als professioneel chauffeur.</p>
+          <p>Het praktijkexamen test je rijvaardigheid op een hoger niveau dan het gewone autorijexamen. Je moet soepel en veilig rijden, ook in druk verkeer. Ik bereid je voor op precies die situaties die bij het examen langskomen.</p>
+          <p>De opleiding is individueel. Je zit niet in een klaslokaal met anderen. Je leert in je eigen tempo, met persoonlijke aandacht voor de onderdelen waar jij nog aan moet werken.</p>
+          <p>100% van mijn leerlingen is geslaagd voor het taxi-examen. Het landelijk gemiddelde ligt op 60%. Dat verschil zit in de voorbereiding.</p>
+
+          <h2>Waarom de taxiopleiding bij Goed op Weg?</h2>
+          <ul>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg>
+              <span><strong>100% geslaagd</strong>: het landelijk gemiddelde voor het taxi-examen is 60%. Bij Goed op Weg is het 100%. Dat is geen geluk, dat is voorbereiding.</span>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg>
+              <span><strong>Theorie én praktijk bij dezelfde instructeur</strong>: je hoeft niet apart naar een theoriecursus. Ik begeleid je bij alles.</span>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg>
+              <span><strong>Individuele opleiding</strong>: geen groepslessen. De aandacht gaat naar jou en naar de onderdelen waar jij moeite mee hebt.</span>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg>
+              <span><strong>Direct klaar om te werken</strong>: na je examen kun je je chauffeurskaart aanvragen en aan de slag.</span>
+            </li>
+          </ul>
+
+          <h2>Hoe werkt het?</h2>
+          <div class="process-steps">
+            <div class="process-step">
+              <h3>Intakegesprek</h3>
+              <p>Je begint met een intakegesprek. Daar bespreken we je achtergrond, je rijervaring, en hoeveel voorbereiding je nodig hebt.</p>
+            </div>
+            <div class="process-step">
+              <h3>Theorie</h3>
+              <p>Daarna starten we met theorie. Ik loop de examenstof met je door: verkeersregels, klantcommunicatie, routeplanning, veilig rijden. Je krijgt ook oefenmateriaal om thuis door te nemen.</p>
+            </div>
+            <div class="process-step">
+              <h3>Praktijklessen</h3>
+              <p>Tegelijk beginnen we met de praktijklessen. Je oefent in het verkeer rond Tiel. Rustig rijden, efficiënt navigeren, omgaan met passagiers. Ik let op alles wat de examinator straks ook beoordeelt.</p>
+            </div>
+            <div class="process-step">
+              <h3>Examen en chauffeurskaart</h3>
+              <p>Als je er klaar voor bent, plan ik het examen bij het CBR. Na het examen vraag je je chauffeurskaart aan bij het KIWA.</p>
+            </div>
+          </div>
+
+          <h2>Prijs</h2>
+          <p>&euro; [XXX] voor de volledige opleiding (theorie + praktijk). Rijlessen zijn vrijgesteld van BTW.</p>
+          <p>Bekijk alle <a href="/tarieven">tarieven</a> voor een overzicht.</p>
+
+          <h2>Veelgestelde vragen over de taxiopleiding</h2>
+          <div class="service-faq">
+            <details>
+              <summary>
+                Wat heb ik nodig om taxichauffeur te worden?
+                <svg class="chevron" width="18" height="18" viewBox="0 0 256 256" fill="currentColor"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+              </summary>
+              <p class="faq-answer">Een geldig rijbewijs B, een geldige Verklaring Omtrent het Gedrag (VOG), en een chauffeurskaart. Die chauffeurskaart haal je door het taxi-examen te doen bij het CBR.</p>
+            </details>
+            <details>
+              <summary>
+                Hoe lang duurt de taxiopleiding?
+                <svg class="chevron" width="18" height="18" viewBox="0 0 256 256" fill="currentColor"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+              </summary>
+              <p class="faq-answer">Dat hangt af van je ervaring. Heb je al een rijbewijs B en rij je regelmatig? Dan heb je minder praktijklessen nodig en kun je sneller examen doen. Gemiddeld een paar weken.</p>
+            </details>
+            <details>
+              <summary>
+                Is het theorie-examen voor taxi lastig?
+                <svg class="chevron" width="18" height="18" viewBox="0 0 256 256" fill="currentColor"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+              </summary>
+              <p class="faq-answer">Het is anders dan het gewone theorie-examen. Er komen vragen bij over klantomgang, routeplanning en taxispecifieke regels. Ik loop alles met je door zodat je goed voorbereid bent.</p>
+            </details>
+            <details>
+              <summary>
+                Wat als ik al een rijbewijs B heb?
+                <svg class="chevron" width="18" height="18" viewBox="0 0 256 256" fill="currentColor"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+              </summary>
+              <p class="faq-answer">Dan hoef je geen autorijexamen meer te doen. Je doet alleen het taxi-examen (theorie + praktijk). De meeste leerlingen hebben al een rijbewijs B.</p>
+            </details>
+          </div>
+        </div>
+
+        <!-- Sidebar (4 cols) -->
+        <aside class="service-sidebar">
+          <div class="sidebar-card sidebar-pricing">
+            <h3>Taxiopleiding</h3>
+            <div class="sidebar-price">&euro; [XXX] <span>opleiding</span></div>
+            <a href="/contact" class="sidebar-cta">Plan je intake &rarr;</a>
+            <p class="sidebar-micro">Vrijblijvend &middot; Binnen 24 uur reactie</p>
+          </div>
+          <div class="sidebar-card sidebar-facts">
+            <h3>In het kort</h3>
+            <dl class="fact-list">
+              <div class="fact-row">
+                <dt class="fact-label">Slagingspercentage</dt>
+                <dd class="fact-value">100%</dd>
+              </div>
+              <div class="fact-row">
+                <dt class="fact-label">Inhoud</dt>
+                <dd class="fact-value">Theorie + praktijk</dd>
+              </div>
+              <div class="fact-row">
+                <dt class="fact-label">Vereiste</dt>
+                <dd class="fact-value">Rijbewijs B</dd>
+              </div>
+              <div class="fact-row">
+                <dt class="fact-label">Instructeur</dt>
+                <dd class="fact-value">Eén vaste instructeur</dd>
+              </div>
+            </dl>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Related Services -->
+    <section class="related-services">
+      <div class="related-inner">
+        <h2>Ook interessant</h2>
+        <div class="related-grid">
+          <div class="related-card">
+            <h3>Autorijles</h3>
+            <p>Nog geen rijbewijs B? Autorijles in Tiel bij een vaste instructeur.</p>
+            <a href="/opleidingen/autorijles" class="related-card-link">
+              Bekijk autorijles
+              <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69l-58.35-58.34a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg>
+            </a>
+          </div>
+          <div class="related-card">
+            <h3>Aanhangwagen (BE)</h3>
+            <p>Rijbewijs uitbreiden met aanhangwagen? Caravan, paardentrailer of verhuisaanhanger.</p>
+            <a href="/opleidingen/aanhangwagen-be" class="related-card-link">
+              Bekijk BE-rijles
+              <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69l-58.35-58.34a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <CtaSection heading="Plan je intake" subtext="Vrijblijvend · Binnen 24 uur reactie" buttonText="Plan je intake" buttonHref="/contact" />
   </main>
+  <Footer />
 </Layout>
+
+<style>
+  .service-hero {
+    background-color: var(--color-dark);
+    color: white;
+    padding: 8rem 0 4rem;
+    position: relative;
+  }
+  .service-hero-inner {
+    max-width: 68.75rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .breadcrumb {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 1.5rem;
+  }
+  .breadcrumb a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: color 200ms var(--ease-project);
+  }
+  .breadcrumb a:hover { color: var(--color-primary-light); }
+  .service-hero h1 { margin-bottom: 1rem; color: white; }
+  .service-hero-sub {
+    font-size: 1.125rem;
+    color: rgba(255,255,255,0.75);
+    max-width: 38rem;
+    line-height: 1.6;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .hero-stat .stat-num {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: clamp(1.5rem, 1rem + 1vw, 2.37rem);
+    color: var(--color-primary-light);
+  }
+  .hero-stat .stat-lbl {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+    display: block;
+  }
+
+  .service-content {
+    background-color: var(--color-bg);
+    padding: 5rem 0;
+  }
+  @media (max-width: 767px) { .service-content { padding: 3rem 0; } }
+  .service-grid {
+    max-width: 68.75rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: 8fr 4fr;
+    gap: 3rem;
+  }
+  @media (max-width: 1023px) {
+    .service-grid {
+      grid-template-columns: 1fr;
+    }
+    .service-sidebar { order: -1; }
+  }
+  .service-main h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  .service-main h2:first-child { margin-top: 0; }
+  .service-main p {
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+  .service-main a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .service-main a:hover {
+    color: var(--color-primary-dark);
+  }
+  .service-main ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+  .service-main li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    color: var(--color-text);
+  }
+  .service-main li svg {
+    color: var(--color-primary);
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+  }
+
+  .process-steps {
+    counter-reset: step;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 1rem 0 1.5rem;
+  }
+  .process-step {
+    counter-increment: step;
+    position: relative;
+    padding-left: 3rem;
+  }
+  .process-step::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    width: 2rem;
+    text-align: center;
+  }
+  .process-step h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+  .process-step p {
+    font-size: 0.9375rem;
+  }
+
+  .service-sidebar { position: sticky; top: 5rem; }
+  .sidebar-card {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .sidebar-card h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  .sidebar-price {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: clamp(1.5rem, 1rem + 1vw, 2.37rem);
+    color: var(--color-primary);
+    margin-bottom: 0.25rem;
+  }
+  .sidebar-price span {
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: var(--color-text-muted);
+  }
+  .sidebar-cta {
+    display: block;
+    text-align: center;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--color-primary);
+    color: var(--color-dark);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    border-radius: 8px;
+    margin-top: 1rem;
+    transition: all 300ms var(--ease-project);
+  }
+  @media (hover: hover) {
+    .sidebar-cta:hover {
+      background-color: var(--color-primary-dark);
+      color: white;
+      transform: translateY(-2px);
+    }
+  }
+  .sidebar-micro {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin-top: 0.5rem;
+  }
+  .fact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .fact-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .fact-row:last-child { border-bottom: none; }
+  .fact-label { color: var(--color-text-muted); }
+  .fact-value { font-weight: 600; }
+
+  .service-faq {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  .service-faq details {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .service-faq summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: var(--color-text);
+    list-style: none;
+  }
+  .service-faq summary::-webkit-details-marker { display: none; }
+  .service-faq .chevron {
+    flex-shrink: 0;
+    transition: transform 300ms var(--ease-project);
+    color: var(--color-text-muted);
+  }
+  .service-faq details[open] .chevron { transform: rotate(180deg); }
+  .service-faq .faq-answer {
+    padding: 0 1.25rem 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .related-services {
+    background: white;
+    padding: 4rem 0;
+  }
+  @media (max-width: 767px) { .related-services { padding: 3rem 0; } }
+  .related-inner {
+    max-width: 68.75rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .related-inner h2 { margin-bottom: 1.5rem; }
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+  @media (max-width: 639px) { .related-grid { grid-template-columns: 1fr; } }
+  .related-card {
+    position: relative;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all 300ms var(--ease-project);
+  }
+  @media (hover: hover) {
+    .related-card:hover {
+      border-color: var(--color-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px -4px rgba(240,90,30,0.15);
+    }
+  }
+  .related-card h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+  .related-card p {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+  .related-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+  .related-card-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+</style>

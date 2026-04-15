@@ -1,8 +1,584 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CtaSection from '../components/CtaSection.astro';
+
+const pricingCards = [
+  {
+    title: 'Auto (B)',
+    subtitle: 'Handgeschakeld en automaat',
+    price: '\u20AC\u00A0[XX]',
+    unit: 'per les',
+    features: [
+      '60 minuten per les',
+      'Vaste instructeur',
+      'Handgeschakeld of automaat',
+      'Ophaalservice in Tiel e.o.',
+      'Geen verplicht pakket',
+    ],
+    cta: 'Meer over autorijles',
+    href: '/opleidingen/autorijles',
+    featured: false,
+  },
+  {
+    title: 'Motor',
+    subtitle: 'A1 / A2 / A',
+    price: '\u20AC\u00A0[XX]',
+    unit: 'per les',
+    features: [
+      '60 minuten per les',
+      'Alle categorie\u00EBn: A1, A2, A',
+      '91% slagingspercentage',
+      'Motor en beschermkleding aanwezig',
+      'AVB + verkeersdeelname',
+    ],
+    cta: 'Meer over motorrijles',
+    href: '/opleidingen/motorrijles',
+    featured: false,
+  },
+  {
+    title: 'Dagcursus bromfiets',
+    subtitle: 'Theorie + praktijk + examen in 1 dag',
+    price: '\u20AC\u00A0[XXX]',
+    unit: 'alles-in',
+    badge: 'Populair',
+    features: [
+      'Complete dagcursus',
+      'Theorie, praktijk en examen',
+      '90% slaagt in \u00E9\u00E9n keer',
+      'Bromfiets beschikbaar',
+      'CBR-kosten inbegrepen',
+    ],
+    cta: 'Boek je dagcursus',
+    href: '/opleidingen/dagcursus-bromfiets',
+    featured: true,
+  },
+  {
+    title: 'Bromfiets (AM)',
+    subtitle: 'Losse lessen',
+    price: '\u20AC\u00A0[XX]',
+    unit: 'per les',
+    features: [
+      '60 minuten per les',
+      'Vanaf 16 jaar',
+      'Bromfiets beschikbaar',
+      'Eigen tempo',
+    ],
+    cta: 'Meer over bromfiets',
+    href: '/opleidingen/bromfiets',
+    featured: false,
+  },
+  {
+    title: 'Aanhangwagen (BE)',
+    subtitle: 'Rijbewijs E achter B',
+    price: '\u20AC\u00A0[XX]',
+    unit: 'per les',
+    features: [
+      '60 minuten per les',
+      'Aanhanger aanwezig',
+      'Manoeuvreren + achteruitrijden',
+      'Koppelen en ontkoppelen',
+    ],
+    cta: 'Meer over BE',
+    href: '/opleidingen/aanhangwagen-be',
+    featured: false,
+  },
+  {
+    title: 'Taxiopleiding',
+    subtitle: 'Taxipas / chauffeurskaart',
+    price: '\u20AC\u00A0[XXX]',
+    unit: 'opleiding',
+    features: [
+      'Volledige taxiopleiding',
+      'Theorie + praktijk',
+      '100% slagingspercentage',
+      'Examenbegeleiding',
+    ],
+    cta: 'Meer over taxi',
+    href: '/opleidingen/taxiopleiding',
+    featured: false,
+  },
+];
+
+const included = [
+  { title: 'Vaste instructeur', text: 'Je hebt altijd dezelfde instructeur. Dat zorgt voor vertrouwen en snellere voortgang.' },
+  { title: 'Ophaalservice', text: 'Ik haal je op van huis, school of werk in Tiel en omgeving. Je verliest geen tijd aan reizen.' },
+  { title: 'Lesmateriaal', text: 'Toegang tot online theorie-oefeningen. Alles wat je nodig hebt om goed voorbereid op examen te gaan.' },
+  { title: 'Voortgangsoverzicht', text: 'Na elke les bespreken we je voortgang. Je weet altijd precies hoe je ervoor staat.' },
+  { title: 'Geen verplichte pakketten', text: 'Betaal per les. Je zit nergens aan vast en bepaalt zelf je tempo.' },
+  { title: 'Examenbegeleiding', text: 'Op de dag van je examen haal ik je op en rijden we samen naar het CBR. Geen stress.' },
+];
+
+const pricingFaq = [
+  {
+    q: 'Hoe kan ik betalen?',
+    a: 'Per les met pin, contant of via een overschrijving. Ik stuur ook gewoon een Tikkie als je dat makkelijker vindt.',
+  },
+  {
+    q: 'Wat als ik een les moet annuleren?',
+    a: 'Annuleren kan kosteloos tot 48 uur van tevoren. Korter van tevoren? Dan breng ik de les in rekening. Komt er iets onverwachts tussendoor, neem gerust contact op. Er is altijd een oplossing.',
+  },
+  {
+    q: 'Zitten er extra kosten bovenop de lesprijs?',
+    a: 'Nee, de lesprijs is wat je betaalt. De enige extra kosten zijn de CBR-examens (theorie en praktijk). Die betaal je rechtstreeks aan het CBR. Bij de dagcursus bromfiets zitten de CBR-kosten al inbegrepen.',
+  },
+  {
+    q: 'Kan ik in termijnen betalen?',
+    a: 'Dat is bespreekbaar. Geld mag geen drempel zijn voor je rijbewijs. Neem contact op, dan maken we een regeling die bij je past.',
+  },
+  {
+    q: 'Moet ik een pakket afnemen?',
+    a: 'Nee. Je betaalt per les, tenzij je zelf kiest voor een pakket. Na je proefles bespreken we samen wat het beste bij jouw situatie past.',
+  },
+];
 ---
-<Layout title="Tarieven — Rijschool Goed op Weg">
+<Layout
+  title="Tarieven Rijles Tiel | Geen Verplicht Pakket | Goed op Weg"
+  description="Tarieven rijles bij Rijschool Goed op Weg in Tiel. Betaal per les, geen verplichte pakketten. Rijlessen zijn vrijgesteld van BTW. Bekijk alle prijzen."
+>
+  <Header />
   <main>
-    <!-- Tarieven page: 6 service pricing cards -->
+    <!-- Page hero -->
+    <section class="page-hero-light">
+      <div class="page-hero-inner">
+        <h1>Transparante tarieven</h1>
+        <p class="page-hero-sub">
+          Rijles bij Rijschool Goed op Weg in Tiel kost &euro;&nbsp;[XX] per les van 60 minuten. Je betaalt per les, niet voor een verplicht pakket. De dagcursus bromfiets is &euro;&nbsp;[XXX] alles-in. Rijlessen zijn vrijgesteld van BTW. Alle prijzen op deze pagina zijn eindprijzen.
+        </p>
+      </div>
+    </section>
+
+    <!-- Pricing grid -->
+    <section class="pricing-section">
+      <div class="pricing-inner">
+        <p class="pricing-intro">Kies de opleiding die bij je past. Je betaalt per les, tenzij anders vermeld. Geen verplichte pakketten: je bepaalt zelf je tempo.</p>
+
+        <div class="pricing-grid">
+          {pricingCards.map((card) => (
+            <div class:list={['pricing-card', { 'pricing-card--featured': card.featured }]}>
+              {card.badge && <span class="pricing-badge">{card.badge}</span>}
+              <h3>{card.title}</h3>
+              <p class="pricing-subtitle">{card.subtitle}</p>
+              <div class="pricing-price">
+                <span class="pricing-amount">{card.price}</span>
+                <span class="pricing-unit">{card.unit}</span>
+              </div>
+              <ul class="pricing-features">
+                {card.features.map((f) => (
+                  <li>
+                    <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg>
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+              <a href={card.href} class:list={['pricing-cta', { 'pricing-cta--primary': card.featured }]}>
+                {card.cta}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Wat is inbegrepen -->
+    <section class="included-section">
+      <div class="included-inner">
+        <h2>Bij elke les inbegrepen</h2>
+        <p class="included-sub">Geen extra kosten, geen kleine lettertjes. Dit zit standaard in elke rijles.</p>
+
+        <div class="included-grid">
+          {included.map((item) => (
+            <div class="included-item">
+              <div class="included-icon">
+                <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg>
+              </div>
+              <div>
+                <strong>{item.title}</strong>
+                <p>{item.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- BTW info -->
+    <section class="btw-section">
+      <div class="btw-inner">
+        <p class="btw-note">Rijlessen zijn vrijgesteld van omzetbelasting op grond van de onderwijsvrijstelling. Alle prijzen op deze pagina zijn eindprijzen. Er komt niets bij.</p>
+      </div>
+    </section>
+
+    <!-- Pricing FAQ -->
+    <section class="pricing-faq-section">
+      <div class="pricing-faq-inner">
+        <h2>Veelgestelde vragen over de prijzen</h2>
+        {pricingFaq.map((item) => (
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>{item.q}</span>
+              <svg class="chevron" width="18" height="18" viewBox="0 0 256 256" fill="currentColor"><path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>{item.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <CtaSection
+      heading="Benieuwd welke opleiding bij je past?"
+      subtext="Vrijblijvend · Binnen 24 uur reactie"
+      buttonText="Plan je proefles"
+      buttonHref="/contact"
+      showWhatsApp={true}
+    />
   </main>
+  <Footer />
 </Layout>
+
+<style>
+  /* ── Page hero light ──────────────────────────────── */
+  .page-hero-light {
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    padding: 8rem 0 4rem;
+  }
+  .page-hero-inner {
+    max-width: 68.75rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .page-hero-light h1 {
+    margin-bottom: 1rem;
+  }
+  .page-hero-sub {
+    font-size: 1.125rem;
+    max-width: 38rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+  }
+
+  /* ── Pricing section ──────────────────────────────── */
+  .pricing-section {
+    padding: 4rem 0 5rem;
+    background-color: var(--color-bg);
+  }
+  .pricing-inner {
+    max-width: 68.75rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .pricing-intro {
+    color: var(--color-text-muted);
+    max-width: 38rem;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+  }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  /* Pricing card */
+  .pricing-card {
+    background-color: var(--color-surface);
+    border-radius: 8px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: box-shadow 300ms var(--ease-project);
+  }
+  @media (hover: hover) {
+    .pricing-card:hover {
+      box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  /* Featured card */
+  .pricing-card--featured {
+    background-color: var(--color-dark);
+    color: white;
+    transform: scale(1.03);
+    box-shadow: 0 16px 48px -12px rgba(0, 0, 0, 0.2);
+  }
+  .pricing-card--featured .pricing-subtitle {
+    color: rgba(255, 255, 255, 0.6);
+  }
+  .pricing-card--featured .pricing-unit {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  .pricing-card--featured .pricing-features li {
+    color: rgba(255, 255, 255, 0.75);
+  }
+  .pricing-card--featured .pricing-features svg {
+    color: var(--color-primary);
+  }
+
+  /* Badge */
+  .pricing-badge {
+    position: absolute;
+    top: -0.75rem;
+    right: 1.5rem;
+    background-color: var(--color-primary);
+    color: var(--color-dark);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+    letter-spacing: 0.03em;
+  }
+
+  .pricing-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+  }
+  .pricing-subtitle {
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .pricing-price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.375rem;
+    margin-bottom: 1.5rem;
+  }
+  .pricing-amount {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 2rem;
+    line-height: 1;
+  }
+  .pricing-unit {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+
+  .pricing-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    flex-grow: 1;
+  }
+  .pricing-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    line-height: 1.4;
+    color: var(--color-text-muted);
+  }
+  .pricing-features svg {
+    flex-shrink: 0;
+    color: var(--color-primary);
+    margin-top: 0.0625rem;
+  }
+
+  /* CTA button */
+  .pricing-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem;
+    padding: 0.625rem 1.25rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.875rem;
+    text-decoration: none;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    background: transparent;
+    transition: all 300ms var(--ease-project);
+    margin-top: auto;
+  }
+  @media (hover: hover) {
+    .pricing-cta:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+    }
+  }
+  .pricing-cta--primary {
+    background-color: var(--color-primary);
+    color: var(--color-dark);
+    border-color: var(--color-primary);
+  }
+  @media (hover: hover) {
+    .pricing-cta--primary:hover {
+      background-color: var(--color-primary-dark);
+      border-color: var(--color-primary-dark);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px -4px rgba(240, 90, 30, 0.4);
+    }
+  }
+
+  /* ── Included section ─────────────────────────────── */
+  .included-section {
+    padding: 5rem 0;
+    background-color: var(--color-surface);
+  }
+  .included-inner {
+    max-width: 68.75rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .included-inner h2 {
+    margin-bottom: 0.5rem;
+  }
+  .included-sub {
+    color: var(--color-text-muted);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+  .included-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .included-item {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  .included-icon {
+    flex-shrink: 0;
+    color: var(--color-primary);
+    margin-top: 0.125rem;
+  }
+  .included-item strong {
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  .included-item p {
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* ── BTW section ──────────────────────────────────── */
+  .btw-section {
+    padding: 2rem 0;
+    background-color: var(--color-bg);
+  }
+  .btw-inner {
+    max-width: 45rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .btw-note {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ── Pricing FAQ ──────────────────────────────────── */
+  .pricing-faq-section {
+    padding: 3rem 0 5rem;
+    background-color: var(--color-bg);
+  }
+  .pricing-faq-inner {
+    max-width: 45rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .pricing-faq-inner h2 {
+    margin-bottom: 2rem;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--color-border);
+  }
+  .faq-item:first-of-type {
+    border-top: 1px solid var(--color-border);
+  }
+  .faq-question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 0;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1.0625rem;
+    line-height: 1.4;
+    list-style: none;
+    color: var(--color-text);
+    transition: color 300ms var(--ease-project);
+  }
+  .faq-question::-webkit-details-marker {
+    display: none;
+  }
+  .faq-question .chevron {
+    flex-shrink: 0;
+    color: var(--color-text-muted);
+    transition: transform 300ms var(--ease-project);
+  }
+  .faq-item[open] .faq-question .chevron {
+    transform: rotate(180deg);
+  }
+  .faq-item[open] .faq-question {
+    color: var(--color-primary);
+  }
+  .faq-answer {
+    padding: 0 0 1.5rem;
+  }
+  .faq-answer p {
+    line-height: 1.7;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+  @media (hover: hover) {
+    .faq-question:hover {
+      color: var(--color-primary);
+    }
+  }
+
+  /* ── Responsive ───────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .pricing-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .pricing-card--featured {
+      transform: scale(1);
+    }
+    .included-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 768px) {
+    .page-hero-light {
+      padding: 6rem 0 3rem;
+    }
+    .pricing-grid {
+      grid-template-columns: 1fr;
+    }
+    .pricing-card--featured {
+      transform: scale(1);
+    }
+    .included-grid {
+      grid-template-columns: 1fr;
+    }
+    .faq-question {
+      font-size: 1rem;
+    }
+  }
+</style>

@@ -1,8 +1,351 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CtaSection from '../components/CtaSection.astro';
+
+const traits = ['Geduldig', 'Ervaren', 'Eerlijk', 'Persoonlijk'];
+
+const reasons = [
+  {
+    title: 'Altijd dezelfde instructeur',
+    text: 'Ik ken jouw sterke punten en aandachtspunten. Geen wisselende gezichten. Geen "even bijpraten" aan het begin van elke les.',
+  },
+  {
+    title: 'Eerlijk over je voortgang',
+    text: 'Na elke les weet je waar je staat. Ik draai er niet omheen als er iets beter moet. Liever een eerlijk gesprek nu dan een teleurstelling bij het examen.',
+  },
+  {
+    title: 'Pas naar examen als je er klaar voor bent',
+    text: 'Ik plan geen examens om lessen vol te krijgen. Je gaat naar het CBR als je het aankunt. Dát is de reden dat de slagingspercentages zo hoog liggen.',
+  },
+  {
+    title: 'Geen verplichte pakketten',
+    text: 'Je betaalt per les. Meer lessen nodig? Prima. Minder? Mooi toch.',
+  },
+];
 ---
-<Layout title="Over Ons — Rijschool Goed op Weg">
+<Layout
+  title="Over Rijschool Goed op Weg | Rijinstructeur Tiel"
+  description="Rijschool Goed op Weg in Tiel: één vaste instructeur, van proefles tot examen. Motor 91%, bromfiets 90%, taxi 100% geslaagd. Maak kennis."
+>
+  <Header />
   <main>
-    <!-- Over ons page: instructor section + contact form -->
+    <!-- Page hero (light variant) -->
+    <section class="page-hero-light">
+      <div class="page-hero-inner">
+        <h1>Over Goed op Weg</h1>
+      </div>
+    </section>
+
+    <!-- Instructor intro — 7/5 asymmetric grid -->
+    <section class="intro-section">
+      <div class="intro-inner">
+        <div class="intro-grid">
+          <div class="intro-story">
+            <p class="intro-lead">
+              Ik ben [Voornaam], de instructeur achter Rijschool Goed op Weg in Tiel. Auto, motor, bromfiets, aanhangwagen, taxi. Vijf opleidingen, één instructeur. Van je eerste proefles tot het moment dat je je rijbewijs ophaalt bij de gemeente. De slagingspercentages spreken eigenlijk voor zich: motor 91%, bromfiets 90% en taxi 100%. Allemaal ver boven het CBR-gemiddelde.
+            </p>
+
+            <h2>Het verhaal</h2>
+            <p>Rijles geven is gewoon wat ik het liefste doe. Daar draai ik niet omheen.</p>
+            <p>Ik ben Goed op Weg gestart omdat ik het anders wilde aanpakken. Geen wisselende instructeurs. Geen verplichte pakketten van 40 lessen waar je halverwege al spijt van hebt. Geen leerlingen die na maanden nog niet weten waar ze aan toe zijn.</p>
+            <p>Mijn aanpak is simpel: ik ben eerlijk. Elke les vertel ik je hoe je ervoor staat. Heb je extra oefening nodig? Dan zeg ik dat. Ben je er klaar voor? Dan plan ik je examen. Ik ga pas naar het CBR als ik weet dat je het kunt.</p>
+            <p>Die aanpak werkt. Motor 91% geslaagd, bromfiets 90%, taxi 100%. Niet omdat ik de makkelijke weg kies, maar omdat je goed voorbereid op examen gaat.</p>
+          </div>
+
+          <div class="intro-photo">
+            <div class="photo-frame">
+              <!-- Placeholder: instructeurfoto -->
+              <div class="photo-placeholder" aria-label="[Voornaam], rijinstructeur bij Rijschool Goed op Weg in Tiel.">
+                <svg width="48" height="48" viewBox="0 0 256 256" fill="currentColor" opacity="0.3"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,16a88,88,0,0,1,71.87,37.27,64,64,0,0,0-115.74,0A88,88,0,0,1,128,40Zm0,176a87.76,87.76,0,0,1-64-27.78V176a16,16,0,0,1,16-16h96a16,16,0,0,1,16,16v12.22A87.76,87.76,0,0,1,128,216ZM96,120a32,32,0,1,1,32,32A32,32,0,0,1,96,120Z"/></svg>
+              </div>
+            </div>
+            <div class="photo-caption">
+              <strong>[Voornaam] El Amrani</strong>
+              <span>Rijinstructeur &middot; Eigenaar</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Instructor details -->
+    <section class="details-section">
+      <div class="details-inner">
+        <div class="details-grid">
+          <div class="details-bio">
+            <h3>De instructeur</h3>
+            <p>Al meer dan [X] jaar geef ik rijles in Tiel en omgeving. [XXX]+ leerlingen begeleid: automobilisten, motorrijders, bromfietsers, taxichauffeurs. De examenwegen in Tiel ken ik uit mijn hoofd. Ik weet welke kruispunten lastig zijn, welke bochten verrassend scherp zijn, en waar examinatoren op letten.</p>
+            <p>Mijn leerlingen zeggen dat ik geduldig ben. Maar ook eerlijk. Ik vertel je niet wat je wilt horen. Ik vertel je wat je nodig hebt om te slagen.</p>
+            <p>En dat moment bij het CBR als je hoort dat je geslaagd bent? Daar doe ik het voor. Elke keer weer.</p>
+
+            <div class="trait-pills">
+              {traits.map((trait) => (
+                <span class="trait-pill">{trait}</span>
+              ))}
+            </div>
+          </div>
+
+          <div class="credentials">
+            <h3>Wat betekenen de certificeringen?</h3>
+
+            <div class="credential-card">
+              <span class="credential-label">Rijschoolnummer 7633G1</span>
+              <p>Dit nummer betekent dat Goed op Weg een officieel erkende rijschool is. De instructeur is WRM-gecertificeerd (Wettelijke Rij-instructeur Motorrijtuigen) en voldoet aan alle eisen om les te geven. Voor jou als leerling: je weet zeker dat je les krijgt van iemand die het vak beheerst.</p>
+            </div>
+
+            <div class="credential-card">
+              <span class="credential-label">KvK 51173336</span>
+              <p>Officieel ingeschreven bij de Kamer van Koophandel als rijschool. Gewoon controleerbaar.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why choose section -->
+    <section class="why-section">
+      <div class="why-inner">
+        <h2>Waarom kiezen leerlingen voor Goed op Weg?</h2>
+        <div class="reasons-grid">
+          {reasons.map((reason) => (
+            <div class="reason-card">
+              <div class="reason-icon">
+                <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"/></svg>
+              </div>
+              <div>
+                <strong>{reason.title}</strong>
+                <p>{reason.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <CtaSection
+      heading="Benieuwd of ik iets voor je kan betekenen?"
+      subtext="Vrijblijvend · Binnen 24 uur reactie"
+      buttonText="Plan je proefles"
+      buttonHref="/contact"
+      showWhatsApp={true}
+    />
   </main>
+  <Footer />
 </Layout>
+
+<style>
+  /* ── Page hero light ──────────────────────────────── */
+  .page-hero-light {
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    padding: 8rem 0 4rem;
+  }
+  .page-hero-inner {
+    max-width: 68.75rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .page-hero-light h1 {
+    margin-bottom: 1rem;
+  }
+
+  /* ── Intro section (7/5 grid) ─────────────────────── */
+  .intro-section {
+    padding: 5rem 0 4rem;
+    background-color: var(--color-bg);
+  }
+  .intro-inner {
+    max-width: 68.75rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .intro-lead {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    margin-bottom: 2.5rem;
+  }
+  .intro-story h2 {
+    margin-bottom: 1rem;
+  }
+  .intro-story p {
+    line-height: 1.7;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+  .intro-story p:last-of-type {
+    margin-bottom: 0;
+  }
+
+  /* Photo frame with offset shadow */
+  .intro-photo {
+    position: sticky;
+    top: 6rem;
+  }
+  .photo-frame {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 12px 12px 0 var(--color-primary-surface);
+  }
+  .photo-placeholder {
+    aspect-ratio: 4 / 5;
+    background-color: var(--color-surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+  }
+  .photo-caption {
+    margin-top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .photo-caption strong {
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+  }
+  .photo-caption span {
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+  }
+
+  /* ── Details section ──────────────────────────────── */
+  .details-section {
+    padding: 4rem 0 5rem;
+    background-color: var(--color-surface);
+  }
+  .details-inner {
+    max-width: 68.75rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .details-grid {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .details-bio h3 {
+    margin-bottom: 1rem;
+  }
+  .details-bio p {
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  /* Trait pills */
+  .trait-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+  .trait-pill {
+    display: inline-block;
+    padding: 0.375rem 1rem;
+    background-color: var(--color-primary-surface);
+    color: var(--color-primary-dark);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.875rem;
+    border-radius: 100px;
+  }
+
+  /* Credentials */
+  .credentials h3 {
+    margin-bottom: 1.25rem;
+  }
+  .credential-card {
+    background-color: var(--color-bg);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .credential-label {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.875rem;
+    color: var(--color-primary);
+    letter-spacing: 0.03em;
+    margin-bottom: 0.5rem;
+  }
+  .credential-card p {
+    line-height: 1.6;
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+    margin: 0;
+  }
+
+  /* ── Why section ──────────────────────────────────── */
+  .why-section {
+    padding: 5rem 0;
+    background-color: var(--color-bg);
+  }
+  .why-inner {
+    max-width: 68.75rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .why-inner > h2 {
+    margin-bottom: 2.5rem;
+  }
+  .reasons-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .reason-card {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1.5rem;
+    background-color: var(--color-surface);
+    border-radius: 8px;
+  }
+  .reason-icon {
+    flex-shrink: 0;
+    color: var(--color-primary);
+    margin-top: 0.125rem;
+  }
+  .reason-card strong {
+    display: block;
+    font-family: var(--font-heading);
+    margin-bottom: 0.375rem;
+  }
+  .reason-card p {
+    line-height: 1.6;
+    color: var(--color-text-muted);
+    font-size: 0.9375rem;
+    margin: 0;
+  }
+
+  /* ── Responsive ───────────────────────────────────── */
+  @media (max-width: 768px) {
+    .intro-grid,
+    .details-grid {
+      grid-template-columns: 1fr;
+    }
+    .intro-photo {
+      position: static;
+      order: -1;
+      max-width: 20rem;
+    }
+    .reasons-grid {
+      grid-template-columns: 1fr;
+    }
+    .page-hero-light {
+      padding: 6rem 0 3rem;
+    }
+  }
+</style>
