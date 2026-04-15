@@ -21,6 +21,8 @@ build/
 .impeccable.md
 .playwright-mcp/
 .wrangler/
+.agents/
+skills-lock.json
 pics/
 
 # SOP process artifacts (created during Sessions 1-3, stay local)

@@ -1,0 +1,53 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import { Font } from 'astro:assets';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Rijschool Goed op Weg — Rijlessen in Tiel en omgeving. Motor, bromfiets, auto, taxi en BE. Hoge slagingspercentages bij het CBR.' } = Astro.props;
+---
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <Font cssVariable="--font-heading" preload />
+    <Font cssVariable="--font-body" preload />
+    <ClientRouter />
+  </head>
+  <body>
+    <slot />
+    <script>
+      // IntersectionObserver fallback for scroll reveals (Firefox)
+      if (!CSS.supports('animation-timeline', 'view()')) {
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!prefersReduced) {
+          const elements = document.querySelectorAll('.scroll-fade-up, .scroll-scale-reveal');
+          elements.forEach((el) => el.classList.add('js-scroll-reveal'));
+
+          const staggerContainers = document.querySelectorAll('.stagger-container');
+          staggerContainers.forEach((el) => el.classList.add('js-scroll-reveal'));
+
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('is-visible');
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.1, rootMargin: '0px 0px -10% 0px' }
+          );
+          document.querySelectorAll('.js-scroll-reveal').forEach((el) => observer.observe(el));
+        }
+      }
+    </script>
+  </body>
+</html>
